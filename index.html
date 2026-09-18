@@ -38,9 +38,16 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 /* ============== LAYOUT ============== */
 .container{max-width:1720px;margin:0 auto;padding:1.5rem 1.75rem 3rem}
 
-/* ============== UPLOAD PANEL ============== */
-.upload-panel{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1.5rem;border:1.5px dashed var(--border);transition:.25s}
-.upload-panel:hover{border-color:var(--primary)}
+/* ============== ADMIN PANEL ============== */
+.admin-banner{display:none;background:linear-gradient(135deg,#fef3c7,#fed7aa);border:1.5px solid #f59e0b;border-radius:12px;padding:.75rem 1rem;margin-bottom:1rem;font-size:.8rem;color:#78350f;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.admin-banner.show{display:flex}
+.admin-banner strong{color:#7c2d12}
+.admin-banner .actions{display:flex;gap:.5rem}
+.admin-banner .actions button{padding:.35rem .8rem;border-radius:8px;border:none;font-weight:700;font-size:.75rem;cursor:pointer;font-family:inherit;background:#fff;color:#7c2d12;border:1.5px solid #f59e0b}
+.admin-banner .actions button:hover{background:#fef3c7}
+
+.upload-panel{display:none;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1.5rem;border:1.5px dashed #f59e0b}
+.upload-panel.show{display:block}
 .upload-panel h2{font-size:.95rem;margin-bottom:.3rem;color:var(--dark);display:flex;align-items:center;gap:.5rem}
 .upload-panel > p{font-size:.78rem;color:var(--muted);margin-bottom:.9rem}
 .upload-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;margin-bottom:.9rem}
@@ -63,6 +70,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
 .btn-danger{background:#fff;color:var(--danger);border:1.5px solid #fecaca}
 .btn-danger:hover{background:#fef2f2}
+.btn-success{background:var(--success);color:#fff}
+.btn-success:hover{background:#059669}
 .toast{display:none;padding:.65rem .95rem;border-radius:9px;font-size:.78rem;margin-top:.75rem}
 .toast.show{display:block}
 .toast.ok{background:#ecfdf5;color:#065f46;border-left:3px solid var(--success)}
@@ -81,7 +90,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .section-head .badge{font-size:.68rem;font-weight:700;color:var(--primary);background:#eef2ff;padding:.2rem .6rem;border-radius:20px}
 .section-head .hint{font-size:.72rem;color:var(--muted);font-weight:500}
 
-/* ============== REGION KPI STRIP ============== */
+/* ============== REGION TABS ============== */
 .region-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem}
 .region-tab{padding:.4rem .9rem;border-radius:8px;font-size:.78rem;font-weight:700;background:#f1f5f9;color:var(--muted);cursor:pointer;border:none;font-family:inherit;transition:.15s;display:flex;align-items:center;gap:.4rem}
 .region-tab:hover{background:#e0e7ff;color:var(--primary)}
@@ -175,17 +184,29 @@ tbody tr:hover{background:#f8fafc}
         <label>🏫 School</label>
         <select id="schoolFilter" onchange="onSchoolFilter(this.value)"><option value="">All Schools</option></select>
       </div>
-      <div class="status-pill"><span class="dot" id="statusDot"></span><span id="lastUpdated">Ready</span></div>
+      <div class="status-pill"><span class="dot" id="statusDot"></span><span id="lastUpdated">Loading…</span></div>
     </div>
   </div>
 </header>
 
 <div class="container">
 
+  <!-- ================= ADMIN BANNER ================= -->
+  <div class="admin-banner" id="adminBanner">
+    <div>
+      <strong>🔐 Admin Mode Active</strong> — You can upload weekly Excel files and publish them.
+      When done, click <em>Export JSON</em> and commit the file to <code>data/weeks.json</code> in your repo.
+    </div>
+    <div class="actions">
+      <button onclick="toggleUploadPanel()">📤 Toggle Upload Panel</button>
+      <button onclick="exitAdmin()">✖ Exit Admin</button>
+    </div>
+  </div>
+
   <!-- ================= UPLOAD PANEL ================= -->
-  <div class="upload-panel">
-    <h2>📤 Upload Weekly Excel Files</h2>
-    <p>Upload the 4 Excel files for a week. Data is saved in your browser (localStorage) and can be exported as JSON for GitHub.</p>
+  <div class="upload-panel" id="uploadPanel">
+    <h2>📤 Upload Weekly Excel Files <span class="badge" style="background:#fef3c7;color:#7c2d12">ADMIN ONLY</span></h2>
+    <p>Upload the 4 Excel files for a week. Then click <em>Publish to GitHub</em> to make it visible to everyone.</p>
 
     <div class="week-fields">
       <input type="text" id="weekId" placeholder="Week ID (e.g. week-5)">
@@ -221,29 +242,39 @@ tbody tr:hover{background:#f8fafc}
     </div>
 
     <div class="action-row">
-      <button class="btn btn-primary" id="processBtn" onclick="processUpload()" disabled>⚡ Process & Show</button>
-      <button class="btn btn-ghost" onclick="exportAllWeeks()">💾 Export JSON</button>
+      <button class="btn btn-primary" id="processBtn" onclick="processUpload()" disabled>⚡ Process & Preview</button>
+      <button class="btn btn-success" onclick="publishToGitHub()">🚀 Publish to GitHub (download weeks.json)</button>
+      <button class="btn btn-ghost" onclick="loadRemoteData()">🔄 Reload from GitHub</button>
+      <button class="btn btn-ghost" onclick="exportAllWeeks()">💾 Export All Weeks JSON</button>
       <button class="btn btn-ghost" onclick="importWeeks()">📥 Import JSON</button>
       <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
-      <button class="btn btn-danger" onclick="clearAll()">🗑️ Clear All</button>
+      <button class="btn btn-danger" onclick="clearLocal()">🗑️ Clear Local Cache</button>
     </div>
 
     <div class="toast" id="toast"></div>
   </div>
 
   <!-- ================= DASHBOARD ================= -->
-  <div id="dashboardContainer"></div>
+  <div id="dashboardContainer">
+    <div class="loading"><div class="spinner"></div><p>Loading dashboard data…</p></div>
+  </div>
 
 </div>
 
 <footer class="footer">
-  <p>School Management Dashboard • Upload weekly Excel files to auto-update</p>
-  <p style="margin-top:.35rem;font-size:.7rem;opacity:.7">Data stays in your browser • Export JSON to sync across devices</p>
+  <p>School Management Dashboard • Read-only view • Data updates automatically</p>
+  <p style="margin-top:.35rem;font-size:.7rem;opacity:.7">Press <strong>Shift + A</strong> to toggle admin mode</p>
 </footer>
 
 <script>
 /* ============================================================
-   CHART.JS DATALABELS PLUGIN
+   CONFIG
+   ============================================================ */
+const REMOTE_DATA_URL = './data/weeks.json';  // committed to your GitHub repo
+const STORAGE_KEY = 'schoolDash.weeks.v4';
+
+/* ============================================================
+   CHART.JS DEFAULTS
    ============================================================ */
 Chart.register(ChartDataLabels);
 Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
@@ -253,7 +284,6 @@ Chart.defaults.color = '#64748b';
 /* ============================================================
    STORAGE
    ============================================================ */
-const STORAGE_KEY = 'schoolDash.weeks.v3';
 const Store = {
   read() {
     try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : { weeks:{}, latest:null }; }
@@ -268,7 +298,7 @@ const Store = {
    STATE
    ============================================================ */
 const State = {
-  store: null,
+  store: { weeks:{}, latest:null },
   currentWeekId: null,
   currentData: null,
   previousData: null,
@@ -283,15 +313,58 @@ const State = {
     top5:     { k:'nuggets', d:-1 },
     teachers: { k:'daysLoggedIn', d:-1 }
   },
-  pendingFiles: { topPerformers:null, allStats:null, subjectWise:null, teacherLogin:null }
+  pendingFiles: { topPerformers:null, allStats:null, subjectWise:null, teacherLogin:null },
+  isAdmin: false
 };
+
+/* ============================================================
+   ADMIN MODE TOGGLE
+   - ?admin=1 in URL, OR
+   - Press Shift+A anywhere
+   ============================================================ */
+function checkAdminMode() {
+  const params = new URLSearchParams(window.location.search);
+  const isAdminUrl = params.get('admin') === '1';
+  if (isAdminUrl) return true;
+  return false;
+}
+
+function enableAdmin() {
+  State.isAdmin = true;
+  document.getElementById('adminBanner').classList.add('show');
+  document.getElementById('uploadPanel').classList.add('show');
+}
+
+function exitAdmin() {
+  State.isAdmin = false;
+  document.getElementById('adminBanner').classList.remove('show');
+  document.getElementById('uploadPanel').classList.remove('show');
+  // Remove ?admin=1 from URL without reloading
+  if (window.location.search.includes('admin=')) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('admin');
+    window.history.replaceState({}, '', url.toString());
+  }
+}
+
+function toggleUploadPanel() {
+  const panel = document.getElementById('uploadPanel');
+  panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+    e.preventDefault();
+    if (State.isAdmin) exitAdmin();
+    else enableAdmin();
+  }
+});
 
 /* ============================================================
    BOOTSTRAP
    ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  State.store = Store.read();
-
+document.addEventListener('DOMContentLoaded', async () => {
+  // Wire file inputs
   document.querySelectorAll('input[type=file][data-kind]').forEach(inp => {
     inp.addEventListener('change', e => {
       const kind = e.target.dataset.kind;
@@ -311,19 +384,73 @@ document.addEventListener('DOMContentLoaded', () => {
       updateProcessBtn();
     });
   });
-
   document.getElementById('weekDate').valueAsDate = new Date();
-  populateWeekSelect();
 
-  const weeks = Object.keys(State.store.weeks);
-  if (weeks.length) {
-    const id = State.store.latest || weeks[weeks.length - 1];
-    loadWeek(id);
-  } else {
-    showEmptyDashboard('No data yet. Upload 4 Excel files above to get started.');
-  }
+  // Admin mode?
+  if (checkAdminMode()) enableAdmin();
+
+  // Load data: try remote first, fall back to local cache
+  await loadRemoteData(true);
 });
 
+async function loadRemoteData(silent) {
+  const local = Store.read();
+  let remote = null;
+
+  try {
+    const res = await fetch(REMOTE_DATA_URL + '?t=' + Date.now());
+    if (res.ok) {
+      const parsed = await res.json();
+      if (parsed && parsed.weeks && typeof parsed.weeks === 'object') {
+        remote = parsed;
+      }
+    }
+  } catch (err) {
+    if (!silent) console.warn('Remote load failed:', err);
+  }
+
+  // Merge: remote is authoritative, local is fallback (admin in-progress work)
+  let merged;
+  if (remote && State.isAdmin) {
+    // Admin: remote + local (local wins so they can see their un-published uploads)
+    merged = {
+      weeks: { ...remote.weeks, ...local.weeks },
+      latest: local.latest || remote.latest || null
+    };
+  } else if (remote) {
+    // Public user: only remote
+    merged = remote;
+  } else {
+    // No remote: fall back to local cache
+    merged = local;
+  }
+
+  State.store = merged;
+  // Persist to local cache so it stays if offline
+  if (remote) Store.write(merged);
+
+  populateWeekSelect();
+
+  const weeks = Object.keys(merged.weeks);
+  if (weeks.length) {
+    const id = merged.latest || weeks[weeks.length - 1];
+    loadWeek(id);
+    document.getElementById('lastUpdated').textContent = 'Updated ' + (merged.weeks[id]?.date || '');
+    document.getElementById('statusDot').className = 'dot';
+  } else {
+    showEmptyDashboard(
+      State.isAdmin
+        ? 'No data yet. Upload 4 Excel files above to get started.'
+        : 'No dashboard data has been published yet. Please contact your administrator.'
+    );
+    document.getElementById('lastUpdated').textContent = 'No data';
+    document.getElementById('statusDot').className = 'dot warn';
+  }
+}
+
+/* ============================================================
+   WEEK SELECT
+   ============================================================ */
 function updateProcessBtn() {
   document.getElementById('processBtn').disabled = !Object.values(State.pendingFiles).every(Boolean);
 }
@@ -343,32 +470,25 @@ function populateWeekSelect() {
 
 /* ============================================================
    REGION DERIVATION
-   Derive region from school code prefix (C, N, S) + city/campus keyword
    ============================================================ */
 const REGION_RULES = [
-  { code:'C', match:['LHR','Lahore','Shalimar','DHA Campus LHR','Paragon','Ravi','Shadman','Model Town','Kasur','Muslim Town','Link Rd','Allama Iqbal','Jhang','Joharabad','Chenab','Sargodha','FSD','Peoples Colony','Jhelum','Gujranwala','Gujrat','Kharian','Rahim Yar Khan','Bahawalpur','Khanewal','D.G Khan','KAPCO','Multan','PARCO','Sialkot','Sahiwal','Okara','Vehari','Burewala','Alpha','Arifwala','Gujrat Campus GT Road'], name:'Central (Punjab)' },
-  { code:'N', match:['Nowshera','Satellite Town','Civil Line','Chakwal','Harley','Uni Town','DHA Campus ISD','Attock','Wah','Hayatabad','Mirpur','Gulrez','Abbottabad','Mardan','Mianwali','Cantt','Peshawar','Swabi','Chashma','Capital','Rawal','E - 11','Warsak','G 15','D.I.Khan','F - 8','Bahria','PWD','B-17','Nowshera Campus','Muzaffarabad','Kohat','Lake Valley'], name:'North (KPK/Islamabad)' },
-  { code:'S', match:['Clifton','Darakhshan','Johar','Gulistan','Gulshan','Maymar','Bahadurabad','Qasimabad','Jinnah','Latifabad','Liaqat','Mirpur Khas','Thatta','Nawabshah','Indus','Sukkur','Quetta','PECHS','Khairpur','Jamshoro','Gulshan-e-Hadeed','KAECHS','NN','PAF','Tipu Sultan','Defence Karachi','Jacobabad','Chiltan','Ink City','Hyderabad','Karachi'], name:'South (Sindh/Balochistan)' }
+  { code:'C', name:'Central (Punjab)' },
+  { code:'N', name:'North (KPK/Islamabad)' },
+  { code:'S', name:'South (Sindh/Balochistan)' }
 ];
 
 function deriveRegion(schoolName) {
   if (!schoolName) return 'Other';
   const s = schoolName.toUpperCase();
-  // Determine org prefix letter
-  let orgLetter = null;
   const m = s.match(/^([CNS])\d+/);
-  if (m) orgLetter = m[1];
-
-  if (orgLetter === 'C') return 'Central (Punjab)';
-  if (orgLetter === 'N') return 'North (KPK/Islamabad)';
-  if (orgLetter === 'S') return 'South (Sindh/Balochistan)';
-
-  // Fallback: match by keyword
-  for (const rule of REGION_RULES) {
-    for (const kw of rule.match) {
-      if (s.includes(kw.toUpperCase())) return rule.name;
-    }
+  if (m) {
+    const rule = REGION_RULES.find(r => r.code === m[1]);
+    if (rule) return rule.name;
   }
+  // Keyword fallback
+  if (/KARACHI|HYDERABAD|QUETTA|SUKKUR|SINDH|BALOCHISTAN|THATTA|MIRPUR|LARKANA|JACOBABAD|KHAIRPUR|NAWABSHAH/.test(s)) return 'South (Sindh/Balochistan)';
+  if (/ISLAMABAD|PESHAWAR|NOWSHERA|MARDAN|SWABI|ABBOTTABAD|MIANWALI|ATTOCK|WAH|KOHAT|BANNU|KPK|ISD|RWP|SWAT/.test(s)) return 'North (KPK/Islamabad)';
+  if (/LAHORE|LHR|FSD|FAISALABAD|MULTAN|SIALKOT|GUJRAT|GUJRANWALA|SARGODHA|SAHIWAL|OKARA|JHANG|VEHARI|BUREWALA|BAHAWALPUR|KHANEWAL|RAHIM|PARCO|KAPCO|ARIFWALA|JHELUM|KASUR|CHAKWAL/.test(s)) return 'Central (Punjab)';
   return 'Other';
 }
 
@@ -394,7 +514,6 @@ async function processUpload() {
       parseExcel(State.pendingFiles.teacherLogin,  'teacherLogin')
     ]);
 
-    // Attach region to every row
     stats.forEach(s => s.region = deriveRegion(s.name));
     top.forEach(t => t.region = deriveRegion(t.org));
     subjects.forEach(s => s.region = deriveRegion(s.school));
@@ -409,12 +528,19 @@ async function processUpload() {
       students: top, schools: stats, subjects, teachers,
       uploadedAt: new Date().toISOString()
     };
-    Store.addWeek(weekId, weekObj);
-    State.store = Store.read();
+
+    // Save to local cache immediately (so admin sees it)
+    const local = Store.read();
+    local.weeks[weekId] = weekObj;
+    local.latest = weekId;
+    Store.write(local);
+
+    // Update state
+    State.store = { weeks: { ...State.store.weeks, [weekId]: weekObj }, latest: weekId };
 
     toast.className = 'toast show ok';
-    toast.innerHTML = `✅ <strong>${escapeHtml(weekLabel)}</strong> processed!
-      Loaded: ${top.length} students, ${stats.length} schools, ${subjects.length} subject rows, ${teachers.length} teachers.`;
+    toast.innerHTML = `✅ <strong>${escapeHtml(weekLabel)}</strong> processed locally!
+      Click <strong>🚀 Publish to GitHub</strong> to share with all users.`;
 
     State.pendingFiles = { topPerformers:null, allStats:null, subjectWise:null, teacherLogin:null };
     document.querySelectorAll('input[type=file][data-kind]').forEach(i => i.value = '');
@@ -431,9 +557,39 @@ async function processUpload() {
     toast.innerHTML = '❌ Error: ' + escapeHtml(err.message);
   } finally {
     btn.disabled = false;
-    btn.textContent = '⚡ Process & Show';
+    btn.textContent = '⚡ Process & Preview';
     updateProcessBtn();
   }
+}
+
+/* ============================================================
+   PUBLISH — downloads weeks.json ready to commit
+   ============================================================ */
+function publishToGitHub() {
+  const toast = document.getElementById('toast');
+  const local = Store.read();
+  const count = Object.keys(local.weeks).length;
+  if (!count) {
+    toast.className = 'toast show err';
+    toast.innerHTML = '❌ Nothing to publish — process at least one week first.';
+    return;
+  }
+
+  // Download as weeks.json (the file your users will load)
+  const blob = new Blob([JSON.stringify(local, null, 2)], { type:'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'weeks.json';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  toast.className = 'toast show ok';
+  toast.innerHTML = `✅ Downloaded <strong>weeks.json</strong> (${count} week${count>1?'s':''}).<br>
+    <strong>Next steps:</strong><br>
+    1. Commit/replace <code>data/weeks.json</code> in your GitHub repo<br>
+    2. Wait ~30 seconds for GitHub Pages to redeploy<br>
+    3. All users will now see the updated dashboard automatically`;
 }
 
 /* ============================================================
@@ -511,9 +667,7 @@ const PARSERS = {
    HELPERS
    ============================================================ */
 function pick(obj, keys) {
-  for (const k of keys) {
-    if (obj[k] !== undefined && obj[k] !== '' && obj[k] !== null) return obj[k];
-  }
+  for (const k of keys) if (obj[k] !== undefined && obj[k] !== '' && obj[k] !== null) return obj[k];
   const objKeys = Object.keys(obj);
   for (const k of keys) {
     const lower = k.toLowerCase();
@@ -533,10 +687,7 @@ function escapeHtml(s) {
   return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 function fmt(n) { return (n||0).toLocaleString(); }
-function shortLabel(name) {
-  if (!name) return '';
-  return name.length > 30 ? name.slice(0,28)+'…' : name;
-}
+function shortLabel(name) { return !name ? '' : (name.length > 30 ? name.slice(0,28)+'…' : name); }
 
 function buildSummary(schools) {
   const sum = k => schools.reduce((a,b)=>a+(b[k]||0),0);
@@ -544,17 +695,19 @@ function buildSummary(schools) {
   const onboarded = sum('onboardedStudents');
   const nuggets = sum('nuggetsCompleted');
   const q = sum('questionsAnswered');
+  const onT = sum('onboardedTeachers');
+  const actT = sum('activeTeachers');
   return {
     totalOnboardedStudents: onboarded,
     totalActiveStudents:    active,
-    totalOnboardedTeachers: sum('onboardedTeachers'),
-    totalActiveTeachers:    sum('activeTeachers'),
+    totalOnboardedTeachers: onT,
+    totalActiveTeachers:    actT,
     totalNuggets:           nuggets,
     totalQuestions:         q,
     avgNuggetsPerStudent:   active ? +(nuggets/active).toFixed(1) : 0,
     avgQuestionsPerStudent: active ? +(q/active).toFixed(1) : 0,
     studentEngagementPct:   onboarded ? +((active/onboarded)*100).toFixed(1) : 0,
-    teacherEngagementPct:   sum('onboardedTeachers') ? +((sum('activeTeachers')/sum('onboardedTeachers'))*100).toFixed(1) : 0
+    teacherEngagementPct:   onT ? +((actT/onT)*100).toFixed(1) : 0
   };
 }
 
@@ -605,18 +758,14 @@ function renderDashboard() {
   const d = State.currentData;
   if (!d) return;
 
-  // Pre-compute engagement per school
   (d.schools || []).forEach(s => {
-    s.studentEngagement = s.onboardedStudents > 0
-      ? +((s.activeStudents / s.onboardedStudents) * 100).toFixed(1) : 0;
-    s.teacherEngagement = s.onboardedTeachers > 0
-      ? +((s.activeTeachers / s.onboardedTeachers) * 100).toFixed(1) : 0;
+    s.studentEngagement = s.onboardedStudents > 0 ? +((s.activeStudents / s.onboardedStudents) * 100).toFixed(1) : 0;
+    s.teacherEngagement = s.onboardedTeachers > 0 ? +((s.activeTeachers / s.onboardedTeachers) * 100).toFixed(1) : 0;
     if (!s.region) s.region = deriveRegion(s.name);
   });
 
   const c = document.getElementById('dashboardContainer');
   c.innerHTML = `
-    <!-- PAGE TITLE -->
     <div class="page-title">
       <div>
         <h2>🏫 ${escapeHtml(d.label)} — Performance Overview</h2>
@@ -625,7 +774,6 @@ function renderDashboard() {
       <div class="badge" style="font-size:.75rem;padding:.4rem .9rem">📌 ${(d.students||[]).length} students • ${(d.teachers||[]).length} teachers</div>
     </div>
 
-    <!-- REGION TABS + KPI TILES -->
     <div class="section">
       <div class="section-head">
         <h3>📌 Key Metrics <span class="badge">${State.filterRegion === 'ALL' ? 'All Regions' : State.filterRegion}</span></h3>
@@ -635,7 +783,6 @@ function renderDashboard() {
       <div class="kpi-grid" id="kpiGrid"></div>
     </div>
 
-    <!-- SCHOOL-WISE SUMMARY (TOP) -->
     <div class="section">
       <div class="section-head">
         <h3>🏫 School-wise Summary</h3>
@@ -660,64 +807,37 @@ function renderDashboard() {
       </div>
     </div>
 
-    <!-- ENGAGEMENT COMPLETE STATUS -->
     <div class="section">
       <div class="section-head">
         <h3>📊 Student Engagement — Complete Status</h3>
-        <span class="hint">Bar labels show Active / Onboarded counts • percentage in the center</span>
+        <span class="hint">Percentage labels in the center of each bar</span>
       </div>
       <div class="chart-container xtall"><canvas id="chartEngagementFull"></canvas></div>
     </div>
 
-    <!-- PERFORMANCE ANALYTICS -->
     <div class="section">
       <div class="section-head">
         <h3>📈 Performance Analytics</h3>
-        <span class="hint">All charts respect the region & school filters</span>
+        <span class="hint">All charts respect region & school filters</span>
       </div>
       <div class="charts-grid">
-        <div class="chart-box">
-          <h4>🎯 Top 15 Schools by Nuggets Completed</h4>
-          <div class="chart-container"><canvas id="chartSchools"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>📚 Subject-wise Nuggets per School</h4>
-          <div class="chart-container"><canvas id="chartSubjects"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🚀 Top 10 Schools by Avg Nuggets/Student</h4>
-          <div class="chart-container"><canvas id="chartAvgNuggets"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>📊 Engagement % vs Nuggets (Scatter)</h4>
-          <div class="chart-container"><canvas id="chartScatter"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🥧 Subject-wise Nugget Distribution</h4>
-          <div class="chart-container"><canvas id="chartSubjectDoughnut"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🏫 Region Comparison — Engagement & Nuggets</h4>
-          <div class="chart-container"><canvas id="chartRegionCompare"></canvas></div>
-        </div>
+        <div class="chart-box"><h4>🎯 Top 15 Schools by Nuggets Completed</h4><div class="chart-container"><canvas id="chartSchools"></canvas></div></div>
+        <div class="chart-box"><h4>📚 Subject-wise Nuggets per School</h4><div class="chart-container"><canvas id="chartSubjects"></canvas></div></div>
+        <div class="chart-box"><h4>🚀 Top 10 Schools by Avg Nuggets/Student</h4><div class="chart-container"><canvas id="chartAvgNuggets"></canvas></div></div>
+        <div class="chart-box"><h4>📊 Engagement % vs Nuggets (Scatter)</h4><div class="chart-container"><canvas id="chartScatter"></canvas></div></div>
+        <div class="chart-box"><h4>🥧 Subject-wise Nugget Distribution</h4><div class="chart-container"><canvas id="chartSubjectDoughnut"></canvas></div></div>
+        <div class="chart-box"><h4>🏫 Region Comparison — Engagement & Nuggets</h4><div class="chart-container"><canvas id="chartRegionCompare"></canvas></div></div>
       </div>
     </div>
 
-    <!-- TEACHER LOGIN ACTIVITY (ALL TEACHERS) -->
     <div class="section">
       <div class="section-head">
         <h3>👩‍🏫 Teacher Login Activity <span class="badge">${(d.teachers||[]).length} teachers</span></h3>
         <input type="text" class="small-search" placeholder="🔍 Search teacher…" id="searchTeachers" oninput="renderTeachers()">
       </div>
       <div class="charts-grid" style="margin-bottom:1rem">
-        <div class="chart-box">
-          <h4>📊 All Teachers — Days Logged In vs Assignments</h4>
-          <div class="chart-container xtall"><canvas id="chartAllTeachers"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🏆 Top 10 Teachers by Days Logged In</h4>
-          <div class="chart-container xtall"><canvas id="chartTopTeachers"></canvas></div>
-        </div>
+        <div class="chart-box"><h4>📊 All Teachers — Days Logged In vs Assignments</h4><div class="chart-container xtall"><canvas id="chartAllTeachers"></canvas></div></div>
+        <div class="chart-box"><h4>🏆 Top 10 Teachers by Days Logged In</h4><div class="chart-container xtall"><canvas id="chartTopTeachers"></canvas></div></div>
       </div>
       <div class="table-wrap" style="max-height:420px">
         <table>
@@ -734,7 +854,6 @@ function renderDashboard() {
       </div>
     </div>
 
-    <!-- TOP 5 PER SCHOOL -->
     <div class="section">
       <div class="section-head">
         <h3>🏆 Top 5 Students per School</h3>
@@ -754,13 +873,12 @@ function renderDashboard() {
       </div>
     </div>
 
-    <!-- STUDENT LEADERBOARD -->
     <div class="section">
       <div class="section-head">
         <h3>🎓 Full Student Leaderboard</h3>
         <input type="text" class="small-search" placeholder="🔍 Search student…" id="searchStudents" oninput="renderStudents()">
       </div>
-      <div class="tabs" style="display:flex;gap:.4rem;margin-bottom:.85rem;flex-wrap:wrap">
+      <div style="display:flex;gap:.4rem;margin-bottom:.85rem;flex-wrap:wrap">
         <button class="btn btn-ghost" data-tab="all" onclick="switchStudentTab('all',this)" style="background:var(--primary);color:#fff;border-color:var(--primary)">All Students</button>
         <button class="btn btn-ghost" data-tab="top" onclick="switchStudentTab('top',this)">Top 20</button>
       </div>
@@ -777,7 +895,6 @@ function renderDashboard() {
       </div>
     </div>
 
-    <!-- SUBJECT DETAILS -->
     <div class="section">
       <div class="section-head">
         <h3>📖 Subject-wise Class-level Details</h3>
@@ -796,7 +913,6 @@ function renderDashboard() {
       </div>
     </div>
 
-    <!-- WEEK OVER WEEK (BOTTOM) -->
     <div class="section">
       <div class="section-head">
         <h3>📅 Week-over-Week Comparison <span class="badge">${State.previousData ? 'vs ' + escapeHtml(State.previousData.label) : 'No previous week'}</span></h3>
@@ -826,20 +942,16 @@ function renderDashboard() {
 function renderRegionTabs() {
   const container = document.getElementById('regionTabs');
   if (!container) return;
-
   const regions = {};
   (State.currentData.schools || []).forEach(s => {
     const r = s.region || 'Other';
-    if (!regions[r]) regions[r] = 0;
-    regions[r]++;
+    regions[r] = (regions[r] || 0) + 1;
   });
-
   const totalCount = (State.currentData.schools || []).length;
   const list = [
     { key:'ALL', name:'All Regions', cnt: totalCount },
     ...Object.entries(regions).sort((a,b) => b[1]-a[1]).map(([r, n]) => ({ key:r, name:r, cnt:n }))
   ];
-
   container.innerHTML = list.map(r => `
     <button class="region-tab ${State.filterRegion === r.key ? 'active' : ''}" onclick="onRegionFilter('${escapeHtml(r.key)}')">
       ${escapeHtml(r.name)} <span class="cnt">${r.cnt}</span>
@@ -859,6 +971,7 @@ function onRegionFilter(region) {
   renderTeachers();
   renderCharts();
   populateSchoolFilter();
+  renderWeekComparison();
 }
 
 function getFilteredSchools() {
@@ -869,13 +982,7 @@ function getFilteredSchools() {
 }
 function getFilteredRegionSummary() {
   const schools = getFilteredSchools();
-  if (State.filterSchool) {
-    // Single school — build region-like summary
-    return buildSummary(schools);
-  }
-  if (State.filterRegion !== 'ALL') {
-    return buildSummary(schools);
-  }
+  if (State.filterSchool || State.filterRegion !== 'ALL') return buildSummary(schools);
   return State.currentData.summary || buildSummary(schools);
 }
 
@@ -885,18 +992,11 @@ function getFilteredRegionSummary() {
 function renderKPIs() {
   const s = getFilteredRegionSummary();
   const schools = getFilteredSchools();
-  const prevSummary = State.previousData?.summary;
-  const prevRegion = State.previousData?.regionSummary;
-
-  // For trend comparison: use region-specific previous summary if available
-  let prev = prevSummary;
-  if (State.previousData && State.filterRegion !== 'ALL') {
+  let prev = State.previousData?.summary;
+  if (State.previousData && State.filterRegion !== 'ALL')
     prev = State.previousData.regionSummary?.[State.filterRegion] || null;
-  }
 
-  const engagement = s.studentEngagementPct ?? (s.totalOnboardedStudents
-    ? +((s.totalActiveStudents / s.totalOnboardedStudents) * 100).toFixed(1) : 0);
-
+  const engagement = s.studentEngagementPct ?? 0;
   const cards = [
     { icon:'🎯', label:'Active Students',   value: fmt(s.totalActiveStudents), sub: `${fmt(s.totalOnboardedStudents)} onboarded`, key:'totalActiveStudents' },
     { icon:'📊', label:'Student Engagement', value: engagement + '%', sub: `${fmt(s.totalActiveStudents)} / ${fmt(s.totalOnboardedStudents)}`, key:'studentEngagementPct', pct:true },
@@ -912,8 +1012,7 @@ function renderKPIs() {
   grid.innerHTML = cards.map(c => {
     let trendHtml = '';
     if (prev && c.key && prev[c.key] != null) {
-      const cur = s[c.key] ?? 0;
-      const old = prev[c.key] ?? 0;
+      const cur = s[c.key] ?? 0, old = prev[c.key] ?? 0;
       if (old > 0) {
         const change = ((cur - old) / old) * 100;
         const dir = change > 0.5 ? 'up' : change < -0.5 ? 'down' : 'neutral';
@@ -942,206 +1041,122 @@ function renderCharts() {
   const palette = ['#4361ee','#10b981','#f59e0b','#ef4444','#8b5cf6','#06b6d4','#4f46e5','#f97316','#0ea5e9','#84cc16'];
   const schools = getFilteredSchools();
 
-  // 1. Engagement Complete Status (all filtered schools, full width)
-  const engagementSorted = schools.slice()
-    .filter(s => s.onboardedStudents > 0)
-    .sort((a,b) => (b.studentEngagement || 0) - (a.studentEngagement || 0))
-    .slice(0, 40);  // cap at 40 for readability
-
+  // Engagement Full
+  const sorted = schools.slice().filter(s => s.onboardedStudents > 0)
+    .sort((a,b) => (b.studentEngagement||0) - (a.studentEngagement||0)).slice(0, 40);
   const c1 = document.getElementById('chartEngagementFull');
   if (c1) {
     State.charts.engagementFull = new Chart(c1, {
-      type: 'bar',
-      data: {
-        labels: engagementSorted.map(s => shortLabel(s.name)),
-        datasets: [{
-          label: 'Engagement %',
-          data: engagementSorted.map(s => s.studentEngagement),
-          backgroundColor: engagementSorted.map(s =>
-            s.studentEngagement >= 50 ? '#10b981' :
-            s.studentEngagement >= 25 ? '#f59e0b' : '#ef4444'),
-          borderRadius: 8,
-          barPercentage: 0.75,
-          categoryPercentage: 0.85
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => {
-                const s = engagementSorted[ctx.dataIndex];
-                return `${s.studentEngagement}% • ${s.activeStudents} / ${s.onboardedStudents} students`;
-              }
-            }
-          },
-          datalabels: {
-            anchor: 'center', align: 'center',
-            color: '#fff',
-            font: { weight: '700', size: 10 },
-            formatter: v => v > 0 ? v.toFixed(1) + '%' : ''
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true, max: 100,
-            ticks: { callback: v => v + '%', font: { size: 10 } },
-            grid: { color: '#f1f5f9' }
-          },
-          x: {
-            ticks: { maxRotation: 65, minRotation: 45, font: { size: 9 } },
-            grid: { display: false }
-          }
-        }
-      }
+      type:'bar',
+      data:{ labels: sorted.map(s => shortLabel(s.name)),
+        datasets:[{ label:'Engagement %', data: sorted.map(s => s.studentEngagement),
+          backgroundColor: sorted.map(s => s.studentEngagement >= 50 ? '#10b981' : s.studentEngagement >= 25 ? '#f59e0b' : '#ef4444'),
+          borderRadius: 8, barPercentage:.75, categoryPercentage:.85 }]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false},
+          tooltip:{ callbacks:{ label: ctx => {
+            const s = sorted[ctx.dataIndex];
+            return `${s.studentEngagement}% • ${s.activeStudents} / ${s.onboardedStudents} students`;
+          }}},
+          datalabels:{ anchor:'center', align:'center', color:'#fff', font:{weight:'700', size:10},
+            formatter: v => v > 0 ? v.toFixed(1) + '%' : '' }},
+        scales:{ y:{ beginAtZero:true, max:100, ticks:{ callback: v => v + '%', font:{size:10} }, grid:{color:'#f1f5f9'} },
+          x:{ ticks:{ maxRotation:65, minRotation:45, font:{size:9} }, grid:{display:false} } } }
     });
   }
 
-  // 2. Top 15 schools by nuggets
+  // Top 15 by Nuggets
   const topN = schools.slice().sort((a,b) => b.nuggetsCompleted - a.nuggetsCompleted).slice(0,15);
   const c2 = document.getElementById('chartSchools');
   if (c2) {
     State.charts.schools = new Chart(c2, {
-      type: 'bar',
-      data: {
-        labels: topN.map(s => shortLabel(s.name)),
-        datasets: [
-          { label: 'Nuggets', data: topN.map(s => s.nuggetsCompleted), backgroundColor: '#4361ee', borderRadius: 6 },
-          { label: 'Active Students', data: topN.map(s => s.activeStudents), backgroundColor: '#10b981', borderRadius: 6 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            anchor: 'end', align: 'top', color: '#334155',
-            font: { weight: '700', size: 9 },
-            formatter: v => v > 0 ? v : ''
-          }
-        },
-        scales: {
-          y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          x: { ticks: { maxRotation: 60, minRotation: 45, font: { size: 9 } }, grid: { display: false } }
-        }
-      }
+      type:'bar',
+      data:{ labels: topN.map(s => shortLabel(s.name)),
+        datasets:[
+          { label:'Nuggets', data: topN.map(s => s.nuggetsCompleted), backgroundColor:'#4361ee', borderRadius:6 },
+          { label:'Active Students', data: topN.map(s => s.activeStudents), backgroundColor:'#10b981', borderRadius:6 }
+        ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'top', labels:{boxWidth:12, font:{size:10}} },
+          datalabels:{ anchor:'end', align:'top', color:'#334155', font:{weight:'700', size:9},
+            formatter: v => v > 0 ? v : '' } },
+        scales:{ y:{beginAtZero:true, grid:{color:'#f1f5f9'}},
+          x:{ticks:{maxRotation:60, minRotation:45, font:{size:9}}, grid:{display:false}} } }
     });
   }
 
-  // 3. Subject-wise grouped bars
+  // Subject stacked
   const subjectRows = (State.currentData.subjects || []).filter(r => {
-    if (State.filterRegion === 'ALL' && !State.filterSchool) return true;
     if (State.filterSchool) return r.school === State.filterSchool;
-    return r.region === State.filterRegion;
+    if (State.filterRegion !== 'ALL') return r.region === State.filterRegion;
+    return true;
   });
-  const subjectBySchool = {};
+  const subjBySchool = {};
   subjectRows.forEach(r => {
     if (!r.school) return;
-    if (!subjectBySchool[r.school]) subjectBySchool[r.school] = { English:0, Mathematics:0, Science:0, Other:0 };
+    if (!subjBySchool[r.school]) subjBySchool[r.school] = { English:0, Mathematics:0, Science:0, Other:0 };
     const dept = (r.dept || '').trim();
     const key = ['English','Mathematics','Science'].includes(dept) ? dept : 'Other';
-    subjectBySchool[r.school][key] += (r.nuggetsCompleted || 0);
+    subjBySchool[r.school][key] += (r.nuggetsCompleted || 0);
   });
-  const subjSorted = Object.entries(subjectBySchool)
+  const subjSorted = Object.entries(subjBySchool)
     .map(([school, v]) => ({ school, ...v, total: v.English + v.Mathematics + v.Science + v.Other }))
     .sort((a,b) => b.total - a.total).slice(0,12);
-
   const c3 = document.getElementById('chartSubjects');
   if (c3) {
     State.charts.subjects = new Chart(c3, {
-      type: 'bar',
-      data: {
-        labels: subjSorted.map(s => shortLabel(s.school)),
-        datasets: [
-          { label: 'English', data: subjSorted.map(s => s.English), backgroundColor: '#4361ee', stack: 's', borderRadius: 4 },
-          { label: 'Math', data: subjSorted.map(s => s.Mathematics), backgroundColor: '#10b981', stack: 's', borderRadius: 4 },
-          { label: 'Science', data: subjSorted.map(s => s.Science), backgroundColor: '#f59e0b', stack: 's', borderRadius: 4 },
-          { label: 'Other', data: subjSorted.map(s => s.Other), backgroundColor: '#94a3b8', stack: 's', borderRadius: 4 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            color: '#fff', font: { weight: '700', size: 9 },
-            formatter: v => v >= 5 ? v : ''
-          }
-        },
-        scales: {
-          x: { stacked: true, ticks: { maxRotation: 60, minRotation: 45, font: { size: 9 } }, grid: { display: false } },
-          y: { stacked: true, beginAtZero: true, grid: { color: '#f1f5f9' } }
-        }
-      }
+      type:'bar',
+      data:{ labels: subjSorted.map(s => shortLabel(s.school)),
+        datasets:[
+          { label:'English', data: subjSorted.map(s => s.English), backgroundColor:'#4361ee', stack:'s', borderRadius:4 },
+          { label:'Math', data: subjSorted.map(s => s.Mathematics), backgroundColor:'#10b981', stack:'s', borderRadius:4 },
+          { label:'Science', data: subjSorted.map(s => s.Science), backgroundColor:'#f59e0b', stack:'s', borderRadius:4 },
+          { label:'Other', data: subjSorted.map(s => s.Other), backgroundColor:'#94a3b8', stack:'s', borderRadius:4 }
+        ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:10}}},
+          datalabels:{ color:'#fff', font:{weight:'700', size:9}, formatter: v => v >= 5 ? v : '' } },
+        scales:{ x:{stacked:true, ticks:{maxRotation:60, minRotation:45, font:{size:9}}, grid:{display:false}},
+          y:{stacked:true, beginAtZero:true, grid:{color:'#f1f5f9'}} } }
     });
   }
 
-  // 4. Top 10 by avg nuggets
-  const avgTop = schools.slice()
-    .filter(s => s.activeStudents > 0)
+  // Avg nuggets
+  const avgTop = schools.slice().filter(s => s.activeStudents > 0)
     .sort((a,b) => (b.avgNuggetsPerStudent||0) - (a.avgNuggetsPerStudent||0)).slice(0,10);
   const c4 = document.getElementById('chartAvgNuggets');
   if (c4) {
     State.charts.avgNuggets = new Chart(c4, {
-      type: 'bar',
-      data: {
-        labels: avgTop.map(s => shortLabel(s.name)),
-        datasets: [{
-          label: 'Avg Nuggets / Student',
-          data: avgTop.map(s => s.avgNuggetsPerStudent || 0),
-          backgroundColor: avgTop.map((_,i) => palette[i % palette.length]),
-          borderRadius: 6
-        }]
-      },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          datalabels: {
-            anchor: 'end', align: 'right', color: '#334155',
-            font: { weight: '700', size: 10 },
-            formatter: v => (v||0).toFixed(1)
-          }
-        },
-        scales: {
-          x: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          y: { grid: { display: false }, ticks: { font: { size: 10 } } }
-        }
-      }
+      type:'bar',
+      data:{ labels: avgTop.map(s => shortLabel(s.name)),
+        datasets:[{ label:'Avg Nuggets / Student', data: avgTop.map(s => s.avgNuggetsPerStudent || 0),
+          backgroundColor: avgTop.map((_,i) => palette[i % palette.length]), borderRadius:6 }]},
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false},
+          datalabels:{ anchor:'end', align:'right', color:'#334155', font:{weight:'700', size:10},
+            formatter: v => (v||0).toFixed(1) } },
+        scales:{ x:{beginAtZero:true, grid:{color:'#f1f5f9'}}, y:{grid:{display:false}, ticks:{font:{size:10}}} } }
     });
   }
 
-  // 5. Scatter engagement vs nuggets
+  // Scatter
   const scatterData = schools.filter(s => s.onboardedStudents > 0);
   const c5 = document.getElementById('chartScatter');
   if (c5) {
     State.charts.scatter = new Chart(c5, {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Schools',
-          data: scatterData.map(s => ({ x: s.studentEngagement, y: s.nuggetsCompleted, name: s.name })),
-          backgroundColor: '#4361ee', pointRadius: 6, pointHoverRadius: 9
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          datalabels: { display: false },
-          tooltip: { callbacks: { label: ctx => `${ctx.raw.name}: ${ctx.raw.x}% • ${ctx.raw.y} nuggets` } }
-        },
-        scales: {
-          x: { title: { display: true, text: 'Engagement %' }, beginAtZero: true, max: 100, grid: { color: '#f1f5f9' } },
-          y: { title: { display: true, text: 'Nuggets Completed' }, beginAtZero: true, grid: { color: '#f1f5f9' } }
-        }
-      }
+      type:'scatter',
+      data:{ datasets:[{ label:'Schools',
+        data: scatterData.map(s => ({ x: s.studentEngagement, y: s.nuggetsCompleted, name: s.name })),
+        backgroundColor:'#4361ee', pointRadius:6, pointHoverRadius:9 }]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, datalabels:{display:false},
+          tooltip:{callbacks:{label: ctx => `${ctx.raw.name}: ${ctx.raw.x}% • ${ctx.raw.y} nuggets`}} },
+        scales:{ x:{title:{display:true, text:'Engagement %'}, beginAtZero:true, max:100, grid:{color:'#f1f5f9'}},
+          y:{title:{display:true, text:'Nuggets Completed'}, beginAtZero:true, grid:{color:'#f1f5f9'}} } }
     });
   }
 
-  // 6. Subject doughnut
+  // Subject doughnut
   const totals = { English:0, Mathematics:0, Science:0, Other:0 };
   let hasExplicit = false;
   subjectRows.forEach(r => {
@@ -1163,157 +1178,92 @@ function renderCharts() {
   const c6 = document.getElementById('chartSubjectDoughnut');
   if (c6) {
     State.charts.subjectDoughnut = new Chart(c6, {
-      type: 'doughnut',
-      data: {
-        labels: labels6,
-        datasets: [{
-          data: labels6.map(k => totals[k]),
-          backgroundColor: ['#4361ee','#10b981','#f59e0b','#94a3b8'].slice(0, labels6.length),
-          borderWidth: 2, borderColor: '#fff'
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        cutout: '55%',
-        plugins: {
-          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
-          datalabels: {
-            color: '#fff', font: { weight: '700', size: 11 },
+      type:'doughnut',
+      data:{ labels: labels6, datasets:[{ data: labels6.map(k => totals[k]),
+        backgroundColor: ['#4361ee','#10b981','#f59e0b','#94a3b8'].slice(0, labels6.length),
+        borderWidth:2, borderColor:'#fff' }]},
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'55%',
+        plugins:{ legend:{position:'bottom', labels:{boxWidth:12, font:{size:11}}},
+          datalabels:{ color:'#fff', font:{weight:'700', size:11},
             formatter: (v, ctx) => {
               const total = ctx.dataset.data.reduce((a,b)=>a+b, 0);
               const pct = total ? ((v / total) * 100).toFixed(0) : 0;
               return pct > 5 ? pct + '%' : '';
-            }
-          }
-        }
-      }
+            } } } }
     });
   }
 
-  // 7. Region comparison
+  // Region compare
   const regionSummary = State.currentData.regionSummary || {};
   const regionLabels = Object.keys(regionSummary);
   const c7 = document.getElementById('chartRegionCompare');
   if (c7) {
     State.charts.regionCompare = new Chart(c7, {
-      type: 'bar',
-      data: {
-        labels: regionLabels.map(r => r.split(' ')[0]),
-        datasets: [
-          {
-            label: 'Engagement %',
-            data: regionLabels.map(r => regionSummary[r].studentEngagementPct || 0),
-            backgroundColor: '#8b5cf6', borderRadius: 6, yAxisID: 'y1'
-          },
-          {
-            label: 'Nuggets Completed',
-            data: regionLabels.map(r => regionSummary[r].totalNuggets || 0),
-            backgroundColor: '#4361ee', borderRadius: 6, yAxisID: 'y'
-          }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            anchor: 'end', align: 'top',
-            color: '#334155', font: { weight: '700', size: 10 },
-            formatter: v => (v||0).toFixed(1)
-          }
-        },
-        scales: {
-          y: { position: 'left', beginAtZero: true, title: { display: true, text: 'Nuggets' }, grid: { color: '#f1f5f9' } },
-          y1: { position: 'right', beginAtZero: true, max: 100, title: { display: true, text: 'Engagement %' }, grid: { display: false }, ticks: { callback: v => v + '%' } }
-        }
-      }
+      type:'bar',
+      data:{ labels: regionLabels.map(r => r.split(' ')[0]),
+        datasets:[
+          { label:'Engagement %', data: regionLabels.map(r => regionSummary[r].studentEngagementPct || 0),
+            backgroundColor:'#8b5cf6', borderRadius:6, yAxisID:'y1' },
+          { label:'Nuggets Completed', data: regionLabels.map(r => regionSummary[r].totalNuggets || 0),
+            backgroundColor:'#4361ee', borderRadius:6, yAxisID:'y' }
+        ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:10}}},
+          datalabels:{ anchor:'end', align:'top', color:'#334155', font:{weight:'700', size:10},
+            formatter: v => (v||0).toFixed(1) } },
+        scales:{ y:{position:'left', beginAtZero:true, title:{display:true, text:'Nuggets'}, grid:{color:'#f1f5f9'}},
+          y1:{position:'right', beginAtZero:true, max:100, title:{display:true, text:'Engagement %'}, grid:{display:false}, ticks:{callback: v => v + '%'}} } }
     });
   }
 
-  // 8. Teachers (all) — bar chart
+  // Teachers
   const teachers = (State.currentData.teachers || []).filter(t => {
     if (State.filterSchool) return t.school === State.filterSchool;
     if (State.filterRegion !== 'ALL') return t.region === State.filterRegion;
     return true;
   }).sort((a,b) => b.daysLoggedIn - a.daysLoggedIn).slice(0, 40);
-
   const c8 = document.getElementById('chartAllTeachers');
   if (c8) {
     State.charts.allTeachers = new Chart(c8, {
-      type: 'bar',
-      data: {
-        labels: teachers.map(t => t.name),
-        datasets: [
-          { label: 'Days Logged In', data: teachers.map(t => t.daysLoggedIn), backgroundColor: '#8b5cf6', borderRadius: 5 },
-          { label: 'Assignments Assigned', data: teachers.map(t => t.assignmentsAssigned), backgroundColor: '#06b6d4', borderRadius: 5 }
-        ]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            anchor: 'end', align: 'right', color: '#334155',
-            font: { weight: '700', size: 9 },
-            formatter: v => v > 0 ? v : ''
-          }
-        },
-        scales: {
-          x: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          y: { grid: { display: false }, ticks: { font: { size: 9 } } }
-        }
-      }
+      type:'bar',
+      data:{ labels: teachers.map(t => t.name),
+        datasets:[
+          { label:'Days Logged In', data: teachers.map(t => t.daysLoggedIn), backgroundColor:'#8b5cf6', borderRadius:5 },
+          { label:'Assignments', data: teachers.map(t => t.assignmentsAssigned), backgroundColor:'#06b6d4', borderRadius:5 }
+        ]},
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:10}}},
+          datalabels:{ anchor:'end', align:'right', color:'#334155', font:{weight:'700', size:9}, formatter: v => v > 0 ? v : '' } },
+        scales:{ x:{beginAtZero:true, grid:{color:'#f1f5f9'}}, y:{grid:{display:false}, ticks:{font:{size:9}}} } }
     });
   }
 
-  // 9. Top 10 teachers
-  const topTeachers = teachers.slice(0, 10);
+  // Top 10 teachers
+  const topT = teachers.slice(0, 10);
   const c9 = document.getElementById('chartTopTeachers');
   if (c9) {
     State.charts.topTeachers = new Chart(c9, {
-      type: 'bar',
-      data: {
-        labels: topTeachers.map(t => t.name),
-        datasets: [{
-          label: 'Days Logged In',
-          data: topTeachers.map(t => t.daysLoggedIn),
-          backgroundColor: topTeachers.map((_,i) => palette[i % palette.length]),
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          datalabels: {
-            anchor: 'end', align: 'top', color: '#334155',
-            font: { weight: '700', size: 10 },
-            formatter: v => v
-          }
-        },
-        scales: {
-          y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          x: { ticks: { maxRotation: 60, minRotation: 45, font: { size: 9 } }, grid: { display: false } }
-        }
-      }
+      type:'bar',
+      data:{ labels: topT.map(t => t.name),
+        datasets:[{ label:'Days Logged In', data: topT.map(t => t.daysLoggedIn),
+          backgroundColor: topT.map((_,i) => palette[i % palette.length]), borderRadius:6 }]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false},
+          datalabels:{ anchor:'end', align:'top', color:'#334155', font:{weight:'700', size:10}, formatter: v => v } },
+        scales:{ y:{beginAtZero:true, grid:{color:'#f1f5f9'}},
+          x:{ticks:{maxRotation:60, minRotation:45, font:{size:9}}, grid:{display:false}} } }
     });
   }
 }
 
 /* ============================================================
-   WEEK-OVER-WEEK COMPARISON (bottom section)
+   WEEK-OVER-WEEK
    ============================================================ */
 function renderWeekComparison() {
   const cur = State.currentData.summary || {};
-  const prevSummary = State.previousData?.summary;
-  const prevRegion = State.previousData?.regionSummary;
-
-  // For region-filtered view use region-specific previous data
-  let prev = prevSummary;
-  if (State.previousData && State.filterRegion !== 'ALL' && !State.filterSchool) {
-    prev = prevRegion?.[State.filterRegion] || null;
-  }
+  let prev = State.previousData?.summary;
+  if (State.previousData && State.filterRegion !== 'ALL' && !State.filterSchool)
+    prev = State.previousData.regionSummary?.[State.filterRegion] || null;
 
   const metrics = [
     { key:'totalActiveStudents',    label:'Active Students',      fmt: v => fmt(v) },
@@ -1327,14 +1277,11 @@ function renderWeekComparison() {
 
   const grid = document.getElementById('compareGrid');
   if (grid) {
-    // Determine current metric source: if region/school filtered, aggregate from filtered schools
-    let currentMetrics = cur;
-    if (State.filterRegion !== 'ALL' || State.filterSchool) {
-      currentMetrics = getFilteredRegionSummary();
-    }
+    let curMetrics = cur;
+    if (State.filterRegion !== 'ALL' || State.filterSchool) curMetrics = getFilteredRegionSummary();
 
     grid.innerHTML = metrics.map(m => {
-      const cVal = currentMetrics[m.key] ?? 0;
+      const cVal = curMetrics[m.key] ?? 0;
       const pVal = prev ? (prev[m.key] ?? 0) : null;
       let delta = '';
       if (prev && pVal > 0) {
@@ -1354,80 +1301,46 @@ function renderWeekComparison() {
     }).join('');
   }
 
-  // Trend line chart
+  // Trend chart
   const allWeeks = Object.values(State.store.weeks)
-    .filter(w => w.date)
-    .sort((a,b) => (a.date || '').localeCompare(b.date || ''))
-    .slice(-8);
-
+    .filter(w => w.date).sort((a,b) => (a.date || '').localeCompare(b.date || '')).slice(-8);
   const trendCanvas = document.getElementById('chartTrend');
   if (!trendCanvas) return;
   if (State.charts.trend) State.charts.trend.destroy();
 
   State.charts.trend = new Chart(trendCanvas, {
-    type: 'line',
-    data: {
-      labels: allWeeks.map(w => w.label || w.id),
-      datasets: [
-        {
-          label: 'Active Students',
-          data: allWeeks.map(w => w.summary?.totalActiveStudents || 0),
-          borderColor: '#4361ee', backgroundColor: 'rgba(67,97,238,.1)',
-          tension: .35, fill: true, yAxisID: 'y', pointRadius: 5, pointHoverRadius: 8
-        },
-        {
-          label: 'Student Engagement %',
-          data: allWeeks.map(w => w.summary?.studentEngagementPct || 0),
-          borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.1)',
-          tension: .35, fill: false, yAxisID: 'y1', borderDash: [6,4],
-          pointRadius: 5, pointHoverRadius: 8
-        },
-        {
-          label: 'Teacher Engagement %',
-          data: allWeeks.map(w => w.summary?.teacherEngagementPct || 0),
-          borderColor: '#8b5cf6', backgroundColor: 'rgba(139,92,246,.1)',
-          tension: .35, fill: false, yAxisID: 'y1', borderDash: [3,3],
-          pointRadius: 5, pointHoverRadius: 8
-        },
-        {
-          label: 'Nuggets Completed',
-          data: allWeeks.map(w => w.summary?.totalNuggets || 0),
-          borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.1)',
-          tension: .35, fill: false, yAxisID: 'y', pointRadius: 5, pointHoverRadius: 8
-        }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
-        datalabels: {
-          display: ctx => ctx.datasetIndex === 1, // only show on Student Engagement line
-          align: 'top', anchor: 'end',
-          color: '#065f46', font: { weight: '700', size: 9 },
-          formatter: v => v ? v.toFixed(1) + '%' : ''
-        },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const v = ctx.parsed.y;
-              if (ctx.dataset.label.includes('%')) return `${ctx.dataset.label}: ${v}%`;
-              return `${ctx.dataset.label}: ${fmt(v)}`;
-            }
-          }
-        }
-      },
-      scales: {
-        y: { type: 'linear', position: 'left', beginAtZero: true, title: { display: true, text: 'Count' }, grid: { color: '#f1f5f9' } },
-        y1: { type: 'linear', position: 'right', beginAtZero: true, max: 100, title: { display: true, text: 'Engagement %' }, grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } }
-      }
-    }
+    type:'line',
+    data:{ labels: allWeeks.map(w => w.label || w.id),
+      datasets:[
+        { label:'Active Students', data: allWeeks.map(w => w.summary?.totalActiveStudents || 0),
+          borderColor:'#4361ee', backgroundColor:'rgba(67,97,238,.1)', tension:.35, fill:true, yAxisID:'y',
+          pointRadius:5, pointHoverRadius:8 },
+        { label:'Student Engagement %', data: allWeeks.map(w => w.summary?.studentEngagementPct || 0),
+          borderColor:'#10b981', backgroundColor:'rgba(16,185,129,.1)', tension:.35, fill:false, yAxisID:'y1',
+          borderDash:[6,4], pointRadius:5, pointHoverRadius:8 },
+        { label:'Teacher Engagement %', data: allWeeks.map(w => w.summary?.teacherEngagementPct || 0),
+          borderColor:'#8b5cf6', backgroundColor:'rgba(139,92,246,.1)', tension:.35, fill:false, yAxisID:'y1',
+          borderDash:[3,3], pointRadius:5, pointHoverRadius:8 },
+        { label:'Nuggets Completed', data: allWeeks.map(w => w.summary?.totalNuggets || 0),
+          borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,.1)', tension:.35, fill:false, yAxisID:'y',
+          pointRadius:5, pointHoverRadius:8 }
+      ]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index', intersect:false},
+      plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:11}}},
+        datalabels:{ display: ctx => ctx.datasetIndex === 1, align:'top', anchor:'end',
+          color:'#065f46', font:{weight:'700', size:9}, formatter: v => v ? v.toFixed(1) + '%' : '' },
+        tooltip:{callbacks:{label: ctx => {
+          const v = ctx.parsed.y;
+          return ctx.dataset.label.includes('%') ? `${ctx.dataset.label}: ${v}%` : `${ctx.dataset.label}: ${fmt(v)}`;
+        }}} },
+      scales:{ y:{type:'linear', position:'left', beginAtZero:true, title:{display:true, text:'Count'}, grid:{color:'#f1f5f9'}},
+        y1:{type:'linear', position:'right', beginAtZero:true, max:100, title:{display:true, text:'Engagement %'}, grid:{drawOnChartArea:false}, ticks:{callback: v => v + '%'}} } }
   });
 }
 
 /* ============================================================
-   TOP 5 PER SCHOOL
+   TOP 5
    ============================================================ */
 function populateTopSchoolPicker() {
   const sel = document.getElementById('topSchoolPicker');
@@ -1439,23 +1352,19 @@ function populateTopSchoolPicker() {
     schools.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
   sel.value = State.schoolBoardFilter || '__all__';
 }
-
 function onTopSchoolPick(v) {
   State.schoolBoardFilter = (v === '__all__') ? '' : v;
   renderTop5();
 }
-
 function sortTop5(key) {
   const s = State.sort.top5;
   if (s.k === key) s.d *= -1;
   else State.sort.top5 = { k:key, d: (key === 'rank' || key === 'avgScore') ? 1 : -1 };
   renderTop5();
 }
-
 function renderTop5() {
   const tb = document.getElementById('tbodyTop5');
   if (!tb) return;
-
   let students = State.currentData.students || [];
   if (State.filterRegion !== 'ALL') students = students.filter(s => s.region === State.filterRegion);
   if (State.filterSchool) students = students.filter(s => s.org === State.filterSchool);
@@ -1463,33 +1372,23 @@ function renderTop5() {
   const filter = State.schoolBoardFilter;
   let rows = [];
   if (filter) {
-    rows = students.filter(s => s.org === filter)
-      .sort((a,b) => (a.rank || 999) - (b.rank || 999)).slice(0, 5);
+    rows = students.filter(s => s.org === filter).sort((a,b) => (a.rank||999) - (b.rank||999)).slice(0, 5);
   } else {
     const bySchool = {};
-    students.forEach(s => {
-      if (!bySchool[s.org]) bySchool[s.org] = [];
-      bySchool[s.org].push(s);
-    });
+    students.forEach(s => { (bySchool[s.org] = bySchool[s.org] || []).push(s); });
     Object.values(bySchool).forEach(list => {
-      list.sort((a,b) => (a.rank || 999) - (b.rank || 999));
+      list.sort((a,b) => (a.rank||999) - (b.rank||999));
       rows.push(...list.slice(0, 5));
     });
-    rows.sort((a,b) => a.org.localeCompare(b.org) || (a.rank || 999) - (b.rank || 999));
+    rows.sort((a,b) => a.org.localeCompare(b.org) || (a.rank||999) - (b.rank||999));
   }
-
   const { k, d } = State.sort.top5;
   rows.sort((a,b) => {
     const av = a[k] ?? 0, bv = b[k] ?? 0;
     if (typeof av === 'string') return av.localeCompare(bv) * d;
     return (av - bv) * d;
   });
-
-  if (!rows.length) {
-    tb.innerHTML = `<tr><td colspan="6" class="empty-state">No students available for this selection.</td></tr>`;
-    return;
-  }
-
+  if (!rows.length) { tb.innerHTML = `<tr><td colspan="6" class="empty-state">No students.</td></tr>`; return; }
   const maxN = Math.max(...rows.map(s => s.nuggets || 0), 1);
   tb.innerHTML = rows.map(s => {
     const rankCls = s.rank <= 3 && s.rank >= 1 ? 'rank-' + s.rank : 'rank-other';
@@ -1508,18 +1407,12 @@ function renderTop5() {
 }
 
 /* ============================================================
-   STUDENT TABLE
+   STUDENTS
    ============================================================ */
 function switchStudentTab(tab, btn) {
   State.studentTab = tab;
-  document.querySelectorAll('[data-tab]').forEach(b => {
-    b.style.background = ''; b.style.color = ''; b.style.borderColor = '';
-  });
-  if (btn) {
-    btn.style.background = 'var(--primary)';
-    btn.style.color = '#fff';
-    btn.style.borderColor = 'var(--primary)';
-  }
+  document.querySelectorAll('[data-tab]').forEach(b => { b.style.background=''; b.style.color=''; b.style.borderColor=''; });
+  if (btn) { btn.style.background='var(--primary)'; btn.style.color='#fff'; btn.style.borderColor='var(--primary)'; }
   renderStudents();
 }
 function sortStudents(key) {
@@ -1531,13 +1424,11 @@ function sortStudents(key) {
 function renderStudents() {
   const tb = document.getElementById('tbodyStudents');
   if (!tb) return;
-
   const q = (document.getElementById('searchStudents')?.value || '').toLowerCase();
   let list = (State.currentData.students || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
   if (State.filterSchool) list = list.filter(s => s.org === State.filterSchool);
   if (q) list = list.filter(s => s.name.toLowerCase().includes(q) || s.org.toLowerCase().includes(q));
-
   const { k, d } = State.sort.students;
   list.sort((a,b) => {
     const av = a[k] ?? 0, bv = b[k] ?? 0;
@@ -1545,12 +1436,7 @@ function renderStudents() {
     return (av - bv) * d;
   });
   if (State.studentTab === 'top') list = list.slice(0, 20);
-
-  if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="7" class="empty-state">No students match your filter.</td></tr>`;
-    return;
-  }
-
+  if (!list.length) { tb.innerHTML = `<tr><td colspan="7" class="empty-state">No students match.</td></tr>`; return; }
   const maxN = Math.max(...list.map(s => s.nuggets || 0), 1);
   tb.innerHTML = list.slice(0, 500).map(s => {
     const rankCls = s.rank <= 3 && s.rank >= 1 ? 'rank-' + s.rank : 'rank-other';
@@ -1570,7 +1456,7 @@ function renderStudents() {
 }
 
 /* ============================================================
-   SCHOOL TABLE
+   SCHOOLS
    ============================================================ */
 function sortSchools(key) {
   const s = State.sort.schools;
@@ -1581,23 +1467,16 @@ function sortSchools(key) {
 function renderSchools() {
   const tb = document.getElementById('tbodySchools');
   if (!tb) return;
-
   const q = (document.getElementById('searchSchools')?.value || '').toLowerCase();
   let list = getFilteredSchools();
   if (q) list = list.filter(s => s.name.toLowerCase().includes(q));
-
   const { k, d } = State.sort.schools;
   list.sort((a,b) => {
     const av = a[k], bv = b[k];
     if (typeof av === 'string') return av.localeCompare(bv) * d;
     return ((av || 0) - (bv || 0)) * d;
   });
-
-  if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="10" class="empty-state">No schools match.</td></tr>`;
-    return;
-  }
-
+  if (!list.length) { tb.innerHTML = `<tr><td colspan="10" class="empty-state">No schools match.</td></tr>`; return; }
   const maxE = Math.max(...list.map(s => s.studentEngagement || 0), 1);
   tb.innerHTML = list.map(s => {
     const e = s.studentEngagement || 0;
@@ -1619,7 +1498,7 @@ function renderSchools() {
 }
 
 /* ============================================================
-   TEACHERS TABLE (all)
+   TEACHERS
    ============================================================ */
 function sortTeachers(key) {
   const s = State.sort.teachers;
@@ -1630,25 +1509,18 @@ function sortTeachers(key) {
 function renderTeachers() {
   const tb = document.getElementById('tbodyTeachers');
   if (!tb) return;
-
   const q = (document.getElementById('searchTeachers')?.value || '').toLowerCase();
   let list = (State.currentData.teachers || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(t => t.region === State.filterRegion);
   if (State.filterSchool) list = list.filter(t => t.school === State.filterSchool);
   if (q) list = list.filter(t => t.name.toLowerCase().includes(q) || t.school.toLowerCase().includes(q));
-
   const { k, d } = State.sort.teachers;
   list.sort((a,b) => {
     const av = a[k], bv = b[k];
     if (typeof av === 'string') return av.localeCompare(bv) * d;
     return ((av || 0) - (bv || 0)) * d;
   });
-
-  if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="6" class="empty-state">No teachers match.</td></tr>`;
-    return;
-  }
-
+  if (!list.length) { tb.innerHTML = `<tr><td colspan="6" class="empty-state">No teachers match.</td></tr>`; return; }
   tb.innerHTML = list.slice(0, 800).map(t => {
     const rankCls = t.rank <= 3 && t.rank >= 1 ? 'rank-' + t.rank : 'rank-other';
     return `<tr>
@@ -1663,23 +1535,17 @@ function renderTeachers() {
 }
 
 /* ============================================================
-   SUBJECTS TABLE
+   SUBJECTS
    ============================================================ */
 function renderSubjects() {
   const tb = document.getElementById('tbodySubjects');
   if (!tb) return;
-
   const q = (document.getElementById('searchSubjects')?.value || '').toLowerCase();
   let list = (State.currentData.subjects || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
   if (State.filterSchool) list = list.filter(s => s.school === State.filterSchool);
   if (q) list = list.filter(s => s.school.toLowerCase().includes(q));
-
-  if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="7" class="empty-state">No subject data available.</td></tr>`;
-    return;
-  }
-
+  if (!list.length) { tb.innerHTML = `<tr><td colspan="7" class="empty-state">No subject data.</td></tr>`; return; }
   tb.innerHTML = list.slice(0, 600).map(s => {
     const scorePct = ((s.avgScore || 0) * 100).toFixed(1);
     const col = s.avgScore >= 0.8 ? '#10b981' : s.avgScore >= 0.5 ? '#f59e0b' : '#ef4444';
@@ -1710,14 +1576,8 @@ function populateSchoolFilter() {
 }
 function onSchoolFilter(v) {
   State.filterSchool = v;
-  renderKPIs();
-  renderSchools();
-  renderTop5();
-  renderStudents();
-  renderSubjects();
-  renderTeachers();
-  renderCharts();
-  renderWeekComparison();
+  renderKPIs(); renderSchools(); renderTop5(); renderStudents();
+  renderSubjects(); renderTeachers(); renderCharts(); renderWeekComparison();
 }
 
 /* ============================================================
@@ -1726,13 +1586,7 @@ function onSchoolFilter(v) {
 function showEmptyDashboard(msg) {
   const c = document.getElementById('dashboardContainer');
   if (!c) return;
-  c.innerHTML = `
-    <div class="section">
-      <div class="empty-state">
-        <div class="big">📭</div>
-        <p>${msg}</p>
-      </div>
-    </div>`;
+  c.innerHTML = `<div class="section"><div class="empty-state"><div class="big">📭</div><p>${msg}</p></div></div>`;
   const sel = document.getElementById('schoolFilter');
   if (sel) sel.innerHTML = '<option value="">All Schools</option>';
 }
@@ -1748,7 +1602,7 @@ function exportAllWeeks() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'school-dashboard-weeks.json';
+  a.download = 'weeks.json';
   a.click();
   URL.revokeObjectURL(url);
   showToast(`✅ Exported ${count} week(s).`, 'ok');
@@ -1767,37 +1621,32 @@ function handleImport(e) {
       const merged = { ...current.weeks, ...imported.weeks };
       const latest = imported.latest || current.latest;
       Store.write({ weeks: merged, latest });
-      State.store = Store.read();
+      State.store = { weeks: merged, latest };
       populateWeekSelect();
       const id = latest || Object.keys(merged)[0];
       if (id) loadWeek(id);
       showToast(`✅ Imported. Total weeks: ${Object.keys(merged).length}`, 'ok');
-    } catch (err) {
-      showToast('❌ Import failed: ' + err.message, 'err');
-    }
+    } catch (err) { showToast('❌ Import failed: ' + err.message, 'err'); }
   };
   reader.readAsText(f);
   e.target.value = '';
 }
-function clearAll() {
-  if (!confirm('Delete ALL weeks from this browser? This cannot be undone.')) return;
+function clearLocal() {
+  if (!confirm('Delete the LOCAL cache on this browser? Remote data/weeks.json on GitHub is not affected.')) return;
   Store.removeAll();
-  State.store = Store.read();
+  State.store = { weeks:{}, latest:null };
   State.currentData = null;
   populateWeekSelect();
-  showEmptyDashboard('All data cleared. Upload 4 Excel files above to get started.');
-  showToast('🗑️ All data cleared.', 'info');
+  showEmptyDashboard('Local cache cleared. Refreshing…');
+  showToast('🗑️ Local cleared. Reloading remote data…', 'info');
+  setTimeout(() => loadRemoteData(true), 500);
 }
-
-/* ============================================================
-   TOAST
-   ============================================================ */
 function showToast(msg, kind) {
   const t = document.getElementById('toast');
   t.className = 'toast show ' + (kind || 'info');
   t.innerHTML = msg;
   clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => t.classList.remove('show'), 5000);
+  showToast._t = setTimeout(() => t.classList.remove('show'), 6000);
 }
 </script>
 </body>
