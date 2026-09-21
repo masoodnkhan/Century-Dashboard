@@ -1367,5 +1367,18 @@ function showToast(msg, kind) {
 })();
 */
 </script>
+  <style>
+  /* Hide admin upload panel unless ?admin=1 is in URL */
+  .upload-panel { display: none !important; }
+  body:has(script) .upload-panel { } /* no-op for older browsers */
+</style>
+<script>
+  // Show the panel only in admin mode
+  if (new URLSearchParams(location.search).get('admin') === '1') {
+    document.querySelectorAll('.upload-panel').forEach(el => {
+      el.style.setProperty('display', 'block', 'important');
+    });
+  }
+</script>
 </body>
 </html>
