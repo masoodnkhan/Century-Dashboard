@@ -5,151 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>School Management Dashboard — Weekly Performance</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
 :root{
-  --primary:#4361ee;--secondary:#3f37c9;--dark:#0f172a;--text:#1e293b;--muted:#64748b;
-  --border:#e2e8f0;--card:#ffffff;--bg:#f1f5f9;
-  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
-  --shadow-lg:0 10px 25px -5px rgba(0,0,0,.08),0 4px 10px -4px rgba(0,0,0,.05);
-  --success:#10b981;--warn:#f59e0b;--danger:#ef4444;--purple:#8b5cf6;--teal:#06b6d4;--indigo:#4f46e5;
+  --primary:#4361ee;--secondary:#3f37c9;--dark:#1a1a2e;--text:#2d3436;--muted:#636e72;
+  --border:#e9ecef;--card:#fff;
+  --shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+  --success:#06d6a0;--warn:#f8961e;--danger:#f72585;--purple:#7209b7;--teal:#4cc9f0;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f5;color:var(--text);line-height:1.6}
 
 /* ============== HEADER ============== */
-.header{background:#fff;border-bottom:1px solid var(--border);padding:.9rem 1.75rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
-.header-inner{max-width:1720px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:1.15rem 2rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-lg)}
+.header-inner{max-width:1600px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.85rem}
 .brand{display:flex;align-items:center;gap:.7rem}
-.brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:#fff}
-.brand h1{font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:-.2px}
-.brand small{display:block;font-size:.68rem;color:var(--muted);font-weight:500;letter-spacing:.4px;text-transform:uppercase}
-.header-controls{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
-.ctrl{display:flex;align-items:center;gap:.4rem;background:#f8fafc;border:1px solid var(--border);padding:.35rem .75rem;border-radius:9px;font-size:.78rem}
-.ctrl label{font-weight:600;color:var(--muted)}
-.ctrl select{padding:.28rem .55rem;border:none;border-radius:7px;font-size:.8rem;font-weight:600;background:#fff;color:var(--primary);cursor:pointer;min-width:130px;outline:none;font-family:inherit}
-.status-pill{font-size:.72rem;background:#ecfdf5;color:#065f46;padding:.35rem .75rem;border-radius:20px;display:flex;align-items:center;gap:.4rem;font-weight:600}
-.dot{width:7px;height:7px;border-radius:50%;background:#10b981;animation:pulse 2s infinite}
-.dot.warn{background:#f59e0b}
-.dot.err{background:#ef4444}
+.brand .logo{font-size:1.65rem}
+.brand h1{font-size:1.25rem;font-weight:700;letter-spacing:-.3px}
+.brand small{display:block;font-size:.68rem;opacity:.85;font-weight:400;letter-spacing:.5px;text-transform:uppercase}
+.header-controls{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.pill{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.15);padding:.38rem .85rem;border-radius:12px;backdrop-filter:blur(10px);font-size:.8rem}
+.pill label{font-weight:600}
+.pill select{padding:.35rem .75rem;border:none;border-radius:8px;font-size:.83rem;font-weight:600;background:#fff;color:var(--primary);cursor:pointer;min-width:150px;outline:none;font-family:inherit}
+.status-pill{font-size:.75rem;background:rgba(255,255,255,.18);padding:.38rem .85rem;border-radius:20px;display:flex;align-items:center;gap:.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+.dot.warn{background:#fbbf24}
+.dot.err{background:#f87171}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* ============== LAYOUT ============== */
-.container{max-width:1720px;margin:0 auto;padding:1.5rem 1.75rem 3rem}
+.container{max-width:1600px;margin:0 auto;padding:1.5rem 2rem 3rem}
 
 /* ============== UPLOAD PANEL ============== */
-.upload-panel{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1.5rem;border:1.5px dashed var(--border);transition:.25s}
+.upload-panel{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:1.35rem;margin-bottom:1.75rem;border:2px dashed var(--border);transition:.25s}
 .upload-panel:hover{border-color:var(--primary)}
-.upload-panel h2{font-size:.95rem;margin-bottom:.3rem;color:var(--dark);display:flex;align-items:center;gap:.5rem}
-.upload-panel > p{font-size:.78rem;color:var(--muted);margin-bottom:.9rem}
-.upload-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;margin-bottom:.9rem}
-.file-drop{border:1.5px solid var(--border);border-radius:10px;padding:.75rem .85rem;transition:.2s;cursor:pointer;background:#fafbfc}
+.upload-panel h2{font-size:1rem;margin-bottom:.3rem;color:var(--dark);display:flex;align-items:center;gap:.5rem}
+.upload-panel > p{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+.upload-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;margin-bottom:1rem}
+.file-drop{border:2px solid var(--border);border-radius:12px;padding:.9rem;transition:.2s;cursor:pointer;background:#fafbfc}
 .file-drop:hover{border-color:var(--primary);background:#f6f8ff}
 .file-drop.done{border-color:var(--success);background:#f0fdf9}
-.file-drop .fd-label{display:flex;align-items:center;gap:.4rem;font-weight:700;font-size:.78rem;color:var(--primary);margin-bottom:.25rem}
-.file-drop .fd-hint{font-size:.68rem;color:var(--muted);margin-bottom:.4rem;line-height:1.35}
-.file-drop .fd-name{font-size:.68rem;color:var(--success);font-weight:700;word-break:break-all}
+.file-drop .fd-label{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.85rem;color:var(--primary);margin-bottom:.3rem}
+.file-drop .fd-hint{font-size:.72rem;color:var(--muted);margin-bottom:.55rem;line-height:1.4}
+.file-drop .fd-name{font-size:.72rem;color:var(--success);font-weight:700;word-break:break-all}
 .file-drop input[type=file]{display:none}
-.week-fields{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:.6rem;margin-bottom:.9rem}
-.week-fields input{padding:.55rem .85rem;border:1.5px solid var(--border);border-radius:9px;font-size:.82rem;font-family:inherit;transition:.2s}
+.week-fields{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:.7rem;margin-bottom:1rem}
+.week-fields input{padding:.6rem .9rem;border:2px solid var(--border);border-radius:10px;font-size:.85rem;font-family:inherit;transition:.2s}
 .week-fields input:focus{outline:none;border-color:var(--primary)}
-.action-row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
-.btn{padding:.55rem 1.1rem;border:none;border-radius:9px;font-weight:700;font-size:.8rem;cursor:pointer;transition:.2s;font-family:inherit;display:inline-flex;align-items:center;gap:.4rem}
+.action-row{display:flex;gap:.65rem;flex-wrap:wrap;align-items:center}
+.btn{padding:.65rem 1.25rem;border:none;border-radius:10px;font-weight:700;font-size:.85rem;cursor:pointer;transition:.2s;font-family:inherit;display:inline-flex;align-items:center;gap:.45rem}
 .btn-primary{background:var(--primary);color:#fff}
-.btn-primary:hover:not(:disabled){background:var(--secondary)}
-.btn-primary:disabled{background:#cbd5e1;cursor:not-allowed}
-.btn-ghost{background:#fff;color:var(--text);border:1.5px solid var(--border)}
+.btn-primary:hover:not(:disabled){background:var(--secondary);transform:translateY(-2px)}
+.btn-primary:disabled{background:#cbd5e1;cursor:not-allowed;transform:none}
+.btn-ghost{background:#fff;color:var(--text);border:2px solid var(--border)}
 .btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
-.btn-danger{background:#fff;color:var(--danger);border:1.5px solid #fecaca}
-.btn-danger:hover{background:#fef2f2}
-.toast{display:none;padding:.65rem .95rem;border-radius:9px;font-size:.78rem;margin-top:.75rem}
-.toast.show{display:block}
-.toast.ok{background:#ecfdf5;color:#065f46;border-left:3px solid var(--success)}
-.toast.err{background:#fef2f2;color:#991b1b;border-left:3px solid var(--danger)}
-.toast.info{background:#eff6ff;color:#1e40af;border-left:3px solid var(--primary)}
+.btn-danger{background:#fff;color:var(--danger);border:2px solid #fecdd3}
+.btn-danger:hover{background:#fee2e2}
+.toast{display:none;padding:.7rem 1rem;border-radius:10px;font-size:.82rem;margin-top:.9rem}
+.toast.show{display:block;animation:slideIn .3s}
+.toast.ok{background:#d1fae5;color:#065f46;border-left:4px solid var(--success)}
+.toast.err{background:#fee2e2;color:#991b1b;border-left:4px solid var(--danger)}
+.toast.info{background:#dbeafe;color:#1e40af;border-left:4px solid var(--primary)}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
-/* ============== PAGE TITLE ============== */
-.page-title{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
-.page-title h2{font-size:1.35rem;font-weight:800;color:var(--dark);letter-spacing:-.3px;display:flex;align-items:center;gap:.55rem}
-.page-title .sub{font-size:.8rem;color:var(--muted);margin-top:.15rem}
+/* ============== SECTION HEADERS ============== */
+.section-title{display:flex;align-items:center;gap:.6rem;font-size:1.05rem;font-weight:800;color:var(--dark);margin:1.5rem 0 1rem;letter-spacing:-.2px}
+.section-title .icon{font-size:1.15rem}
+.section-title .badge{font-size:.7rem;font-weight:700;color:#fff;background:var(--primary);padding:.15rem .55rem;border-radius:20px;margin-left:.25rem}
 
-/* ============== SECTION ============== */
-.section{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1.25rem;overflow:hidden}
-.section-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
-.section-head h3{font-size:.95rem;font-weight:800;color:var(--dark);letter-spacing:-.2px;display:flex;align-items:center;gap:.5rem}
-.section-head .badge{font-size:.68rem;font-weight:700;color:var(--primary);background:#eef2ff;padding:.2rem .6rem;border-radius:20px}
-.section-head .hint{font-size:.72rem;color:var(--muted);font-weight:500}
-
-/* ============== REGION KPI STRIP ============== */
-.region-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem}
-.region-tab{padding:.4rem .9rem;border-radius:8px;font-size:.78rem;font-weight:700;background:#f1f5f9;color:var(--muted);cursor:pointer;border:none;font-family:inherit;transition:.15s;display:flex;align-items:center;gap:.4rem}
-.region-tab:hover{background:#e0e7ff;color:var(--primary)}
-.region-tab.active{background:var(--primary);color:#fff}
-.region-tab .cnt{background:rgba(255,255,255,.25);padding:.05rem .45rem;border-radius:20px;font-size:.68rem}
-.region-tab.active .cnt{background:rgba(255,255,255,.25)}
-
-/* ============== KPI TILES ============== */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem}
-.kpi-tile{background:linear-gradient(180deg,#fff,#fafbfc);border:1px solid var(--border);border-radius:12px;padding:1rem;position:relative;transition:.18s}
-.kpi-tile:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.kpi-tile .k-label{font-size:.66rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem}
-.kpi-tile .k-value{font-size:1.65rem;font-weight:800;color:var(--dark);line-height:1;letter-spacing:-.5px}
-.kpi-tile .k-value.pct{color:var(--success)}
-.kpi-tile .k-value.pct.warn{color:var(--warn)}
-.kpi-tile .k-value.pct.danger{color:var(--danger)}
-.kpi-tile .k-sub{font-size:.7rem;color:var(--muted);margin-top:.35rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
-.kpi-tile .k-icon{position:absolute;top:.85rem;right:.85rem;font-size:1.2rem;opacity:.35}
-.trend-chip{display:inline-flex;align-items:center;gap:.15rem;padding:.1rem .45rem;border-radius:20px;font-weight:700;font-size:.66rem}
+/* ============== KPI ============== */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.1rem;margin-bottom:1.5rem}
+.kpi-card{background:var(--card);border-radius:16px;padding:1.2rem;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.2s}
+.kpi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.kpi-card.blue::before{background:var(--primary)}
+.kpi-card.green::before{background:var(--success)}
+.kpi-card.orange::before{background:var(--warn)}
+.kpi-card.pink::before{background:var(--danger)}
+.kpi-card.purple::before{background:var(--purple)}
+.kpi-card.teal::before{background:var(--teal)}
+.kpi-card.indigo::before{background:#3a0ca3}
+.kpi-card .icon{font-size:1.5rem;margin-bottom:.3rem}
+.kpi-card .label{font-size:.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+.kpi-card .value{font-size:1.75rem;font-weight:800;color:var(--dark);line-height:1;margin-bottom:.3rem}
+.kpi-card .sub{font-size:.74rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.trend-chip{display:inline-flex;align-items:center;gap:.2rem;padding:.1rem .45rem;border-radius:20px;font-weight:700;font-size:.68rem}
 .trend-chip.up{background:#d1fae5;color:#065f46}
 .trend-chip.down{background:#fee2e2;color:#991b1b}
 .trend-chip.neutral{background:#fef3c7;color:#92400e}
 
 /* ============== CHARTS ============== */
-.charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:1rem}
-.chart-box{background:#fff;border-radius:12px;padding:1rem;border:1px solid var(--border)}
-.chart-box h4{font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem}
-.chart-container{position:relative;height:290px}
+.charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:1.1rem;margin-bottom:1.5rem}
+.chart-card{background:var(--card);border-radius:16px;padding:1.2rem;box-shadow:var(--shadow)}
+.chart-card h3{font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.chart-container{position:relative;height:300px}
 .chart-container.tall{height:360px}
-.chart-container.xtall{height:440px}
 
-/* ============== TABLE ============== */
-.table-wrap{overflow:auto;border-radius:10px;border:1px solid var(--border);max-height:520px}
-table{width:100%;border-collapse:collapse;font-size:.8rem}
+/* ============== TABLES ============== */
+.table-section{background:var(--card);border-radius:16px;padding:1.2rem;box-shadow:var(--shadow);margin-bottom:1.5rem}
+.table-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;flex-wrap:wrap;gap:.85rem}
+.table-header h3{font-size:.95rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
+.search-box{padding:.45rem .9rem;border:2px solid var(--border);border-radius:10px;font-size:.83rem;width:240px;font-family:inherit;transition:.2s}
+.search-box:focus{outline:none;border-color:var(--primary)}
+.tabs{display:flex;gap:.45rem;margin-bottom:.85rem;flex-wrap:wrap}
+.tab-btn{padding:.38rem .95rem;border:2px solid var(--border);background:#fff;border-radius:10px;font-weight:600;font-size:.78rem;cursor:pointer;transition:.2s;color:var(--muted);font-family:inherit}
+.tab-btn:hover{border-color:var(--primary);color:var(--primary)}
+.tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.table-wrapper{overflow:auto;border-radius:12px;border:1px solid var(--border);max-height:540px}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
 thead{position:sticky;top:0;z-index:5}
-th{background:#f8fafc;padding:.65rem .85rem;text-align:left;font-weight:700;color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
+th{background:#f8f9fa;padding:.7rem .95rem;text-align:left;font-weight:700;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
 th:hover{background:#eef1f5}
-td{padding:.55rem .85rem;border-bottom:1px solid var(--border);white-space:nowrap}
-tbody tr:hover{background:#f8fafc}
-.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-weight:800;font-size:.66rem}
-.rank-1{background:#fef3c7;color:#92400e}
-.rank-2{background:#e5e7eb;color:#374151}
-.rank-3{background:#fed7aa;color:#9a3412}
-.rank-other{background:#f1f5f9;color:var(--muted)}
-.progress-bar{display:flex;align-items:center;gap:.5rem;min-width:100px}
-.progress-track{flex:1;height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden;min-width:50px}
+td{padding:.6rem .95rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr:hover{background:#f8f9fa}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:50%;font-weight:800;font-size:.7rem}
+.rank-1{background:#ffd700;color:#7c5e00}
+.rank-2{background:#c0c0c0;color:#4a4a4a}
+.rank-3{background:#cd7f32;color:#4a2c00}
+.rank-other{background:#e9ecef;color:var(--muted)}
+.progress-bar{display:flex;align-items:center;gap:.5rem;min-width:120px}
+.progress-track{flex:1;height:8px;background:#e9ecef;border-radius:4px;overflow:hidden;min-width:55px}
 .progress-fill{height:100%;border-radius:4px;transition:width .6s}
-.badge{display:inline-block;padding:.14rem .5rem;border-radius:6px;font-size:.66rem;font-weight:700;background:#eef2ff;color:var(--primary)}
+.org-badge{display:inline-block;padding:.16rem .5rem;border-radius:6px;font-size:.68rem;font-weight:700;background:#e0e7ff;color:var(--primary)}
 .empty-state{text-align:center;padding:2.5rem;color:var(--muted)}
-.empty-state .big{font-size:2.5rem;margin-bottom:.7rem}
+.empty-state .big{font-size:2.5rem;margin-bottom:.85rem}
 .loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem;gap:1rem;color:var(--muted)}
-.spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite}
+.spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.footer{text-align:center;padding:1.75rem 1rem;color:var(--muted);font-size:.75rem}
-.small-search{padding:.4rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-size:.78rem;width:230px;font-family:inherit;transition:.2s}
-.small-search:focus{outline:none;border-color:var(--primary)}
+.footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.78rem}
+
+/* ============== WEEK COMPARISON PANEL ============== */
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-bottom:1rem}
+.compare-card{background:#f8f9fa;border-radius:12px;padding:.9rem 1rem;border-left:4px solid var(--primary)}
+.compare-card .label{font-size:.7rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.3rem}
+.compare-card .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+.compare-card .curr{font-size:1.25rem;font-weight:800;color:var(--dark)}
+.compare-card .prev{font-size:.78rem;color:var(--muted)}
+.compare-card .delta{margin-top:.35rem;font-size:.75rem;font-weight:700;display:inline-flex;align-items:center;gap:.25rem;padding:.1rem .5rem;border-radius:20px}
+.compare-card .delta.up{background:#d1fae5;color:#065f46}
+.compare-card .delta.down{background:#fee2e2;color:#991b1b}
+.compare-card .delta.neutral{background:#fef3c7;color:#92400e}
 
 /* ============== RESPONSIVE ============== */
 @media(max-width:900px){.week-fields{grid-template-columns:1fr}}
 @media(max-width:768px){
   .container{padding:1rem}
   .charts-grid{grid-template-columns:1fr}
-  .kpi-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  .kpi-tile .k-value{font-size:1.3rem}
-  .small-search{width:100%}
-  .header{padding:.85rem 1rem}
-  .brand h1{font-size:.9rem}
-  .page-title h2{font-size:1.1rem}
+  .kpi-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .kpi-card .value{font-size:1.35rem}
+  .search-box{width:100%}
+  .header{padding:1rem}
+  .brand h1{font-size:1rem}
 }
 .hidden{display:none !important}
 </style>
@@ -160,22 +167,25 @@ tbody tr:hover{background:#f8fafc}
 <header class="header">
   <div class="header-inner">
     <div class="brand">
-      <div class="logo">📊</div>
+      <span class="logo">📊</span>
       <div>
         <h1>School Management Dashboard</h1>
-        <small>Weekly Performance Intelligence</small>
+        <small>Weekly Performance Tracker</small>
       </div>
     </div>
     <div class="header-controls">
-      <div class="ctrl">
+      <div class="pill">
         <label>📅 Week</label>
         <select id="weekSelect" onchange="switchWeek(this.value)"></select>
       </div>
-      <div class="ctrl">
+      <div class="pill">
         <label>🏫 School</label>
         <select id="schoolFilter" onchange="onSchoolFilter(this.value)"><option value="">All Schools</option></select>
       </div>
-      <div class="status-pill"><span class="dot" id="statusDot"></span><span id="lastUpdated">Ready</span></div>
+      <div class="status-pill">
+        <span class="dot" id="statusDot"></span>
+        <span id="lastUpdated">Ready</span>
+      </div>
     </div>
   </div>
 </header>
@@ -238,22 +248,14 @@ tbody tr:hover{background:#f8fafc}
 
 <footer class="footer">
   <p>School Management Dashboard • Upload weekly Excel files to auto-update</p>
-  <p style="margin-top:.35rem;font-size:.7rem;opacity:.7">Data stays in your browser • Export JSON to sync across devices</p>
+  <p style="margin-top:.35rem;font-size:.72rem;opacity:.7">Data stays in your browser • Export JSON to sync across devices</p>
 </footer>
 
 <script>
 /* ============================================================
-   CHART.JS DATALABELS PLUGIN
-   ============================================================ */
-Chart.register(ChartDataLabels);
-Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
-Chart.defaults.font.size = 11;
-Chart.defaults.color = '#64748b';
-
-/* ============================================================
    STORAGE
    ============================================================ */
-const STORAGE_KEY = 'schoolDash.weeks.v3';
+const STORAGE_KEY = 'schoolDash.weeks.v2';
 const Store = {
   read() {
     try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : { weeks:{}, latest:null }; }
@@ -274,14 +276,12 @@ const State = {
   previousData: null,
   charts: {},
   filterSchool: '',
-  filterRegion: 'ALL',
   studentTab: 'all',
   schoolBoardFilter: '',
   sort: {
     students: { k:'nuggets', d:-1 },
     schools:  { k:'nuggetsCompleted', d:-1 },
-    top5:     { k:'nuggets', d:-1 },
-    teachers: { k:'daysLoggedIn', d:-1 }
+    top5:     { k:'nuggets', d:-1 }
   },
   pendingFiles: { topPerformers:null, allStats:null, subjectWise:null, teacherLogin:null }
 };
@@ -325,7 +325,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function updateProcessBtn() {
-  document.getElementById('processBtn').disabled = !Object.values(State.pendingFiles).every(Boolean);
+  document.getElementById('processBtn').disabled =
+    !Object.values(State.pendingFiles).every(Boolean);
 }
 
 function populateWeekSelect() {
@@ -339,37 +340,6 @@ function populateWeekSelect() {
     return `<option value="${id}">${escapeHtml(w.label || id)}${w.date ? ' • ' + w.date : ''}</option>`;
   }).join('');
   sel.value = State.store.latest || ids[0];
-}
-
-/* ============================================================
-   REGION DERIVATION
-   Derive region from school code prefix (C, N, S) + city/campus keyword
-   ============================================================ */
-const REGION_RULES = [
-  { code:'C', match:['LHR','Lahore','Shalimar','DHA Campus LHR','Paragon','Ravi','Shadman','Model Town','Kasur','Muslim Town','Link Rd','Allama Iqbal','Jhang','Joharabad','Chenab','Sargodha','FSD','Peoples Colony','Jhelum','Gujranwala','Gujrat','Kharian','Rahim Yar Khan','Bahawalpur','Khanewal','D.G Khan','KAPCO','Multan','PARCO','Sialkot','Sahiwal','Okara','Vehari','Burewala','Alpha','Arifwala','Gujrat Campus GT Road'], name:'Central (Punjab)' },
-  { code:'N', match:['Nowshera','Satellite Town','Civil Line','Chakwal','Harley','Uni Town','DHA Campus ISD','Attock','Wah','Hayatabad','Mirpur','Gulrez','Abbottabad','Mardan','Mianwali','Cantt','Peshawar','Swabi','Chashma','Capital','Rawal','E - 11','Warsak','G 15','D.I.Khan','F - 8','Bahria','PWD','B-17','Nowshera Campus','Muzaffarabad','Kohat','Lake Valley'], name:'North (KPK/Islamabad)' },
-  { code:'S', match:['Clifton','Darakhshan','Johar','Gulistan','Gulshan','Maymar','Bahadurabad','Qasimabad','Jinnah','Latifabad','Liaqat','Mirpur Khas','Thatta','Nawabshah','Indus','Sukkur','Quetta','PECHS','Khairpur','Jamshoro','Gulshan-e-Hadeed','KAECHS','NN','PAF','Tipu Sultan','Defence Karachi','Jacobabad','Chiltan','Ink City','Hyderabad','Karachi'], name:'South (Sindh/Balochistan)' }
-];
-
-function deriveRegion(schoolName) {
-  if (!schoolName) return 'Other';
-  const s = schoolName.toUpperCase();
-  // Determine org prefix letter
-  let orgLetter = null;
-  const m = s.match(/^([CNS])\d+/);
-  if (m) orgLetter = m[1];
-
-  if (orgLetter === 'C') return 'Central (Punjab)';
-  if (orgLetter === 'N') return 'North (KPK/Islamabad)';
-  if (orgLetter === 'S') return 'South (Sindh/Balochistan)';
-
-  // Fallback: match by keyword
-  for (const rule of REGION_RULES) {
-    for (const kw of rule.match) {
-      if (s.includes(kw.toUpperCase())) return rule.name;
-    }
-  }
-  return 'Other';
 }
 
 /* ============================================================
@@ -394,19 +364,10 @@ async function processUpload() {
       parseExcel(State.pendingFiles.teacherLogin,  'teacherLogin')
     ]);
 
-    // Attach region to every row
-    stats.forEach(s => s.region = deriveRegion(s.name));
-    top.forEach(t => t.region = deriveRegion(t.org));
-    subjects.forEach(s => s.region = deriveRegion(s.school));
-    teachers.forEach(t => t.region = deriveRegion(t.school));
-
     const summary = buildSummary(stats);
-    const regionSummary = buildRegionSummary(stats);
-
     const weekObj = {
       id: weekId, label: weekLabel, date: weekDate,
-      summary, regionSummary,
-      students: top, schools: stats, subjects, teachers,
+      summary, students: top, schools: stats, subjects, teachers,
       uploadedAt: new Date().toISOString()
     };
     Store.addWeek(weekId, weekObj);
@@ -535,8 +496,9 @@ function escapeHtml(s) {
 function fmt(n) { return (n||0).toLocaleString(); }
 function shortLabel(name) {
   if (!name) return '';
-  return name.length > 30 ? name.slice(0,28)+'…' : name;
+  return name.length > 34 ? name.slice(0,32)+'…' : name;
 }
+function pct(a, b) { return b > 0 ? (a / b * 100) : 0; }
 
 function buildSummary(schools) {
   const sum = k => schools.reduce((a,b)=>a+(b[k]||0),0);
@@ -553,24 +515,8 @@ function buildSummary(schools) {
     totalQuestions:         q,
     avgNuggetsPerStudent:   active ? +(nuggets/active).toFixed(1) : 0,
     avgQuestionsPerStudent: active ? +(q/active).toFixed(1) : 0,
-    studentEngagementPct:   onboarded ? +((active/onboarded)*100).toFixed(1) : 0,
-    teacherEngagementPct:   sum('onboardedTeachers') ? +((sum('activeTeachers')/sum('onboardedTeachers'))*100).toFixed(1) : 0
+    studentEngagementPct:   onboarded ? +((active/onboarded)*100).toFixed(1) : 0
   };
-}
-
-function buildRegionSummary(schools) {
-  const byRegion = {};
-  schools.forEach(s => {
-    const r = s.region || 'Other';
-    if (!byRegion[r]) byRegion[r] = [];
-    byRegion[r].push(s);
-  });
-  const out = {};
-  Object.entries(byRegion).forEach(([region, list]) => {
-    out[region] = buildSummary(list);
-    out[region].schoolCount = list.length;
-  });
-  return out;
 }
 
 /* ============================================================
@@ -582,6 +528,7 @@ function loadWeek(id) {
   const week = State.store.weeks[id];
   if (!week) return showEmptyDashboard('Week not found: ' + id);
 
+  // Find previous week (by date, earlier than current)
   const allWeeks = Object.values(State.store.weeks)
     .filter(w => w.date && w.date < (week.date || ''))
     .sort((a,b) => (b.date || '').localeCompare(a.date || ''));
@@ -590,7 +537,6 @@ function loadWeek(id) {
   State.currentWeekId = id;
   State.currentData = week;
   State.filterSchool = '';
-  State.filterRegion = 'ALL';
   State.schoolBoardFilter = '';
   document.getElementById('weekSelect').value = id;
   document.getElementById('lastUpdated').textContent = 'Loaded ' + (week.date || '');
@@ -605,144 +551,64 @@ function renderDashboard() {
   const d = State.currentData;
   if (!d) return;
 
-  // Pre-compute engagement per school
-  (d.schools || []).forEach(s => {
-    s.studentEngagement = s.onboardedStudents > 0
-      ? +((s.activeStudents / s.onboardedStudents) * 100).toFixed(1) : 0;
-    s.teacherEngagement = s.onboardedTeachers > 0
-      ? +((s.activeTeachers / s.onboardedTeachers) * 100).toFixed(1) : 0;
-    if (!s.region) s.region = deriveRegion(s.name);
-  });
-
   const c = document.getElementById('dashboardContainer');
   c.innerHTML = `
-    <!-- PAGE TITLE -->
-    <div class="page-title">
-      <div>
-        <h2>🏫 ${escapeHtml(d.label)} — Performance Overview</h2>
-        <div class="sub">${escapeHtml(d.date || '')} • ${(d.schools||[]).length} schools reporting • Region-wise intelligence</div>
-      </div>
-      <div class="badge" style="font-size:.75rem;padding:.4rem .9rem">📌 ${(d.students||[]).length} students • ${(d.teachers||[]).length} teachers</div>
+    <!-- KPI CARDS -->
+    <div class="section-title"><span class="icon">📌</span>Key Metrics</div>
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <!-- WEEK COMPARISON -->
+    <div class="section-title">
+      <span class="icon">📅</span>Week-over-Week Comparison
+      <span class="badge">${State.previousData ? 'vs ' + escapeHtml(State.previousData.label) : 'No previous week'}</span>
+    </div>
+    <div class="table-section">
+      <div class="compare-grid" id="compareGrid"></div>
+      <div class="chart-container tall"><canvas id="chartTrend"></canvas></div>
     </div>
 
-    <!-- REGION TABS + KPI TILES -->
-    <div class="section">
-      <div class="section-head">
-        <h3>📌 Key Metrics <span class="badge">${State.filterRegion === 'ALL' ? 'All Regions' : State.filterRegion}</span></h3>
-        <span class="hint">Click a region below to filter every chart & table on this page</span>
+    <!-- CHARTS -->
+    <div class="section-title"><span class="icon">📈</span>Performance Analytics</div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3>🏫 School-wise Student Engagement %</h3>
+        <div class="chart-container"><canvas id="chartEngagementPct"></canvas></div>
       </div>
-      <div class="region-tabs" id="regionTabs"></div>
-      <div class="kpi-grid" id="kpiGrid"></div>
-    </div>
-
-    <!-- SCHOOL-WISE SUMMARY (TOP) -->
-    <div class="section">
-      <div class="section-head">
-        <h3>🏫 School-wise Summary</h3>
-        <input type="text" class="small-search" placeholder="🔍 Search school…" id="searchSchools" oninput="renderSchools()">
+      <div class="chart-card">
+        <h3>🎯 Top 15 Schools by Nuggets Completed</h3>
+        <div class="chart-container"><canvas id="chartSchools"></canvas></div>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr>
-            <th onclick="sortSchools('name')">School</th>
-            <th onclick="sortSchools('region')">Region</th>
-            <th onclick="sortSchools('activeStudents')">Active Stu.</th>
-            <th onclick="sortSchools('onboardedStudents')">Onboarded</th>
-            <th onclick="sortSchools('studentEngagement')">Engagement %</th>
-            <th onclick="sortSchools('activeTeachers')">Active Tch.</th>
-            <th onclick="sortSchools('nuggetsCompleted')">Nuggets</th>
-            <th onclick="sortSchools('questionsAnswered')">Questions</th>
-            <th onclick="sortSchools('avgNuggetsPerStudent')">Avg/Student</th>
-            <th>Engagement Bar</th>
-          </tr></thead>
-          <tbody id="tbodySchools"></tbody>
-        </table>
+      <div class="chart-card">
+        <h3>📚 Subject-wise Nuggets per School</h3>
+        <div class="chart-container"><canvas id="chartSubjects"></canvas></div>
       </div>
-    </div>
-
-    <!-- ENGAGEMENT COMPLETE STATUS -->
-    <div class="section">
-      <div class="section-head">
-        <h3>📊 Student Engagement — Complete Status</h3>
-        <span class="hint">Bar labels show Active / Onboarded counts • percentage in the center</span>
+      <div class="chart-card">
+        <h3>🚀 Top 10 Schools by Avg Nuggets/Student</h3>
+        <div class="chart-container"><canvas id="chartAvgNuggets"></canvas></div>
       </div>
-      <div class="chart-container xtall"><canvas id="chartEngagementFull"></canvas></div>
-    </div>
-
-    <!-- PERFORMANCE ANALYTICS -->
-    <div class="section">
-      <div class="section-head">
-        <h3>📈 Performance Analytics</h3>
-        <span class="hint">All charts respect the region & school filters</span>
+      <div class="chart-card">
+        <h3>👩‍🏫 Top 10 Teachers by Login Activity</h3>
+        <div class="chart-container"><canvas id="chartTeachers"></canvas></div>
       </div>
-      <div class="charts-grid">
-        <div class="chart-box">
-          <h4>🎯 Top 15 Schools by Nuggets Completed</h4>
-          <div class="chart-container"><canvas id="chartSchools"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>📚 Subject-wise Nuggets per School</h4>
-          <div class="chart-container"><canvas id="chartSubjects"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🚀 Top 10 Schools by Avg Nuggets/Student</h4>
-          <div class="chart-container"><canvas id="chartAvgNuggets"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>📊 Engagement % vs Nuggets (Scatter)</h4>
-          <div class="chart-container"><canvas id="chartScatter"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🥧 Subject-wise Nugget Distribution</h4>
-          <div class="chart-container"><canvas id="chartSubjectDoughnut"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🏫 Region Comparison — Engagement & Nuggets</h4>
-          <div class="chart-container"><canvas id="chartRegionCompare"></canvas></div>
-        </div>
+      <div class="chart-card">
+        <h3>📊 Engagement vs Nuggets (All Schools)</h3>
+        <div class="chart-container"><canvas id="chartScatter"></canvas></div>
       </div>
     </div>
 
-    <!-- TEACHER LOGIN ACTIVITY (ALL TEACHERS) -->
-    <div class="section">
-      <div class="section-head">
-        <h3>👩‍🏫 Teacher Login Activity <span class="badge">${(d.teachers||[]).length} teachers</span></h3>
-        <input type="text" class="small-search" placeholder="🔍 Search teacher…" id="searchTeachers" oninput="renderTeachers()">
-      </div>
-      <div class="charts-grid" style="margin-bottom:1rem">
-        <div class="chart-box">
-          <h4>📊 All Teachers — Days Logged In vs Assignments</h4>
-          <div class="chart-container xtall"><canvas id="chartAllTeachers"></canvas></div>
-        </div>
-        <div class="chart-box">
-          <h4>🏆 Top 10 Teachers by Days Logged In</h4>
-          <div class="chart-container xtall"><canvas id="chartTopTeachers"></canvas></div>
-        </div>
-      </div>
-      <div class="table-wrap" style="max-height:420px">
-        <table>
-          <thead><tr>
-            <th onclick="sortTeachers('name')">Teacher</th>
-            <th onclick="sortTeachers('school')">School</th>
-            <th onclick="sortTeachers('region')">Region</th>
-            <th onclick="sortTeachers('daysLoggedIn')">Days Logged In</th>
-            <th onclick="sortTeachers('assignmentsAssigned')">Assignments Assigned</th>
-            <th onclick="sortTeachers('rank')">Rank</th>
-          </tr></thead>
-          <tbody id="tbodyTeachers"></tbody>
-        </table>
-      </div>
+    <!-- TOP PERFORMERS BY SCHOOL -->
+    <div class="section-title">
+      <span class="icon">🏆</span>Top 5 Students per School
+      <span class="badge">${(d.students||[]).length} total</span>
     </div>
-
-    <!-- TOP 5 PER SCHOOL -->
-    <div class="section">
-      <div class="section-head">
-        <h3>🏆 Top 5 Students per School</h3>
-        <select id="topSchoolPicker" class="small-search" onchange="onTopSchoolPick(this.value)" style="width:280px">
+    <div class="table-section">
+      <div class="table-header">
+        <h3>🥇 Pick a school to view its top 5</h3>
+        <select id="topSchoolPicker" class="search-box" onchange="onTopSchoolPick(this.value)" style="width:280px">
           <option value="__all__">All Schools (Top 5 each)</option>
         </select>
       </div>
-      <div class="table-wrap">
+      <div class="table-wrapper">
         <table><thead><tr>
           <th onclick="sortTop5('rank')">Rank</th>
           <th onclick="sortTop5('name')">Student</th>
@@ -755,21 +621,21 @@ function renderDashboard() {
     </div>
 
     <!-- STUDENT LEADERBOARD -->
-    <div class="section">
-      <div class="section-head">
-        <h3>🎓 Full Student Leaderboard</h3>
-        <input type="text" class="small-search" placeholder="🔍 Search student…" id="searchStudents" oninput="renderStudents()">
+    <div class="section-title"><span class="icon">🎓</span>Full Student Leaderboard</div>
+    <div class="table-section">
+      <div class="table-header">
+        <h3>🏆 All Students</h3>
+        <input type="text" class="search-box" placeholder="🔍 Search student or school…" id="searchStudents" oninput="renderStudents()">
       </div>
-      <div class="tabs" style="display:flex;gap:.4rem;margin-bottom:.85rem;flex-wrap:wrap">
-        <button class="btn btn-ghost" data-tab="all" onclick="switchStudentTab('all',this)" style="background:var(--primary);color:#fff;border-color:var(--primary)">All Students</button>
-        <button class="btn btn-ghost" data-tab="top" onclick="switchStudentTab('top',this)">Top 20</button>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="all" onclick="switchStudentTab('all',this)">All Students</button>
+        <button class="tab-btn" data-tab="top" onclick="switchStudentTab('top',this)">Top 20</button>
       </div>
-      <div class="table-wrap">
+      <div class="table-wrapper">
         <table><thead><tr>
           <th onclick="sortStudents('rank')">Rank</th>
           <th onclick="sortStudents('name')">Student</th>
           <th onclick="sortStudents('org')">School</th>
-          <th onclick="sortStudents('region')">Region</th>
           <th onclick="sortStudents('nuggets')">Nuggets</th>
           <th onclick="sortStudents('avgScore')">Avg Score</th>
           <th>Progress</th>
@@ -777,16 +643,38 @@ function renderDashboard() {
       </div>
     </div>
 
-    <!-- SUBJECT DETAILS -->
-    <div class="section">
-      <div class="section-head">
-        <h3>📖 Subject-wise Class-level Details</h3>
-        <input type="text" class="small-search" placeholder="🔍 Search school…" id="searchSubjects" oninput="renderSubjects()">
+    <!-- SCHOOL SUMMARY -->
+    <div class="section-title"><span class="icon">🏫</span>School-wise Summary</div>
+    <div class="table-section">
+      <div class="table-header">
+        <h3>📋 All Schools</h3>
+        <input type="text" class="search-box" placeholder="🔍 Search school…" id="searchSchools" oninput="renderSchools()">
       </div>
-      <div class="table-wrap">
+      <div class="table-wrapper">
+        <table><thead><tr>
+          <th onclick="sortSchools('name')">School</th>
+          <th onclick="sortSchools('activeStudents')">Active Stu.</th>
+          <th onclick="sortSchools('onboardedStudents')">Onboarded</th>
+          <th onclick="sortSchools('studentEngagement')">Engagement %</th>
+          <th onclick="sortSchools('activeTeachers')">Active Tch.</th>
+          <th onclick="sortSchools('nuggetsCompleted')">Nuggets</th>
+          <th onclick="sortSchools('questionsAnswered')">Questions</th>
+          <th onclick="sortSchools('avgNuggetsPerStudent')">Avg/Student</th>
+          <th>Engagement Bar</th>
+        </tr></thead><tbody id="tbodySchools"></tbody></table>
+      </div>
+    </div>
+
+    <!-- SUBJECT-WISE DETAIL -->
+    <div class="section-title"><span class="icon">📖</span>Subject-wise Details</div>
+    <div class="table-section">
+      <div class="table-header">
+        <h3>📚 Class-level Breakdown</h3>
+        <input type="text" class="search-box" placeholder="🔍 Search school…" id="searchSubjects" oninput="renderSubjects()">
+      </div>
+      <div class="table-wrapper">
         <table><thead><tr>
           <th>School</th>
-          <th>Region</th>
           <th>Department</th>
           <th>Class</th>
           <th>Active Students</th>
@@ -795,125 +683,60 @@ function renderDashboard() {
         </tr></thead><tbody id="tbodySubjects"></tbody></table>
       </div>
     </div>
-
-    <!-- WEEK OVER WEEK (BOTTOM) -->
-    <div class="section">
-      <div class="section-head">
-        <h3>📅 Week-over-Week Comparison <span class="badge">${State.previousData ? 'vs ' + escapeHtml(State.previousData.label) : 'No previous week'}</span></h3>
-        <span class="hint">Shows this week vs last week — engagement deltas included</span>
-      </div>
-      <div class="kpi-grid" id="compareGrid" style="margin-bottom:1rem"></div>
-      <div class="chart-container tall"><canvas id="chartTrend"></canvas></div>
-    </div>
   `;
 
-  renderRegionTabs();
+  // Pre-compute per-school engagement
+  (State.currentData.schools || []).forEach(s => {
+    s.studentEngagement = s.onboardedStudents > 0
+      ? +((s.activeStudents / s.onboardedStudents) * 100).toFixed(1)
+      : 0;
+  });
+
   populateSchoolFilter();
   populateTopSchoolPicker();
   renderKPIs();
-  renderSchools();
-  renderTop5();
-  renderStudents();
-  renderSubjects();
-  renderTeachers();
   renderWeekComparison();
   requestAnimationFrame(() => renderCharts());
-}
-
-/* ============================================================
-   REGION TABS
-   ============================================================ */
-function renderRegionTabs() {
-  const container = document.getElementById('regionTabs');
-  if (!container) return;
-
-  const regions = {};
-  (State.currentData.schools || []).forEach(s => {
-    const r = s.region || 'Other';
-    if (!regions[r]) regions[r] = 0;
-    regions[r]++;
-  });
-
-  const totalCount = (State.currentData.schools || []).length;
-  const list = [
-    { key:'ALL', name:'All Regions', cnt: totalCount },
-    ...Object.entries(regions).sort((a,b) => b[1]-a[1]).map(([r, n]) => ({ key:r, name:r, cnt:n }))
-  ];
-
-  container.innerHTML = list.map(r => `
-    <button class="region-tab ${State.filterRegion === r.key ? 'active' : ''}" onclick="onRegionFilter('${escapeHtml(r.key)}')">
-      ${escapeHtml(r.name)} <span class="cnt">${r.cnt}</span>
-    </button>
-  `).join('');
-}
-
-function onRegionFilter(region) {
-  State.filterRegion = region;
-  State.filterSchool = '';
-  renderRegionTabs();
-  renderKPIs();
-  renderSchools();
   renderTop5();
   renderStudents();
+  renderSchools();
   renderSubjects();
-  renderTeachers();
-  renderCharts();
-  populateSchoolFilter();
-}
-
-function getFilteredSchools() {
-  let list = (State.currentData.schools || []).slice();
-  if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
-  if (State.filterSchool) list = list.filter(s => s.name === State.filterSchool);
-  return list;
-}
-function getFilteredRegionSummary() {
-  const schools = getFilteredSchools();
-  if (State.filterSchool) {
-    // Single school — build region-like summary
-    return buildSummary(schools);
-  }
-  if (State.filterRegion !== 'ALL') {
-    return buildSummary(schools);
-  }
-  return State.currentData.summary || buildSummary(schools);
 }
 
 /* ============================================================
    KPIs
    ============================================================ */
 function renderKPIs() {
-  const s = getFilteredRegionSummary();
-  const schools = getFilteredSchools();
-  const prevSummary = State.previousData?.summary;
-  const prevRegion = State.previousData?.regionSummary;
-
-  // For trend comparison: use region-specific previous summary if available
-  let prev = prevSummary;
-  if (State.previousData && State.filterRegion !== 'ALL') {
-    prev = State.previousData.regionSummary?.[State.filterRegion] || null;
-  }
+  const s = State.currentData.summary || {};
+  const prev = State.previousData?.summary;
+  const schools = State.currentData.schools || [];
+  const students = State.currentData.students || [];
 
   const engagement = s.studentEngagementPct ?? (s.totalOnboardedStudents
     ? +((s.totalActiveStudents / s.totalOnboardedStudents) * 100).toFixed(1) : 0);
 
   const cards = [
-    { icon:'🎯', label:'Active Students',   value: fmt(s.totalActiveStudents), sub: `${fmt(s.totalOnboardedStudents)} onboarded`, key:'totalActiveStudents' },
-    { icon:'📊', label:'Student Engagement', value: engagement + '%', sub: `${fmt(s.totalActiveStudents)} / ${fmt(s.totalOnboardedStudents)}`, key:'studentEngagementPct', pct:true },
-    { icon:'👩‍🏫', label:'Active Teachers',   value: fmt(s.totalActiveTeachers), sub: `${fmt(s.totalOnboardedTeachers)} onboarded`, key:'totalActiveTeachers' },
-    { icon:'🍪', label:'Nuggets Completed', value: fmt(s.totalNuggets), sub: `${s.avgNuggetsPerStudent} avg / student`, key:'totalNuggets' },
-    { icon:'❓', label:'Questions Answered', value: fmt(s.totalQuestions), sub: `${s.avgQuestionsPerStudent} avg / student`, key:'totalQuestions' },
-    { icon:'🏫', label:'Schools Reporting', value: fmt(schools.length), sub: State.filterRegion === 'ALL' ? 'All regions' : State.filterRegion },
-    { icon:'📈', label:'Teacher Engagement', value: (s.teacherEngagementPct || 0) + '%', sub: `${fmt(s.totalActiveTeachers)} / ${fmt(s.totalOnboardedTeachers)}`, key:'teacherEngagementPct', pct:true }
+    { cls:'blue',   icon:'🎯', label:'Active Students',    value: fmt(s.totalActiveStudents),
+      sub: `${fmt(s.totalOnboardedStudents)} onboarded`, trendKey: 'totalActiveStudents' },
+    { cls:'indigo', icon:'📊', label:'Student Engagement %', value: engagement + '%',
+      sub: `${fmt(s.totalActiveStudents)} / ${fmt(s.totalOnboardedStudents)}`, trendKey: 'studentEngagementPct', isPct: true },
+    { cls:'green',  icon:'👩‍🏫', label:'Active Teachers',   value: fmt(s.totalActiveTeachers),
+      sub: `${fmt(s.totalOnboardedTeachers)} onboarded`, trendKey: 'totalActiveTeachers' },
+    { cls:'orange', icon:'🍪', label:'Nuggets Completed',  value: fmt(s.totalNuggets),
+      sub: `${s.avgNuggetsPerStudent} avg / student`, trendKey: 'totalNuggets' },
+    { cls:'pink',   icon:'❓', label:'Questions Answered', value: fmt(s.totalQuestions),
+      sub: `${s.avgQuestionsPerStudent} avg / student`, trendKey: 'totalQuestions' },
+    { cls:'purple', icon:'🏫', label:'Schools Reporting',  value: fmt(schools.length), sub:'This week' },
+    { cls:'teal',   icon:'🏅', label:'Students Tracked',   value: fmt(students.length), sub:'On leaderboard' }
   ];
 
   const grid = document.getElementById('kpiGrid');
   if (!grid) return;
   grid.innerHTML = cards.map(c => {
     let trendHtml = '';
-    if (prev && c.key && prev[c.key] != null) {
-      const cur = s[c.key] ?? 0;
-      const old = prev[c.key] ?? 0;
+    if (prev && c.trendKey && prev[c.trendKey] != null) {
+      const cur = s[c.trendKey];
+      const old = prev[c.trendKey];
       if (old > 0) {
         const change = ((cur - old) / old) * 100;
         const dir = change > 0.5 ? 'up' : change < -0.5 ? 'down' : 'neutral';
@@ -921,440 +744,57 @@ function renderKPIs() {
         trendHtml = `<span class="trend-chip ${dir}">${arrow} ${change >= 0 ? '+' : ''}${change.toFixed(1)}%</span>`;
       }
     }
-    const pctClass = c.pct ? (engagement >= 50 ? '' : engagement >= 25 ? 'warn' : 'danger') : '';
-    return `<div class="kpi-tile">
-      <span class="k-icon">${c.icon}</span>
-      <div class="k-label">${c.label}</div>
-      <div class="k-value ${c.pct ? 'pct ' + pctClass : ''}">${c.value}</div>
-      <div class="k-sub">${c.sub}${trendHtml ? ' ' + trendHtml : ''}</div>
+    return `<div class="kpi-card ${c.cls}">
+      <div class="icon">${c.icon}</div>
+      <div class="label">${c.label}</div>
+      <div class="value">${c.value}</div>
+      <div class="sub">${c.sub}${trendHtml ? ' ' + trendHtml : ''}</div>
     </div>`;
   }).join('');
 }
 
 /* ============================================================
-   CHARTS
-   ============================================================ */
-function renderCharts() {
-  const keepTrend = State.charts.trend;
-  Object.values(State.charts).forEach(ch => ch && ch !== keepTrend && ch.destroy && ch.destroy());
-  State.charts = { trend: keepTrend };
-
-  const palette = ['#4361ee','#10b981','#f59e0b','#ef4444','#8b5cf6','#06b6d4','#4f46e5','#f97316','#0ea5e9','#84cc16'];
-  const schools = getFilteredSchools();
-
-  // 1. Engagement Complete Status (all filtered schools, full width)
-  const engagementSorted = schools.slice()
-    .filter(s => s.onboardedStudents > 0)
-    .sort((a,b) => (b.studentEngagement || 0) - (a.studentEngagement || 0))
-    .slice(0, 40);  // cap at 40 for readability
-
-  const c1 = document.getElementById('chartEngagementFull');
-  if (c1) {
-    State.charts.engagementFull = new Chart(c1, {
-      type: 'bar',
-      data: {
-        labels: engagementSorted.map(s => shortLabel(s.name)),
-        datasets: [{
-          label: 'Engagement %',
-          data: engagementSorted.map(s => s.studentEngagement),
-          backgroundColor: engagementSorted.map(s =>
-            s.studentEngagement >= 50 ? '#10b981' :
-            s.studentEngagement >= 25 ? '#f59e0b' : '#ef4444'),
-          borderRadius: 8,
-          barPercentage: 0.75,
-          categoryPercentage: 0.85
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => {
-                const s = engagementSorted[ctx.dataIndex];
-                return `${s.studentEngagement}% • ${s.activeStudents} / ${s.onboardedStudents} students`;
-              }
-            }
-          },
-          datalabels: {
-            anchor: 'center', align: 'center',
-            color: '#fff',
-            font: { weight: '700', size: 10 },
-            formatter: v => v > 0 ? v.toFixed(1) + '%' : ''
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true, max: 100,
-            ticks: { callback: v => v + '%', font: { size: 10 } },
-            grid: { color: '#f1f5f9' }
-          },
-          x: {
-            ticks: { maxRotation: 65, minRotation: 45, font: { size: 9 } },
-            grid: { display: false }
-          }
-        }
-      }
-    });
-  }
-
-  // 2. Top 15 schools by nuggets
-  const topN = schools.slice().sort((a,b) => b.nuggetsCompleted - a.nuggetsCompleted).slice(0,15);
-  const c2 = document.getElementById('chartSchools');
-  if (c2) {
-    State.charts.schools = new Chart(c2, {
-      type: 'bar',
-      data: {
-        labels: topN.map(s => shortLabel(s.name)),
-        datasets: [
-          { label: 'Nuggets', data: topN.map(s => s.nuggetsCompleted), backgroundColor: '#4361ee', borderRadius: 6 },
-          { label: 'Active Students', data: topN.map(s => s.activeStudents), backgroundColor: '#10b981', borderRadius: 6 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            anchor: 'end', align: 'top', color: '#334155',
-            font: { weight: '700', size: 9 },
-            formatter: v => v > 0 ? v : ''
-          }
-        },
-        scales: {
-          y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          x: { ticks: { maxRotation: 60, minRotation: 45, font: { size: 9 } }, grid: { display: false } }
-        }
-      }
-    });
-  }
-
-  // 3. Subject-wise grouped bars
-  const subjectRows = (State.currentData.subjects || []).filter(r => {
-    if (State.filterRegion === 'ALL' && !State.filterSchool) return true;
-    if (State.filterSchool) return r.school === State.filterSchool;
-    return r.region === State.filterRegion;
-  });
-  const subjectBySchool = {};
-  subjectRows.forEach(r => {
-    if (!r.school) return;
-    if (!subjectBySchool[r.school]) subjectBySchool[r.school] = { English:0, Mathematics:0, Science:0, Other:0 };
-    const dept = (r.dept || '').trim();
-    const key = ['English','Mathematics','Science'].includes(dept) ? dept : 'Other';
-    subjectBySchool[r.school][key] += (r.nuggetsCompleted || 0);
-  });
-  const subjSorted = Object.entries(subjectBySchool)
-    .map(([school, v]) => ({ school, ...v, total: v.English + v.Mathematics + v.Science + v.Other }))
-    .sort((a,b) => b.total - a.total).slice(0,12);
-
-  const c3 = document.getElementById('chartSubjects');
-  if (c3) {
-    State.charts.subjects = new Chart(c3, {
-      type: 'bar',
-      data: {
-        labels: subjSorted.map(s => shortLabel(s.school)),
-        datasets: [
-          { label: 'English', data: subjSorted.map(s => s.English), backgroundColor: '#4361ee', stack: 's', borderRadius: 4 },
-          { label: 'Math', data: subjSorted.map(s => s.Mathematics), backgroundColor: '#10b981', stack: 's', borderRadius: 4 },
-          { label: 'Science', data: subjSorted.map(s => s.Science), backgroundColor: '#f59e0b', stack: 's', borderRadius: 4 },
-          { label: 'Other', data: subjSorted.map(s => s.Other), backgroundColor: '#94a3b8', stack: 's', borderRadius: 4 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            color: '#fff', font: { weight: '700', size: 9 },
-            formatter: v => v >= 5 ? v : ''
-          }
-        },
-        scales: {
-          x: { stacked: true, ticks: { maxRotation: 60, minRotation: 45, font: { size: 9 } }, grid: { display: false } },
-          y: { stacked: true, beginAtZero: true, grid: { color: '#f1f5f9' } }
-        }
-      }
-    });
-  }
-
-  // 4. Top 10 by avg nuggets
-  const avgTop = schools.slice()
-    .filter(s => s.activeStudents > 0)
-    .sort((a,b) => (b.avgNuggetsPerStudent||0) - (a.avgNuggetsPerStudent||0)).slice(0,10);
-  const c4 = document.getElementById('chartAvgNuggets');
-  if (c4) {
-    State.charts.avgNuggets = new Chart(c4, {
-      type: 'bar',
-      data: {
-        labels: avgTop.map(s => shortLabel(s.name)),
-        datasets: [{
-          label: 'Avg Nuggets / Student',
-          data: avgTop.map(s => s.avgNuggetsPerStudent || 0),
-          backgroundColor: avgTop.map((_,i) => palette[i % palette.length]),
-          borderRadius: 6
-        }]
-      },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          datalabels: {
-            anchor: 'end', align: 'right', color: '#334155',
-            font: { weight: '700', size: 10 },
-            formatter: v => (v||0).toFixed(1)
-          }
-        },
-        scales: {
-          x: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          y: { grid: { display: false }, ticks: { font: { size: 10 } } }
-        }
-      }
-    });
-  }
-
-  // 5. Scatter engagement vs nuggets
-  const scatterData = schools.filter(s => s.onboardedStudents > 0);
-  const c5 = document.getElementById('chartScatter');
-  if (c5) {
-    State.charts.scatter = new Chart(c5, {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Schools',
-          data: scatterData.map(s => ({ x: s.studentEngagement, y: s.nuggetsCompleted, name: s.name })),
-          backgroundColor: '#4361ee', pointRadius: 6, pointHoverRadius: 9
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          datalabels: { display: false },
-          tooltip: { callbacks: { label: ctx => `${ctx.raw.name}: ${ctx.raw.x}% • ${ctx.raw.y} nuggets` } }
-        },
-        scales: {
-          x: { title: { display: true, text: 'Engagement %' }, beginAtZero: true, max: 100, grid: { color: '#f1f5f9' } },
-          y: { title: { display: true, text: 'Nuggets Completed' }, beginAtZero: true, grid: { color: '#f1f5f9' } }
-        }
-      }
-    });
-  }
-
-  // 6. Subject doughnut
-  const totals = { English:0, Mathematics:0, Science:0, Other:0 };
-  let hasExplicit = false;
-  subjectRows.forEach(r => {
-    if (r.englishNuggets || r.mathNuggets || r.scienceNuggets) {
-      hasExplicit = true;
-      totals.English += r.englishNuggets || 0;
-      totals.Mathematics += r.mathNuggets || 0;
-      totals.Science += r.scienceNuggets || 0;
-    }
-  });
-  if (!hasExplicit) {
-    subjectRows.forEach(r => {
-      const dept = (r.dept || '').trim();
-      const key = ['English','Mathematics','Science'].includes(dept) ? dept : 'Other';
-      totals[key] = (totals[key] || 0) + (r.nuggetsCompleted || 0);
-    });
-  }
-  const labels6 = ['English','Mathematics','Science','Other'].filter(k => totals[k] > 0);
-  const c6 = document.getElementById('chartSubjectDoughnut');
-  if (c6) {
-    State.charts.subjectDoughnut = new Chart(c6, {
-      type: 'doughnut',
-      data: {
-        labels: labels6,
-        datasets: [{
-          data: labels6.map(k => totals[k]),
-          backgroundColor: ['#4361ee','#10b981','#f59e0b','#94a3b8'].slice(0, labels6.length),
-          borderWidth: 2, borderColor: '#fff'
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        cutout: '55%',
-        plugins: {
-          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
-          datalabels: {
-            color: '#fff', font: { weight: '700', size: 11 },
-            formatter: (v, ctx) => {
-              const total = ctx.dataset.data.reduce((a,b)=>a+b, 0);
-              const pct = total ? ((v / total) * 100).toFixed(0) : 0;
-              return pct > 5 ? pct + '%' : '';
-            }
-          }
-        }
-      }
-    });
-  }
-
-  // 7. Region comparison
-  const regionSummary = State.currentData.regionSummary || {};
-  const regionLabels = Object.keys(regionSummary);
-  const c7 = document.getElementById('chartRegionCompare');
-  if (c7) {
-    State.charts.regionCompare = new Chart(c7, {
-      type: 'bar',
-      data: {
-        labels: regionLabels.map(r => r.split(' ')[0]),
-        datasets: [
-          {
-            label: 'Engagement %',
-            data: regionLabels.map(r => regionSummary[r].studentEngagementPct || 0),
-            backgroundColor: '#8b5cf6', borderRadius: 6, yAxisID: 'y1'
-          },
-          {
-            label: 'Nuggets Completed',
-            data: regionLabels.map(r => regionSummary[r].totalNuggets || 0),
-            backgroundColor: '#4361ee', borderRadius: 6, yAxisID: 'y'
-          }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            anchor: 'end', align: 'top',
-            color: '#334155', font: { weight: '700', size: 10 },
-            formatter: v => (v||0).toFixed(1)
-          }
-        },
-        scales: {
-          y: { position: 'left', beginAtZero: true, title: { display: true, text: 'Nuggets' }, grid: { color: '#f1f5f9' } },
-          y1: { position: 'right', beginAtZero: true, max: 100, title: { display: true, text: 'Engagement %' }, grid: { display: false }, ticks: { callback: v => v + '%' } }
-        }
-      }
-    });
-  }
-
-  // 8. Teachers (all) — bar chart
-  const teachers = (State.currentData.teachers || []).filter(t => {
-    if (State.filterSchool) return t.school === State.filterSchool;
-    if (State.filterRegion !== 'ALL') return t.region === State.filterRegion;
-    return true;
-  }).sort((a,b) => b.daysLoggedIn - a.daysLoggedIn).slice(0, 40);
-
-  const c8 = document.getElementById('chartAllTeachers');
-  if (c8) {
-    State.charts.allTeachers = new Chart(c8, {
-      type: 'bar',
-      data: {
-        labels: teachers.map(t => t.name),
-        datasets: [
-          { label: 'Days Logged In', data: teachers.map(t => t.daysLoggedIn), backgroundColor: '#8b5cf6', borderRadius: 5 },
-          { label: 'Assignments Assigned', data: teachers.map(t => t.assignmentsAssigned), backgroundColor: '#06b6d4', borderRadius: 5 }
-        ]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-          datalabels: {
-            anchor: 'end', align: 'right', color: '#334155',
-            font: { weight: '700', size: 9 },
-            formatter: v => v > 0 ? v : ''
-          }
-        },
-        scales: {
-          x: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          y: { grid: { display: false }, ticks: { font: { size: 9 } } }
-        }
-      }
-    });
-  }
-
-  // 9. Top 10 teachers
-  const topTeachers = teachers.slice(0, 10);
-  const c9 = document.getElementById('chartTopTeachers');
-  if (c9) {
-    State.charts.topTeachers = new Chart(c9, {
-      type: 'bar',
-      data: {
-        labels: topTeachers.map(t => t.name),
-        datasets: [{
-          label: 'Days Logged In',
-          data: topTeachers.map(t => t.daysLoggedIn),
-          backgroundColor: topTeachers.map((_,i) => palette[i % palette.length]),
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          datalabels: {
-            anchor: 'end', align: 'top', color: '#334155',
-            font: { weight: '700', size: 10 },
-            formatter: v => v
-          }
-        },
-        scales: {
-          y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-          x: { ticks: { maxRotation: 60, minRotation: 45, font: { size: 9 } }, grid: { display: false } }
-        }
-      }
-    });
-  }
-}
-
-/* ============================================================
-   WEEK-OVER-WEEK COMPARISON (bottom section)
+   WEEK-OVER-WEEK COMPARISON
    ============================================================ */
 function renderWeekComparison() {
   const cur = State.currentData.summary || {};
-  const prevSummary = State.previousData?.summary;
-  const prevRegion = State.previousData?.regionSummary;
-
-  // For region-filtered view use region-specific previous data
-  let prev = prevSummary;
-  if (State.previousData && State.filterRegion !== 'ALL' && !State.filterSchool) {
-    prev = prevRegion?.[State.filterRegion] || null;
-  }
+  const prev = State.previousData?.summary;
 
   const metrics = [
-    { key:'totalActiveStudents',    label:'Active Students',      fmt: v => fmt(v) },
-    { key:'studentEngagementPct',   label:'Student Engagement',   fmt: v => (v||0) + '%' },
-    { key:'totalActiveTeachers',    label:'Active Teachers',      fmt: v => fmt(v) },
-    { key:'teacherEngagementPct',   label:'Teacher Engagement',   fmt: v => (v||0) + '%' },
-    { key:'totalNuggets',           label:'Nuggets Completed',    fmt: v => fmt(v) },
-    { key:'totalQuestions',         label:'Questions Answered',   fmt: v => fmt(v) },
+    { key:'totalActiveStudents',    label:'Active Students',     fmt: v => fmt(v) },
+    { key:'studentEngagementPct',   label:'Engagement %',        fmt: v => (v||0) + '%' },
+    { key:'totalActiveTeachers',    label:'Active Teachers',     fmt: v => fmt(v) },
+    { key:'totalNuggets',           label:'Nuggets Completed',   fmt: v => fmt(v) },
+    { key:'totalQuestions',         label:'Questions Answered',  fmt: v => fmt(v) },
     { key:'avgNuggetsPerStudent',   label:'Avg Nuggets / Student', fmt: v => (v||0) }
   ];
 
   const grid = document.getElementById('compareGrid');
-  if (grid) {
-    // Determine current metric source: if region/school filtered, aggregate from filtered schools
-    let currentMetrics = cur;
-    if (State.filterRegion !== 'ALL' || State.filterSchool) {
-      currentMetrics = getFilteredRegionSummary();
+  if (!grid) return;
+
+  grid.innerHTML = metrics.map(m => {
+    const cVal = cur[m.key] ?? 0;
+    const pVal = prev ? (prev[m.key] ?? 0) : null;
+    let delta = '';
+    if (prev && pVal > 0) {
+      const change = ((cVal - pVal) / pVal) * 100;
+      const dir = change > 0.5 ? 'up' : change < -0.5 ? 'down' : 'neutral';
+      const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '●';
+      delta = `<div class="delta ${dir}">${arrow} ${change >= 0 ? '+' : ''}${change.toFixed(1)}%</div>`;
+    } else if (!prev) {
+      delta = `<div class="delta neutral">— no prior data</div>`;
     }
+    return `<div class="compare-card">
+      <div class="label">${m.label}</div>
+      <div class="row">
+        <span class="curr">${m.fmt(cVal)}</span>
+        ${pVal != null ? `<span class="prev">was ${m.fmt(pVal)}</span>` : ''}
+      </div>
+      ${delta}
+    </div>`;
+  }).join('');
 
-    grid.innerHTML = metrics.map(m => {
-      const cVal = currentMetrics[m.key] ?? 0;
-      const pVal = prev ? (prev[m.key] ?? 0) : null;
-      let delta = '';
-      if (prev && pVal > 0) {
-        const change = ((cVal - pVal) / pVal) * 100;
-        const dir = change > 0.5 ? 'up' : change < -0.5 ? 'down' : 'neutral';
-        const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '●';
-        delta = `<div class="trend-chip ${dir}" style="font-size:.72rem;padding:.2rem .6rem;margin-top:.35rem;display:inline-flex">${arrow} ${change >= 0 ? '+' : ''}${change.toFixed(1)}% vs last week</div>`;
-      } else if (!prev) {
-        delta = `<div class="trend-chip neutral" style="font-size:.72rem;padding:.2rem .6rem;margin-top:.35rem;display:inline-flex">— no prior data</div>`;
-      }
-      return `<div class="kpi-tile">
-        <div class="k-label">${m.label}</div>
-        <div class="k-value">${m.fmt(cVal)}</div>
-        <div class="k-sub">${pVal != null ? `Last week: ${m.fmt(pVal)}` : ''}</div>
-        ${delta}
-      </div>`;
-    }).join('');
-  }
-
-  // Trend line chart
+  // Build trend chart: last up to 8 weeks
   const allWeeks = Object.values(State.store.weeks)
     .filter(w => w.date)
     .sort((a,b) => (a.date || '').localeCompare(b.date || ''))
@@ -1370,60 +810,224 @@ function renderWeekComparison() {
       labels: allWeeks.map(w => w.label || w.id),
       datasets: [
         {
-          label: 'Active Students',
+          label:'Active Students',
           data: allWeeks.map(w => w.summary?.totalActiveStudents || 0),
-          borderColor: '#4361ee', backgroundColor: 'rgba(67,97,238,.1)',
-          tension: .35, fill: true, yAxisID: 'y', pointRadius: 5, pointHoverRadius: 8
+          borderColor:'#4361ee', backgroundColor:'rgba(67,97,238,.15)',
+          tension:.35, fill:true, yAxisID:'y'
         },
         {
-          label: 'Student Engagement %',
+          label:'Engagement %',
           data: allWeeks.map(w => w.summary?.studentEngagementPct || 0),
-          borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.1)',
-          tension: .35, fill: false, yAxisID: 'y1', borderDash: [6,4],
-          pointRadius: 5, pointHoverRadius: 8
+          borderColor:'#06d6a0', backgroundColor:'rgba(6,214,160,.15)',
+          tension:.35, fill:false, yAxisID:'y1', borderDash:[5,4]
         },
         {
-          label: 'Teacher Engagement %',
-          data: allWeeks.map(w => w.summary?.teacherEngagementPct || 0),
-          borderColor: '#8b5cf6', backgroundColor: 'rgba(139,92,246,.1)',
-          tension: .35, fill: false, yAxisID: 'y1', borderDash: [3,3],
-          pointRadius: 5, pointHoverRadius: 8
-        },
-        {
-          label: 'Nuggets Completed',
+          label:'Nuggets Completed',
           data: allWeeks.map(w => w.summary?.totalNuggets || 0),
-          borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.1)',
-          tension: .35, fill: false, yAxisID: 'y', pointRadius: 5, pointHoverRadius: 8
+          borderColor:'#f8961e', backgroundColor:'rgba(248,150,30,.15)',
+          tension:.35, fill:false, yAxisID:'y'
         }
       ]
     },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
-        datalabels: {
-          display: ctx => ctx.datasetIndex === 1, // only show on Student Engagement line
-          align: 'top', anchor: 'end',
-          color: '#065f46', font: { weight: '700', size: 9 },
-          formatter: v => v ? v.toFixed(1) + '%' : ''
-        },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const v = ctx.parsed.y;
-              if (ctx.dataset.label.includes('%')) return `${ctx.dataset.label}: ${v}%`;
-              return `${ctx.dataset.label}: ${fmt(v)}`;
-            }
-          }
-        }
-      },
-      scales: {
-        y: { type: 'linear', position: 'left', beginAtZero: true, title: { display: true, text: 'Count' }, grid: { color: '#f1f5f9' } },
-        y1: { type: 'linear', position: 'right', beginAtZero: true, max: 100, title: { display: true, text: 'Engagement %' }, grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } }
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      interaction:{ mode:'index', intersect:false },
+      plugins:{ legend:{ position:'top' } },
+      scales:{
+        y:  { type:'linear', position:'left',  beginAtZero:true, title:{ display:true, text:'Count' } },
+        y1: { type:'linear', position:'right', beginAtZero:true, grid:{ drawOnChartArea:false }, title:{ display:true, text:'Engagement %' } }
       }
     }
   });
+}
+
+/* ============================================================
+   CHARTS
+   ============================================================ */
+function renderCharts() {
+  const keepTrend = State.charts.trend;
+  Object.values(State.charts).forEach(ch => ch && ch !== keepTrend && ch.destroy && ch.destroy());
+  State.charts = { trend: keepTrend };
+
+  const palette = ['#4361ee','#06d6a0','#f8961e','#f72585','#7209b7','#4cc9f0','#3a0ca3','#ef476f','#118ab2','#ffd166'];
+  const schools = State.currentData.schools || [];
+
+  // 1. Engagement % by school (top 15 by engagement)
+  const byEng = schools.slice()
+    .filter(s => s.onboardedStudents > 0)
+    .sort((a,b) => (b.studentEngagement||0) - (a.studentEngagement||0))
+    .slice(0,15);
+  const c1 = document.getElementById('chartEngagementPct');
+  if (c1) {
+    State.charts.engagementPct = new Chart(c1, {
+      type:'bar',
+      data:{
+        labels: byEng.map(s => shortLabel(s.name)),
+        datasets:[{
+          label:'Engagement %',
+          data: byEng.map(s => s.studentEngagement),
+          backgroundColor: byEng.map(s =>
+            s.studentEngagement >= 50 ? '#06d6a0' :
+            s.studentEngagement >= 25 ? '#f8961e' : '#f72585'),
+          borderRadius:6
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{
+          legend:{ display:false },
+          tooltip:{ callbacks:{ label: ctx => `${ctx.parsed.y}% engaged` } }
+        },
+        scales:{
+          y:{ beginAtZero:true, max:100, ticks:{ callback: v => v + '%' } },
+          x:{ ticks:{ maxRotation:60, minRotation:45, font:{ size:10 } } }
+        }
+      }
+    });
+  }
+
+  // 2. Top 15 schools by nuggets
+  const topN = schools.slice().sort((a,b) => b.nuggetsCompleted - a.nuggetsCompleted).slice(0,15);
+  const c2 = document.getElementById('chartSchools');
+  if (c2) {
+    State.charts.schools = new Chart(c2, {
+      type:'bar',
+      data:{
+        labels: topN.map(s => shortLabel(s.name)),
+        datasets:[
+          { label:'Nuggets Completed', data: topN.map(s => s.nuggetsCompleted), backgroundColor:'#4361ee', borderRadius:6 },
+          { label:'Active Students',   data: topN.map(s => s.activeStudents),   backgroundColor:'#06d6a0', borderRadius:6 }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'top' } },
+        scales:{ y:{ beginAtZero:true }, x:{ ticks:{ maxRotation:60, minRotation:45, font:{ size:10 } } } }
+      }
+    });
+  }
+
+  // 3. Subject-wise grouped bars (top 12 schools by total nuggets)
+  const subjectRows = State.currentData.subjects || [];
+  const subjectBySchool = {};
+  subjectRows.forEach(r => {
+    if (!r.school) return;
+    if (!subjectBySchool[r.school]) subjectBySchool[r.school] = { English:0, Mathematics:0, Science:0, Other:0 };
+    const dept = (r.dept || '').trim();
+    const key = ['English','Mathematics','Science'].includes(dept) ? dept : 'Other';
+    subjectBySchool[r.school][key] += (r.nuggetsCompleted || 0);
+  });
+  const subjSorted = Object.entries(subjectBySchool)
+    .map(([school, v]) => ({ school, ...v, total: v.English + v.Mathematics + v.Science + v.Other }))
+    .sort((a,b) => b.total - a.total).slice(0,12);
+
+  const c3 = document.getElementById('chartSubjects');
+  if (c3) {
+    State.charts.subjects = new Chart(c3, {
+      type:'bar',
+      data:{
+        labels: subjSorted.map(s => shortLabel(s.school)),
+        datasets:[
+          { label:'English',     data: subjSorted.map(s => s.English),     backgroundColor:'#4361ee', borderRadius:4, stack:'s' },
+          { label:'Mathematics', data: subjSorted.map(s => s.Mathematics), backgroundColor:'#06d6a0', borderRadius:4, stack:'s' },
+          { label:'Science',     data: subjSorted.map(s => s.Science),     backgroundColor:'#f8961e', borderRadius:4, stack:'s' },
+          { label:'Other',       data: subjSorted.map(s => s.Other),       backgroundColor:'#94a3b8', borderRadius:4, stack:'s' }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'top' } },
+        scales:{
+          x:{ stacked:true, ticks:{ maxRotation:60, minRotation:45, font:{ size:10 } } },
+          y:{ stacked:true, beginAtZero:true }
+        }
+      }
+    });
+  }
+
+  // 4. Top 10 schools by avg nuggets/student
+  const avgTop = schools.slice()
+    .filter(s => s.activeStudents > 0)
+    .sort((a,b) => (b.avgNuggetsPerStudent||0) - (a.avgNuggetsPerStudent||0))
+    .slice(0,10);
+  const c4 = document.getElementById('chartAvgNuggets');
+  if (c4) {
+    State.charts.avgNuggets = new Chart(c4, {
+      type:'bar',
+      data:{
+        labels: avgTop.map(s => shortLabel(s.name)),
+        datasets:[{
+          label:'Avg Nuggets / Student',
+          data: avgTop.map(s => s.avgNuggetsPerStudent || 0),
+          backgroundColor: avgTop.map((_,i) => palette[i % palette.length]),
+          borderRadius:6
+        }]
+      },
+      options:{
+        indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false } },
+        scales:{ x:{ beginAtZero:true } }
+      }
+    });
+  }
+
+  // 5. Top 10 teachers
+  const teachers = (State.currentData.teachers || []).slice()
+    .sort((a,b) => b.daysLoggedIn - a.daysLoggedIn).slice(0,10);
+  const c5 = document.getElementById('chartTeachers');
+  if (c5) {
+    State.charts.teachers = new Chart(c5, {
+      type:'bar',
+      data:{
+        labels: teachers.map(t => t.name),
+        datasets:[
+          { label:'Days Logged In',       data: teachers.map(t => t.daysLoggedIn),        backgroundColor:'#7209b7', borderRadius:6 },
+          { label:'Assignments Assigned', data: teachers.map(t => t.assignmentsAssigned), backgroundColor:'#4cc9f0', borderRadius:6 }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'top' } },
+        scales:{ y:{ beginAtZero:true }, x:{ ticks:{ maxRotation:60, minRotation:45, font:{ size:10 } } } }
+      }
+    });
+  }
+
+  // 6. Scatter: Engagement vs Nuggets
+  const c6 = document.getElementById('chartScatter');
+  if (c6) {
+    State.charts.scatter = new Chart(c6, {
+      type:'scatter',
+      data:{
+        datasets:[{
+          label:'Schools',
+          data: schools.filter(s => s.onboardedStudents > 0).map(s => ({
+            x: s.studentEngagement || 0,
+            y: s.nuggetsCompleted || 0,
+            name: s.name
+          })),
+          backgroundColor:'#4361ee',
+          pointRadius: 6,
+          pointHoverRadius: 9
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{
+          legend:{ display:false },
+          tooltip:{
+            callbacks:{
+              label: ctx => `${ctx.raw.name}: ${ctx.raw.x}% engagement, ${ctx.raw.y} nuggets`
+            }
+          }
+        },
+        scales:{
+          x:{ title:{ display:true, text:'Engagement %' }, beginAtZero:true, max:100 },
+          y:{ title:{ display:true, text:'Nuggets Completed' }, beginAtZero:true }
+        }
+      }
+    });
+  }
 }
 
 /* ============================================================
@@ -1432,9 +1036,7 @@ function renderWeekComparison() {
 function populateTopSchoolPicker() {
   const sel = document.getElementById('topSchoolPicker');
   if (!sel) return;
-  let schools = (State.currentData.schools || []);
-  if (State.filterRegion !== 'ALL') schools = schools.filter(s => s.region === State.filterRegion);
-  schools = schools.map(s => s.name).sort();
+  const schools = (State.currentData.schools || []).map(s => s.name).sort();
   sel.innerHTML = '<option value="__all__">All Schools (Top 5 each)</option>' +
     schools.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
   sel.value = State.schoolBoardFilter || '__all__';
@@ -1456,16 +1058,17 @@ function renderTop5() {
   const tb = document.getElementById('tbodyTop5');
   if (!tb) return;
 
-  let students = State.currentData.students || [];
-  if (State.filterRegion !== 'ALL') students = students.filter(s => s.region === State.filterRegion);
-  if (State.filterSchool) students = students.filter(s => s.org === State.filterSchool);
-
+  const students = State.currentData.students || [];
   const filter = State.schoolBoardFilter;
+
   let rows = [];
   if (filter) {
+    // Single school: top 5 from that school
     rows = students.filter(s => s.org === filter)
-      .sort((a,b) => (a.rank || 999) - (b.rank || 999)).slice(0, 5);
+      .sort((a,b) => (a.rank || 999) - (b.rank || 999))
+      .slice(0, 5);
   } else {
+    // All schools: top 5 from EACH school
     const bySchool = {};
     students.forEach(s => {
       if (!bySchool[s.org]) bySchool[s.org] = [];
@@ -1475,9 +1078,11 @@ function renderTop5() {
       list.sort((a,b) => (a.rank || 999) - (b.rank || 999));
       rows.push(...list.slice(0, 5));
     });
+    // Sort output by school then rank
     rows.sort((a,b) => a.org.localeCompare(b.org) || (a.rank || 999) - (b.rank || 999));
   }
 
+  // Apply user sort
   const { k, d } = State.sort.top5;
   rows.sort((a,b) => {
     const av = a[k] ?? 0, bv = b[k] ?? 0;
@@ -1495,14 +1100,14 @@ function renderTop5() {
     const rankCls = s.rank <= 3 && s.rank >= 1 ? 'rank-' + s.rank : 'rank-other';
     const pct = ((s.nuggets || 0) / maxN * 100).toFixed(0);
     const scorePct = ((s.avgScore || 0) * 100).toFixed(1);
-    const col = s.avgScore >= 0.8 ? '#10b981' : s.avgScore >= 0.5 ? '#f59e0b' : '#ef4444';
+    const col = s.avgScore >= 0.8 ? '#06d6a0' : s.avgScore >= 0.5 ? '#f8961e' : '#f72585';
     return `<tr>
       <td><span class="rank-badge ${rankCls}">${s.rank || '-'}</span></td>
       <td><strong>${escapeHtml(s.name)}</strong></td>
-      <td><span class="badge">${escapeHtml(shortLabel(s.org))}</span></td>
+      <td><span class="org-badge">${escapeHtml(shortLabel(s.org))}</span></td>
       <td><strong>${s.nuggets}</strong></td>
       <td style="color:${col};font-weight:700">${scorePct}%</td>
-      <td><div class="progress-bar"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div><span style="font-size:.68rem;color:#64748b">${pct}%</span></div></td>
+      <td><div class="progress-bar"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div><span style="font-size:.7rem;color:#636e72">${pct}%</span></div></td>
     </tr>`;
   }).join('');
 }
@@ -1512,14 +1117,8 @@ function renderTop5() {
    ============================================================ */
 function switchStudentTab(tab, btn) {
   State.studentTab = tab;
-  document.querySelectorAll('[data-tab]').forEach(b => {
-    b.style.background = ''; b.style.color = ''; b.style.borderColor = '';
-  });
-  if (btn) {
-    btn.style.background = 'var(--primary)';
-    btn.style.color = '#fff';
-    btn.style.borderColor = 'var(--primary)';
-  }
+  document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
   renderStudents();
 }
 function sortStudents(key) {
@@ -1534,9 +1133,8 @@ function renderStudents() {
 
   const q = (document.getElementById('searchStudents')?.value || '').toLowerCase();
   let list = (State.currentData.students || []).slice();
-  if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
-  if (State.filterSchool) list = list.filter(s => s.org === State.filterSchool);
   if (q) list = list.filter(s => s.name.toLowerCase().includes(q) || s.org.toLowerCase().includes(q));
+  if (State.filterSchool) list = list.filter(s => s.org === State.filterSchool);
 
   const { k, d } = State.sort.students;
   list.sort((a,b) => {
@@ -1547,24 +1145,23 @@ function renderStudents() {
   if (State.studentTab === 'top') list = list.slice(0, 20);
 
   if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="7" class="empty-state">No students match your filter.</td></tr>`;
+    tb.innerHTML = `<tr><td colspan="6" class="empty-state">No students match your filter.</td></tr>`;
     return;
   }
 
   const maxN = Math.max(...list.map(s => s.nuggets || 0), 1);
-  tb.innerHTML = list.slice(0, 500).map(s => {
+  tb.innerHTML = list.map(s => {
     const rankCls = s.rank <= 3 && s.rank >= 1 ? 'rank-' + s.rank : 'rank-other';
     const pct = ((s.nuggets || 0) / maxN * 100).toFixed(0);
     const scorePct = ((s.avgScore || 0) * 100).toFixed(1);
-    const col = s.avgScore >= 0.8 ? '#10b981' : s.avgScore >= 0.5 ? '#f59e0b' : '#ef4444';
+    const col = s.avgScore >= 0.8 ? '#06d6a0' : s.avgScore >= 0.5 ? '#f8961e' : '#f72585';
     return `<tr>
       <td><span class="rank-badge ${rankCls}">${s.rank || '-'}</span></td>
       <td><strong>${escapeHtml(s.name)}</strong></td>
-      <td><span class="badge">${escapeHtml(shortLabel(s.org))}</span></td>
-      <td style="font-size:.72rem">${escapeHtml(s.region || '')}</td>
+      <td><span class="org-badge">${escapeHtml(shortLabel(s.org))}</span></td>
       <td><strong>${s.nuggets}</strong></td>
       <td style="color:${col};font-weight:700">${scorePct}%</td>
-      <td><div class="progress-bar"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div><span style="font-size:.68rem;color:#64748b">${pct}%</span></div></td>
+      <td><div class="progress-bar"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div><span style="font-size:.7rem;color:#636e72">${pct}%</span></div></td>
     </tr>`;
   }).join('');
 }
@@ -1575,7 +1172,7 @@ function renderStudents() {
 function sortSchools(key) {
   const s = State.sort.schools;
   if (s.k === key) s.d *= -1;
-  else State.sort.schools = { k:key, d: (key === 'name' || key === 'region') ? 1 : -1 };
+  else State.sort.schools = { k:key, d: key === 'name' ? 1 : -1 };
   renderSchools();
 }
 function renderSchools() {
@@ -1583,8 +1180,9 @@ function renderSchools() {
   if (!tb) return;
 
   const q = (document.getElementById('searchSchools')?.value || '').toLowerCase();
-  let list = getFilteredSchools();
+  let list = (State.currentData.schools || []).slice();
   if (q) list = list.filter(s => s.name.toLowerCase().includes(q));
+  if (State.filterSchool) list = list.filter(s => s.name === State.filterSchool);
 
   const { k, d } = State.sort.schools;
   list.sort((a,b) => {
@@ -1594,7 +1192,7 @@ function renderSchools() {
   });
 
   if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="10" class="empty-state">No schools match.</td></tr>`;
+    tb.innerHTML = `<tr><td colspan="9" class="empty-state">No schools match.</td></tr>`;
     return;
   }
 
@@ -1602,10 +1200,9 @@ function renderSchools() {
   tb.innerHTML = list.map(s => {
     const e = s.studentEngagement || 0;
     const pct = (e / maxE * 100).toFixed(0);
-    const col = e >= 50 ? '#10b981' : e >= 25 ? '#f59e0b' : '#ef4444';
+    const col = e >= 50 ? '#06d6a0' : e >= 25 ? '#f8961e' : '#f72585';
     return `<tr>
-      <td><span class="badge">${escapeHtml(s.name)}</span></td>
-      <td style="font-size:.72rem;color:#64748b">${escapeHtml(s.region || '')}</td>
+      <td><span class="org-badge">${escapeHtml(s.name)}</span></td>
       <td>${fmt(s.activeStudents)}</td>
       <td>${fmt(s.onboardedStudents)}</td>
       <td style="color:${col};font-weight:700">${e.toFixed(1)}%</td>
@@ -1619,51 +1216,7 @@ function renderSchools() {
 }
 
 /* ============================================================
-   TEACHERS TABLE (all)
-   ============================================================ */
-function sortTeachers(key) {
-  const s = State.sort.teachers;
-  if (s.k === key) s.d *= -1;
-  else State.sort.teachers = { k:key, d: (key === 'name' || key === 'school' || key === 'region' || key === 'rank') ? 1 : -1 };
-  renderTeachers();
-}
-function renderTeachers() {
-  const tb = document.getElementById('tbodyTeachers');
-  if (!tb) return;
-
-  const q = (document.getElementById('searchTeachers')?.value || '').toLowerCase();
-  let list = (State.currentData.teachers || []).slice();
-  if (State.filterRegion !== 'ALL') list = list.filter(t => t.region === State.filterRegion);
-  if (State.filterSchool) list = list.filter(t => t.school === State.filterSchool);
-  if (q) list = list.filter(t => t.name.toLowerCase().includes(q) || t.school.toLowerCase().includes(q));
-
-  const { k, d } = State.sort.teachers;
-  list.sort((a,b) => {
-    const av = a[k], bv = b[k];
-    if (typeof av === 'string') return av.localeCompare(bv) * d;
-    return ((av || 0) - (bv || 0)) * d;
-  });
-
-  if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="6" class="empty-state">No teachers match.</td></tr>`;
-    return;
-  }
-
-  tb.innerHTML = list.slice(0, 800).map(t => {
-    const rankCls = t.rank <= 3 && t.rank >= 1 ? 'rank-' + t.rank : 'rank-other';
-    return `<tr>
-      <td><strong>${escapeHtml(t.name)}</strong></td>
-      <td><span class="badge">${escapeHtml(shortLabel(t.school))}</span></td>
-      <td style="font-size:.72rem;color:#64748b">${escapeHtml(t.region || '')}</td>
-      <td><strong>${t.daysLoggedIn}</strong></td>
-      <td>${t.assignmentsAssigned}</td>
-      <td><span class="rank-badge ${rankCls}">${t.rank || '-'}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-/* ============================================================
-   SUBJECTS TABLE
+   SUBJECT TABLE
    ============================================================ */
 function renderSubjects() {
   const tb = document.getElementById('tbodySubjects');
@@ -1671,21 +1224,19 @@ function renderSubjects() {
 
   const q = (document.getElementById('searchSubjects')?.value || '').toLowerCase();
   let list = (State.currentData.subjects || []).slice();
-  if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
-  if (State.filterSchool) list = list.filter(s => s.school === State.filterSchool);
   if (q) list = list.filter(s => s.school.toLowerCase().includes(q));
+  if (State.filterSchool) list = list.filter(s => s.school === State.filterSchool);
 
   if (!list.length) {
-    tb.innerHTML = `<tr><td colspan="7" class="empty-state">No subject data available.</td></tr>`;
+    tb.innerHTML = `<tr><td colspan="6" class="empty-state">No subject data available.</td></tr>`;
     return;
   }
 
   tb.innerHTML = list.slice(0, 600).map(s => {
     const scorePct = ((s.avgScore || 0) * 100).toFixed(1);
-    const col = s.avgScore >= 0.8 ? '#10b981' : s.avgScore >= 0.5 ? '#f59e0b' : '#ef4444';
+    const col = s.avgScore >= 0.8 ? '#06d6a0' : s.avgScore >= 0.5 ? '#f8961e' : '#f72585';
     return `<tr>
-      <td><span class="badge">${escapeHtml(shortLabel(s.school))}</span></td>
-      <td style="font-size:.72rem;color:#64748b">${escapeHtml(s.region || '')}</td>
+      <td><span class="org-badge">${escapeHtml(shortLabel(s.school))}</span></td>
       <td>${escapeHtml(s.dept || '—')}</td>
       <td>${escapeHtml(s.className || '—')}</td>
       <td>${fmt(s.activeStudents)}</td>
@@ -1701,23 +1252,16 @@ function renderSubjects() {
 function populateSchoolFilter() {
   const sel = document.getElementById('schoolFilter');
   if (!sel) return;
-  let schools = (State.currentData.schools || []);
-  if (State.filterRegion !== 'ALL') schools = schools.filter(s => s.region === State.filterRegion);
-  schools = schools.map(s => s.name).sort();
+  const schools = (State.currentData.schools || []).map(s => s.name).sort();
   sel.innerHTML = '<option value="">All Schools</option>' +
     schools.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
   sel.value = State.filterSchool;
 }
 function onSchoolFilter(v) {
   State.filterSchool = v;
-  renderKPIs();
-  renderSchools();
-  renderTop5();
   renderStudents();
+  renderSchools();
   renderSubjects();
-  renderTeachers();
-  renderCharts();
-  renderWeekComparison();
 }
 
 /* ============================================================
@@ -1727,7 +1271,7 @@ function showEmptyDashboard(msg) {
   const c = document.getElementById('dashboardContainer');
   if (!c) return;
   c.innerHTML = `
-    <div class="section">
+    <div class="table-section">
       <div class="empty-state">
         <div class="big">📭</div>
         <p>${msg}</p>
@@ -1799,6 +1343,29 @@ function showToast(msg, kind) {
   clearTimeout(showToast._t);
   showToast._t = setTimeout(() => t.classList.remove('show'), 5000);
 }
+
+/* ============================================================
+   OPTIONAL: auto-load weeks JSON committed to repo
+   Uncomment block below if you commit data/school-dashboard-weeks.json
+   ============================================================ */
+/*
+(async function autoLoad() {
+  try {
+    const res = await fetch('./data/school-dashboard-weeks.json?t=' + Date.now());
+    if (!res.ok) return;
+    const remote = await res.json();
+    if (!remote.weeks) return;
+    const local = Store.read();
+    const merged = { ...remote.weeks, ...local.weeks };
+    const latest = local.latest || remote.latest;
+    Store.write({ weeks: merged, latest });
+    State.store = Store.read();
+    populateWeekSelect();
+    const id = latest || Object.keys(merged)[0];
+    if (id && id !== State.currentWeekId) loadWeek(id);
+  } catch(e) {}
+})();
+*/
 </script>
 </body>
 </html>
