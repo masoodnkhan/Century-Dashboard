@@ -36,7 +36,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .admin-banner{display:none;background:linear-gradient(135deg,#fef3c7,#fed7aa);border:1.5px solid #f59e0b;border-radius:12px;padding:.75rem 1rem;margin-bottom:1rem;font-size:.8rem;color:#78350f;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .admin-banner.show{display:flex}
 .admin-banner strong{color:#7c2d12}
-.admin-banner .actions{display:flex;gap:.5rem}
+.admin-banner .actions{display:flex;gap:.5rem;flex-wrap:wrap}
 .admin-banner .actions button{padding:.35rem .8rem;border-radius:8px;border:none;font-weight:700;font-size:.75rem;cursor:pointer;font-family:inherit;background:#fff;color:#7c2d12;border:1.5px solid #f59e0b}
 .upload-panel{display:none;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1.5rem;border:1.5px dashed #f59e0b}
 .upload-panel.show{display:block}
@@ -66,11 +66,20 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .btn-success:hover{background:#059669}
 .btn-warn{background:#fff;color:#92400e;border:1.5px solid #fcd34d}
 .btn-warn:hover{background:#fef3c7}
+.btn-excel{background:#107c41;color:#fff;border:none;box-shadow:0 1px 2px rgba(16,124,65,.25)}
+.btn-excel:hover:not(:disabled){background:#0b5c30}
+.btn-excel:disabled{background:#94a3b8;cursor:not-allowed;opacity:.7}
 .toast{display:none;padding:.65rem .95rem;border-radius:9px;font-size:.78rem;margin-top:.75rem}
 .toast.show{display:block}
 .toast.ok{background:#ecfdf5;color:#065f46;border-left:3px solid var(--success)}
 .toast.err{background:#fef2f2;color:#991b1b;border-left:3px solid var(--danger)}
 .toast.info{background:#eff6ff;color:#1e40af;border-left:3px solid var(--primary)}
+.global-toast{position:fixed;top:80px;right:24px;z-index:9999;padding:.85rem 1.15rem;border-radius:11px;font-size:.82rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.15);display:none;max-width:380px;animation:slideIn .25s ease}
+.global-toast.show{display:block}
+.global-toast.ok{background:#065f46;color:#fff;border-left:5px solid #10b981}
+.global-toast.err{background:#991b1b;color:#fff;border-left:5px solid #ef4444}
+.global-toast.info{background:#1e40af;color:#fff;border-left:5px solid #4361ee}
+@keyframes slideIn{from{transform:translateX(30px);opacity:0}to{transform:translateX(0);opacity:1}}
 .page-title{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
 .page-title h2{font-size:1.35rem;font-weight:800;color:var(--dark);letter-spacing:-.3px;display:flex;align-items:center;gap:.55rem}
 .page-title .sub{font-size:.8rem;color:var(--muted);margin-top:.15rem}
@@ -116,8 +125,12 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .table-wrap{overflow:auto;border-radius:10px;border:1px solid var(--border);max-height:520px}
 table{width:100%;border-collapse:collapse;font-size:.8rem}
 thead{position:sticky;top:0;z-index:5}
-th{background:#f8fafc;padding:.65rem .85rem;text-align:left;font-weight:700;color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
+th{background:#f8fafc;padding:.65rem .85rem;text-align:left;font-weight:700;color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;position:relative}
 th:hover{background:#eef1f5}
+th[data-sortable="false"]{cursor:default}
+th[data-sortable="false"]:hover{background:#f8fafc}
+th .sort-ind{display:inline-block;margin-left:.3rem;font-size:.75rem;color:var(--primary);font-weight:800}
+th .sort-ind.idle{color:#cbd5e1}
 td{padding:.55rem .85rem;border-bottom:1px solid var(--border);white-space:nowrap}
 tbody tr:hover{background:#f8fafc}
 .rank-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-weight:800;font-size:.66rem}
@@ -132,6 +145,8 @@ tbody tr:hover{background:#f8fafc}
 .badge.reg-central{background:#fef3c7;color:#92400e}
 .badge.reg-north{background:#dbeafe;color:#1e40af}
 .badge.reg-south{background:#dcfce7;color:#166534}
+.badge.cluster{background:#f3e8ff;color:#6b21a8}
+.badge.nip{background:#ecfeff;color:#155e75}
 .badge.dup{background:#fee2e2;color:#991b1b}
 .badge.ok{background:#d1fae5;color:#065f46}
 .empty-state{text-align:center;padding:2.5rem;color:var(--muted)}
@@ -142,7 +157,6 @@ tbody tr:hover{background:#f8fafc}
 .footer{text-align:center;padding:1.75rem 1rem;color:var(--muted);font-size:.75rem}
 .small-search{padding:.4rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-size:.78rem;width:230px;font-family:inherit;transition:.2s}
 .small-search:focus{outline:none;border-color:var(--primary)}
-/* Diagnostics */
 .diag-panel{display:none;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1.5rem;border:1.5px solid #a5b4fc}
 .diag-panel.show{display:block}
 .diag-panel h2{font-size:.95rem;margin-bottom:.3rem;color:var(--indigo);display:flex;align-items:center;gap:.5rem}
@@ -164,6 +178,7 @@ tbody tr:hover{background:#f8fafc}
   .header{padding:.85rem 1rem}
   .brand h1{font-size:.9rem}
   .page-title h2{font-size:1.1rem}
+  .global-toast{right:12px;left:12px;top:70px;max-width:none}
 }
 .hidden{display:none !important}
 </style>
@@ -185,13 +200,26 @@ tbody tr:hover{background:#f8fafc}
         <select id="weekSelect" onchange="switchWeek(this.value)"></select>
       </div>
       <div class="ctrl">
+        <label>🌍 Region</label>
+        <select id="regionFilter" onchange="onRegionFilter(this.value)"><option value="ALL">All Regions</option></select>
+      </div>
+      <div class="ctrl">
+        <label>🎯 Cluster</label>
+        <select id="clusterFilter" onchange="onClusterFilter(this.value)"><option value="">All Clusters</option></select>
+      </div>
+      <div class="ctrl">
         <label>🏫 School</label>
         <select id="schoolFilter" onchange="onSchoolFilter(this.value)"><option value="">All Schools</option></select>
       </div>
+      <button class="btn btn-excel" id="headerExportCurrent" onclick="exportCurrentWeekToExcel()" title="Export the currently loaded week to Excel">📊 Export Current Week</button>
+      <button class="btn btn-excel" id="headerExportAll" onclick="exportAllWeeksToExcel()" title="Export every week in storage to Excel">📊 Export All Weeks</button>
       <div class="status-pill"><span class="dot" id="statusDot"></span><span id="lastUpdated">Loading…</span></div>
     </div>
   </div>
 </header>
+
+<!-- global toast (works for non-admin users too) -->
+<div class="global-toast" id="globalToast"></div>
 
 <div class="container">
 
@@ -221,9 +249,11 @@ tbody tr:hover{background:#f8fafc}
       <label class="file-drop" id="dropTeach"><div class="fd-label">4️⃣ Teacher Login Analysis</div><div class="fd-hint">Teacher • Days Logged In • Assignments • Rank</div><div class="fd-name" id="nameTeach">No file selected</div><input type="file" accept=".xlsx,.xls" data-kind="teacherLogin"></label>
     </div>
     <div class="action-row">
-      <button class="btn btn-primary" id="processBtn" onclick="processUpload()" disabled>⚡ Process & Preview</button>
+      <button class="btn btn-primary" id="processBtn" onclick="processUpload()" disabled>⚡ Process &amp; Preview</button>
       <button class="btn btn-success" onclick="publishToGitHub()">🚀 Publish to GitHub</button>
       <button class="btn btn-ghost" onclick="loadRemoteData()">🔄 Reload from GitHub</button>
+      <button class="btn btn-excel" onclick="exportCurrentWeekToExcel()">📊 Export Current Week</button>
+      <button class="btn btn-excel" onclick="exportAllWeeksToExcel()">📊 Export All Weeks</button>
       <button class="btn btn-ghost" onclick="exportAllWeeks()">💾 Export All Weeks JSON</button>
       <button class="btn btn-ghost" onclick="importWeeks()">📥 Import JSON</button>
       <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
@@ -232,10 +262,9 @@ tbody tr:hover{background:#f8fafc}
     <div class="toast" id="toast"></div>
   </div>
 
-  <!-- DIAGNOSTICS PANEL -->
   <div class="diag-panel" id="diagPanel">
-    <h2>🔧 Diagnostics — Weeks in Storage & Duplicate Detector</h2>
-    <p>Shows every week currently loaded in the browser, plus a check for accidental duplicates. No F12 needed.</p>
+    <h2>🔧 Diagnostics — Weeks in Storage &amp; Duplicate Detector</h2>
+    <p>Shows every week currently loaded in the browser, plus a check for accidental duplicates.</p>
     <div id="diagContent"></div>
   </div>
 
@@ -247,7 +276,7 @@ tbody tr:hover{background:#f8fafc}
 
 <footer class="footer">
   <p>School Management Dashboard • Read-only view • Data updates automatically</p>
-  <p style="margin-top:.35rem;font-size:.7rem;opacity:.7">Press <strong>Shift + A</strong> to toggle admin mode</p>
+  <p style="margin-top:.35rem;font-size:.7rem;opacity:.7">Press <strong>Shift + A</strong> to toggle admin mode (password required)</p>
 </footer>
 
 <script>
@@ -255,7 +284,8 @@ tbody tr:hover{background:#f8fafc}
    CONFIG
    ============================================================ */
 const REMOTE_DATA_URL = './data/weeks.json';
-const STORAGE_KEY = 'schoolDash.weeks.v11';
+const STORAGE_KEY = 'schoolDash.weeks.v14';
+const ADMIN_PASSWORD = 'century2026';
 
 Chart.register(ChartDataLabels);
 Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
@@ -272,32 +302,73 @@ const Store = {
 const State = {
   store: { weeks:{}, latest:null },
   currentWeekId: null, currentData: null, previousData: null, charts: {},
-  filterSchool: '', filterRegion: 'ALL',
+  filterSchool: '', filterRegion: 'ALL', filterCluster: '',
   studentTab: 'all', schoolBoardFilter: '',
-  sort: { students:{k:'nuggets',d:-1}, schools:{k:'nuggetsCompleted',d:-1}, top5:{k:'nuggets',d:-1}, teachers:{k:'daysLoggedIn',d:-1} },
+  sort: {
+    students:{k:'nuggets',d:-1}, schools:{k:'nuggetsCompleted',d:-1},
+    top5:{k:'nuggets',d:-1}, teachers:{k:'assignmentsAssigned',d:-1},
+    regions:{k:'totalActiveStudents',d:-1}, clusters:{k:'totalActiveStudents',d:-1}
+  },
   pendingFiles: { topPerformers:null, allStats:null, subjectWise:null, teacherLogin:null },
   isAdmin: false
 };
 
 /* ============================================================
+   NIP CLUSTER MAP
+   ============================================================ */
+const CLUSTER_MAP = (() => {
+  const map = {};
+  const add = (codes, cluster, nip, region) => {
+    codes.split(/[,\s]+/).filter(Boolean).forEach(c => {
+      map[c.toUpperCase()] = { cluster, nip, region };
+    });
+  };
+  add('C002 C007 C011 C027 C028 C053', 'Indus', 'Rukhsana Tariq', 'Central (Punjab)');
+  add('C010 C020 C021 C041 C043 C052', 'Panjnad', 'Shaista Fareed', 'Central (Punjab)');
+  add('C032 C033 C034 C035 C046 C047 C054', 'Sutlej', 'Faisal Yazdani', 'Central (Punjab)');
+  add('C036 C037 C038 C039 C040', 'Beas', 'Ameer Umar', 'Central (Punjab)');
+  add('C014 C030 C031 C044 C045 C055', 'Rohtas', 'Qanita Obaid', 'Central (Punjab)');
+  add('C004 C017 C018 C019 C022 C023 C024', 'Lyallpur', 'Imran Shahid (RGM)', 'Central (Punjab)');
+  add('C001 C003 C009 C012 C016', 'Aibak', 'Saima Haroon', 'Central (Punjab)');
+  add('C025', 'Jhelum', 'Hassan Raza Faisal', 'Central (Punjab)');
+  add('S031 S079 S020 S021 S022', 'Karachi I', 'Bushra Afaq', 'South (Sindh/Balochistan)');
+  add('S001 S002 S025 S038 S039 S037 S071', 'Karachi II', 'Sabrina Altaf', 'South (Sindh/Balochistan)');
+  add('S014 S016 S012 S023 S013 S008 S011 S007 S070 S082 S084 S010 S027 S032 S003 S024 S036 S004 S035',
+      'Karachi III', 'Khizra Yasin / Rehana Afzal', 'South (Sindh/Balochistan)');
+  add('S063 S064 S065 S066 S080 S067', 'Bolan', 'Tazeen Ahad (ARD)', 'South (Sindh/Balochistan)');
+  add('S046 S047 S048 S049 S050 S052 S053 S054 S055 S056 S073 S074 S083',
+      'Lower Mehran', 'Nouman Akram', 'South (Sindh/Balochistan)');
+  add('S060 S061 S062 S072 S078', 'Upper Mehran', 'Nuzhat Jabeen', 'South (Sindh/Balochistan)');
+  add('N004 N008 N010 N015 N016 N020 N035 N043 N054 N055 N060',
+      'Margalla', 'Azra Tahir', 'North (KPK/Islamabad)');
+  add('N012 N017 N021 N022 N028 N029 N040 N045',
+      'Khyber', 'Mehwish Shaukat', 'North (KPK/Islamabad)');
+  add('N002 N003 N007 N046 N056 N064', 'Pothohar', 'Sumaira Tauseef', 'North (KPK/Islamabad)');
+  add('N001 N014 N024 N026 N033 N034 N039 N044 N050 N052',
+      'Abaseen', 'Murad Khattak', 'North (KPK/Islamabad)');
+  add('N009 N013 N019 N030 N036 N037 N038 N063',
+      'Kohsar', 'Nauman Jan', 'North (KPK/Islamabad)');
+  return map;
+})();
+
+/* ============================================================
    ADMIN MODE
    ============================================================ */
-function checkAdminMode() { return new URLSearchParams(window.location.search).get('admin') === '1'; }
 function enableAdmin() {
+  if (State.isAdmin) return;
+  const pwd = prompt('🔐 Enter admin password:');
+  if (pwd === null) return;
+  if (pwd !== ADMIN_PASSWORD) { alert('❌ Incorrect password. Admin mode not enabled.'); return; }
   State.isAdmin = true;
   document.getElementById('adminBanner').classList.add('show');
   document.getElementById('uploadPanel').classList.add('show');
+  showGlobalToast('🔓 Admin mode enabled.', 'ok');
 }
 function exitAdmin() {
   State.isAdmin = false;
   document.getElementById('adminBanner').classList.remove('show');
   document.getElementById('uploadPanel').classList.remove('show');
   document.getElementById('diagPanel').classList.remove('show');
-  if (window.location.search.includes('admin=')) {
-    const url = new URL(window.location.href);
-    url.searchParams.delete('admin');
-    window.history.replaceState({}, '', url.toString());
-  }
 }
 function toggleUploadPanel() {
   const p = document.getElementById('uploadPanel');
@@ -321,20 +392,16 @@ function toggleDiagnostics() {
   panel.classList.add('show');
   panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
 function renderDiagnostics() {
   const el = document.getElementById('diagContent');
   if (!el) return;
   const weeks = State.store.weeks || {};
   const ids = Object.keys(weeks).sort((a,b) => (weeks[a].date||'').localeCompare(weeks[b].date||''));
-
   if (!ids.length) {
     el.innerHTML = `<div class="diag-summary"><div class="stat"><span class="lbl">Status</span><span class="val">No weeks loaded</span></div></div>
       <div class="diag-warn">No weeks in the browser cache. Click <b>🔄 Reload from GitHub</b> to fetch the published data.</div>`;
     return;
   }
-
-  // Detect duplicates by comparing key numbers
   const dupPairs = [];
   for (let i = 0; i < ids.length; i++) {
     for (let j = i + 1; j < ids.length; j++) {
@@ -345,14 +412,11 @@ function renderDiagnostics() {
         && aS.totalOnboardedStudents === bS.totalOnboardedStudents
         && (a.students||[]).length === (b.students||[]).length
         && (a.schools||[]).length === (b.schools||[]).length;
-      if (same && (aS.totalActiveStudents || aS.totalNuggets)) {
-        dupPairs.push([ids[i], ids[j]]);
-      }
+      if (same && (aS.totalActiveStudents || aS.totalNuggets)) dupPairs.push([ids[i], ids[j]]);
     }
   }
   const dupSet = new Set();
   dupPairs.forEach(([a,b]) => { dupSet.add(a); dupSet.add(b); });
-
   const totals = ids.reduce((acc, id) => {
     const w = weeks[id];
     acc.schools += (w.schools||[]).length;
@@ -361,14 +425,11 @@ function renderDiagnostics() {
     acc.teachers += (w.teachers||[]).length;
     return acc;
   }, { schools:0, students:0, subjects:0, teachers:0 });
-
   const dupHtml = dupPairs.length
-    ? `<div class="diag-warn"><b>⚠ Possible duplicates detected:</b> ${dupPairs.map(([a,b]) => `${escapeHtml(a)} ↔ ${escapeHtml(b)}`).join(', ')} — these have identical summary numbers and row counts. Delete the wrong one below.</div>`
-    : `<div class="diag-ok">✅ No duplicate weeks detected — each week has distinct summary numbers and counts.</div>`;
-
+    ? `<div class="diag-warn"><b>⚠ Possible duplicates detected:</b> ${dupPairs.map(([a,b]) => `${escapeHtml(a)} ↔ ${escapeHtml(b)}`).join(', ')}.</div>`
+    : `<div class="diag-ok">✅ No duplicate weeks detected.</div>`;
   const rows = ids.map(id => {
-    const w = weeks[id];
-    const s = w.summary || {};
+    const w = weeks[id]; const s = w.summary || {};
     const isDup = dupSet.has(id);
     return `<tr class="${isDup ? 'dup-highlight' : ''}">
       <td><strong>${escapeHtml(id)}</strong>${isDup ? ' <span class="badge dup">⚠ possible dup</span>' : ''}</td>
@@ -386,15 +447,14 @@ function renderDiagnostics() {
       <td><button class="btn btn-danger" style="padding:.3rem .6rem;font-size:.7rem" onclick="deleteWeek('${escapeHtml(id)}')">🗑️ Delete</button></td>
     </tr>`;
   }).join('');
-
   el.innerHTML = `
     <div class="diag-summary">
       <div class="stat"><span class="lbl">Weeks in storage</span><span class="val">${ids.length}</span></div>
       <div class="stat"><span class="lbl">Latest pointer</span><span class="val">${escapeHtml(State.store.latest || '—')}</span></div>
-      <div class="stat"><span class="lbl">Total schools (all weeks)</span><span class="val">${fmt(totals.schools)}</span></div>
-      <div class="stat"><span class="lbl">Total students (all weeks)</span><span class="val">${fmt(totals.students)}</span></div>
-      <div class="stat"><span class="lbl">Total subjects (all weeks)</span><span class="val">${fmt(totals.subjects)}</span></div>
-      <div class="stat"><span class="lbl">Total teachers (all weeks)</span><span class="val">${fmt(totals.teachers)}</span></div>
+      <div class="stat"><span class="lbl">Total schools</span><span class="val">${fmt(totals.schools)}</span></div>
+      <div class="stat"><span class="lbl">Total students</span><span class="val">${fmt(totals.students)}</span></div>
+      <div class="stat"><span class="lbl">Total subjects</span><span class="val">${fmt(totals.subjects)}</span></div>
+      <div class="stat"><span class="lbl">Total teachers</span><span class="val">${fmt(totals.teachers)}</span></div>
     </div>
     ${dupHtml}
     <div class="table-wrap" style="max-height:none">
@@ -411,29 +471,24 @@ function renderDiagnostics() {
     </div>
     <div style="margin-top:.9rem;display:flex;gap:.5rem;flex-wrap:wrap">
       <button class="btn btn-ghost" onclick="refreshDiagnostics()">🔄 Refresh</button>
+      <button class="btn btn-excel" onclick="exportCurrentWeekToExcel()">📊 Export Current Week</button>
+      <button class="btn btn-excel" onclick="exportAllWeeksToExcel()">📊 Export All Weeks</button>
       <button class="btn btn-ghost" onclick="exportAllWeeks()">💾 Export All Weeks JSON</button>
     </div>
   `;
 }
-function refreshDiagnostics() {
-  State.store = Store.read();
-  renderDiagnostics();
-}
+function refreshDiagnostics() { State.store = Store.read(); renderDiagnostics(); }
 function deleteWeek(id) {
   if (!confirm(`Delete "${id}" from the LOCAL cache? GitHub is untouched until you Publish.`)) return;
   const d = Store.read();
   delete d.weeks[id];
   if (d.latest === id) {
     const remaining = Object.keys(d.weeks);
-    d.latest = remaining.length
-      ? remaining.sort((a,b) => (d.weeks[b].date||'').localeCompare(d.weeks[a].date||''))[0]
-      : null;
+    d.latest = remaining.length ? remaining.sort((a,b) => (d.weeks[b].date||'').localeCompare(d.weeks[a].date||''))[0] : null;
   }
-  Store.write(d);
-  State.store = d;
-  populateWeekSelect();
-  renderDiagnostics();
-  showToast(`🗑️ Deleted "${id}". Click 🚀 Publish to GitHub to sync.`, 'info');
+  Store.write(d); State.store = d;
+  populateWeekSelect(); renderDiagnostics(); updateExportButtons();
+  showGlobalToast(`🗑️ Deleted "${id}". Click 🚀 Publish to GitHub to sync.`, 'info');
 }
 
 /* ============================================================
@@ -455,7 +510,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
   document.getElementById('weekDate').valueAsDate = new Date();
-  if (checkAdminMode()) enableAdmin();
+  updateExportButtons();
   await loadRemoteData(true);
 });
 
@@ -490,11 +545,18 @@ async function loadRemoteData(silent) {
     document.getElementById('lastUpdated').textContent = 'No data';
     document.getElementById('statusDot').className = 'dot warn';
   }
-
   if (document.getElementById('diagPanel').classList.contains('show')) renderDiagnostics();
+  updateExportButtons();
 }
 
 function updateProcessBtn() { document.getElementById('processBtn').disabled = !Object.values(State.pendingFiles).every(Boolean); }
+
+function updateExportButtons() {
+  const hasCurrent = !!State.currentData;
+  const hasAny = Object.keys(State.store.weeks || {}).length > 0;
+  ['headerExportCurrent'].forEach(id => { const el = document.getElementById(id); if (el) el.disabled = !hasCurrent; });
+  ['headerExportAll'].forEach(id => { const el = document.getElementById(id); if (el) el.disabled = !hasAny; });
+}
 
 function populateWeekSelect() {
   const sel = document.getElementById('weekSelect');
@@ -510,7 +572,7 @@ function populateWeekSelect() {
 }
 
 /* ============================================================
-   REGION DERIVATION
+   REGION + CLUSTER DERIVATION
    ============================================================ */
 function deriveRegion(schoolName) {
   if (!schoolName) return 'Other';
@@ -533,6 +595,16 @@ function regionClass(r) {
   if (r.includes('South')) return 'reg-south';
   return '';
 }
+function getBranchCode(schoolName) {
+  if (!schoolName) return null;
+  const m = String(schoolName).match(/\b([CNS]\d{3})\b/i);
+  return m ? m[1].toUpperCase() : null;
+}
+function getClusterInfo(schoolName) {
+  const code = getBranchCode(schoolName);
+  if (code && CLUSTER_MAP[code]) return CLUSTER_MAP[code];
+  return { cluster: 'Unassigned', nip: '—', region: deriveRegion(schoolName) };
+}
 
 /* ============================================================
    HELPERS
@@ -550,8 +622,13 @@ function pick(obj, keys) {
 function num(v) { if (typeof v === 'number') return v; if (v === '' || v == null) return 0; const n = parseFloat(String(v).replace(/,/g,'').replace(/%/g,'')); return isNaN(n) ? 0 : n; }
 function str(v) { return v == null ? '' : String(v).trim(); }
 function escapeHtml(s) { return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeAttr(s) { return escapeHtml(s).replace(/`/g,'&#96;'); }
 function fmt(n) { return (n||0).toLocaleString(); }
 function shortLabel(name) { return !name ? '' : (name.length > 30 ? name.slice(0,28)+'…' : name); }
+function sortIndicator(key, sortState) {
+  if (sortState.k !== key) return '<span class="sort-ind idle">↕</span>';
+  return sortState.d === 1 ? '<span class="sort-ind">▲</span>' : '<span class="sort-ind">▼</span>';
+}
 
 function buildSummary(schools) {
   const sum = k => schools.reduce((a,b)=>a+(b[k]||0),0);
@@ -578,6 +655,42 @@ function buildRegionSummary(schools) {
   });
   return out;
 }
+function buildClusterSummary(schools) {
+  const byCluster = {};
+  schools.forEach(s => { const k = s.cluster || 'Unassigned'; (byCluster[k] = byCluster[k] || []).push(s); });
+  const out = {};
+  Object.entries(byCluster).forEach(([cluster, list]) => {
+    out[cluster] = buildSummary(list);
+    out[cluster].schoolCount = list.length;
+    out[cluster].nip = list[0]?.nip || '—';
+    out[cluster].region = list[0]?.region || deriveRegion(list[0]?.name);
+  });
+  return out;
+}
+
+/* ============================================================
+   GLOBAL TOAST
+   ============================================================ */
+let _globalToastTimer = null;
+function showGlobalToast(msg, kind) {
+  const t = document.getElementById('globalToast');
+  if (!t) return;
+  t.className = 'global-toast show ' + (kind || 'info');
+  t.innerHTML = msg;
+  clearTimeout(_globalToastTimer);
+  _globalToastTimer = setTimeout(() => t.classList.remove('show'), 4500);
+}
+function showToast(msg, kind) {
+  const inline = document.getElementById('toast');
+  if (inline && State.isAdmin) {
+    inline.className = 'toast show ' + (kind || 'info');
+    inline.innerHTML = msg;
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => inline.classList.remove('show'), 6000);
+  } else {
+    showGlobalToast(msg, kind);
+  }
+}
 
 /* ============================================================
    FILE PROCESSING
@@ -591,7 +704,6 @@ async function processUpload() {
     const weekLabel = (document.getElementById('weekLabel').value || '').trim() || weekId;
     const weekDate = document.getElementById('weekDate').value || new Date().toISOString().slice(0,10);
 
-    // Warn if week ID already exists
     if (State.store.weeks[weekId]) {
       const existing = State.store.weeks[weekId];
       if (!confirm(`Week ID "${weekId}" already exists (date: ${existing.date || '—'}). This will overwrite it. Continue?`)) {
@@ -606,23 +718,15 @@ async function processUpload() {
       parseExcel(State.pendingFiles.subjectWise,   'subjectWise'),
       parseExcel(State.pendingFiles.teacherLogin,  'teacherLogin')
     ]);
-    stats.forEach(s => s.region = deriveRegion(s.name));
-    top.forEach(t => t.region = deriveRegion(t.org));
-    subjects.forEach(s => s.region = deriveRegion(s.school));
-    teachers.forEach(t => t.region = deriveRegion(t.school));
+    stats.forEach(s => { const ci = getClusterInfo(s.name); s.region = ci.region; s.cluster = ci.cluster; s.nip = ci.nip; });
+    top.forEach(t => { const ci = getClusterInfo(t.org); t.region = ci.region; t.cluster = ci.cluster; t.nip = ci.nip; });
+    subjects.forEach(s => { const ci = getClusterInfo(s.school); s.region = ci.region; s.cluster = ci.cluster; });
+    teachers.forEach(t => { const ci = getClusterInfo(t.school); t.region = ci.region; t.cluster = ci.cluster; t.nip = ci.nip; });
 
     const summary = buildSummary(stats);
     const regionSummary = buildRegionSummary(stats);
-    const weekObj = { id: weekId, label: weekLabel, date: weekDate, summary, regionSummary, students: top, schools: stats, subjects, teachers, uploadedAt: new Date().toISOString() };
-
-    // Duplicate check against OTHER weeks
-    const dupWith = Object.entries(State.store.weeks).find(([id, w]) => {
-      if (id === weekId) return false;
-      return w.summary?.totalActiveStudents === summary.totalActiveStudents
-        && w.summary?.totalNuggets === summary.totalNuggets
-        && (w.students||[]).length === top.length
-        && (w.schools||[]).length === stats.length;
-    });
+    const clusterSummary = buildClusterSummary(stats);
+    const weekObj = { id: weekId, label: weekLabel, date: weekDate, summary, regionSummary, clusterSummary, students: top, schools: stats, subjects, teachers, uploadedAt: new Date().toISOString() };
 
     const local = Store.read();
     local.weeks[weekId] = weekObj;
@@ -630,12 +734,8 @@ async function processUpload() {
     Store.write(local);
     State.store = { weeks: { ...State.store.weeks, [weekId]: weekObj }, latest: weekId };
 
-    const dupWarning = dupWith
-      ? `<br><br><b>⚠ Warning:</b> This week has identical numbers to <b>${escapeHtml(dupWith[0])}</b>. Did you upload the wrong Excel files?`
-      : '';
-
     toast.className = 'toast show ok';
-    toast.innerHTML = `✅ <strong>${escapeHtml(weekLabel)}</strong> processed! Click <strong>🚀 Publish to GitHub</strong>.${dupWarning}`;
+    toast.innerHTML = `✅ <strong>${escapeHtml(weekLabel)}</strong> processed! Click <strong>🚀 Publish to GitHub</strong>.`;
 
     State.pendingFiles = { topPerformers:null, allStats:null, subjectWise:null, teacherLogin:null };
     document.querySelectorAll('input[type=file][data-kind]').forEach(i => i.value = '');
@@ -648,6 +748,7 @@ async function processUpload() {
     loadWeek(weekId);
 
     if (document.getElementById('diagPanel').classList.contains('show')) renderDiagnostics();
+    updateExportButtons();
   } catch (err) {
     console.error(err);
     toast.className = 'toast show err';
@@ -748,13 +849,13 @@ function switchWeek(id) { if (id) loadWeek(id); }
 function loadWeek(id) {
   const week = State.store.weeks[id];
   if (!week) return showEmptyDashboard('Week not found: ' + id);
-  (week.schools||[]).forEach(s => { if (!s.region) s.region = deriveRegion(s.name); });
-  (week.students||[]).forEach(s => { if (!s.region) s.region = deriveRegion(s.org); });
-  (week.subjects||[]).forEach(s => { if (!s.region) s.region = deriveRegion(s.school); });
-  (week.teachers||[]).forEach(t => { if (!t.region) t.region = deriveRegion(t.school); });
+  (week.schools||[]).forEach(s => { const ci = getClusterInfo(s.name); if (!s.region) s.region = ci.region; if (!s.cluster) s.cluster = ci.cluster; if (!s.nip) s.nip = ci.nip; });
+  (week.students||[]).forEach(s => { const ci = getClusterInfo(s.org); if (!s.region) s.region = ci.region; if (!s.cluster) s.cluster = ci.cluster; if (!s.nip) s.nip = ci.nip; });
+  (week.subjects||[]).forEach(s => { const ci = getClusterInfo(s.school); if (!s.region) s.region = ci.region; if (!s.cluster) s.cluster = ci.cluster; });
+  (week.teachers||[]).forEach(t => { const ci = getClusterInfo(t.school); if (!t.region) t.region = ci.region; if (!t.cluster) t.cluster = ci.cluster; if (!t.nip) t.nip = ci.nip; });
   if (!week.regionSummary) week.regionSummary = buildRegionSummary(week.schools||[]);
+  if (!week.clusterSummary) week.clusterSummary = buildClusterSummary(week.schools||[]);
 
-  // Find previous week (strictly earlier by date, else the previous in sorted order)
   const allWeeks = Object.values(State.store.weeks)
     .filter(w => w.date && w.date < (week.date||''))
     .sort((a,b) => (b.date||'').localeCompare(a.date||''));
@@ -764,11 +865,13 @@ function loadWeek(id) {
   State.currentData = week;
   State.filterSchool = '';
   State.filterRegion = 'ALL';
+  State.filterCluster = '';
   State.schoolBoardFilter = '';
   document.getElementById('weekSelect').value = id;
   document.getElementById('lastUpdated').textContent = 'Loaded ' + (week.date || '');
   document.getElementById('statusDot').className = 'dot';
   renderDashboard();
+  updateExportButtons();
 }
 
 /* ============================================================
@@ -781,7 +884,10 @@ function renderDashboard() {
   (d.schools||[]).forEach(s => {
     s.studentEngagement = s.onboardedStudents > 0 ? +((s.activeStudents/s.onboardedStudents)*100).toFixed(1) : 0;
     s.teacherEngagement = s.onboardedTeachers > 0 ? +((s.activeTeachers/s.onboardedTeachers)*100).toFixed(1) : 0;
-    if (!s.region) s.region = deriveRegion(s.name);
+    const ci = getClusterInfo(s.name);
+    if (!s.region) s.region = ci.region;
+    if (!s.cluster) s.cluster = ci.cluster;
+    if (!s.nip) s.nip = ci.nip;
   });
 
   const c = document.getElementById('dashboardContainer');
@@ -789,7 +895,7 @@ function renderDashboard() {
     <div class="page-title">
       <div>
         <h2>🏫 ${escapeHtml(d.label)} — Performance Overview</h2>
-        <div class="sub">${escapeHtml(d.date || '')} • ${(d.schools||[]).length} schools reporting • Region-wise intelligence</div>
+        <div class="sub">${escapeHtml(d.date || '')} • ${(d.schools||[]).length} schools reporting • Region & Cluster intelligence</div>
       </div>
       <div class="badge" style="font-size:.75rem;padding:.4rem .9rem">📌 ${(d.students||[]).length} students • ${(d.teachers||[]).length} teachers</div>
     </div>
@@ -803,32 +909,16 @@ function renderDashboard() {
     </div>
 
     <div class="section">
-      <div class="section-head"><h3>📌 Key Metrics <span class="badge">${State.filterRegion === 'ALL' ? 'All Regions' : State.filterRegion}</span></h3></div>
+      <div class="section-head">
+        <h3>🎯 Cluster-wise Report (NIP) <span class="badge">Click a cluster to filter everything below</span></h3>
+        <span class="hint">Showing: <strong>${State.filterCluster ? State.filterCluster : 'All Clusters'}</strong></span>
+      </div>
+      <div class="region-strip" id="clusterStrip"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><h3>📌 %age Metrics <span class="badge">${State.filterCluster ? escapeHtml(State.filterCluster) : (State.filterRegion === 'ALL' ? 'All Regions' : State.filterRegion)}</span></h3></div>
       <div class="kpi-grid" id="kpiGrid"></div>
-    </div>
-
-    <div class="section">
-      <div class="section-head"><h3>🏫 Region Comparison — Engagement, Nuggets & Students</h3></div>
-      <div class="charts-grid">
-        <div class="chart-box"><h4>Engagement % by Region</h4><div class="chart-container"><canvas id="chartRegionEngagement"></canvas></div></div>
-        <div class="chart-box"><h4>Nuggets & Active Students by Region</h4><div class="chart-container"><canvas id="chartRegionNuggets"></canvas></div></div>
-        <div class="chart-box"><h4>Schools Reporting by Region</h4><div class="chart-container"><canvas id="chartRegionSchools"></canvas></div></div>
-        <div class="chart-box"><h4>Questions Answered by Region</h4><div class="chart-container"><canvas id="chartRegionQuestions"></canvas></div></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head"><h3>📋 Region-wise Detailed Breakdown</h3><span class="hint">Aggregated KPIs per region</span></div>
-      <div class="table-wrap" style="max-height:none">
-        <table>
-          <thead><tr>
-            <th>Region</th><th>Schools</th><th>Active Students</th><th>Onboarded Students</th>
-            <th>Student Engagement %</th><th>Active Teachers</th><th>Teacher Engagement %</th>
-            <th>Nuggets</th><th>Questions</th><th>Avg Nuggets/Student</th>
-          </tr></thead>
-          <tbody id="tbodyRegions"></tbody>
-        </table>
-      </div>
     </div>
 
     <div class="section">
@@ -839,16 +929,18 @@ function renderDashboard() {
       <div class="table-wrap">
         <table>
           <thead><tr>
-            <th onclick="sortSchools('name')">School</th>
-            <th onclick="sortSchools('region')">Region</th>
-            <th onclick="sortSchools('activeStudents')">Active Stu.</th>
-            <th onclick="sortSchools('onboardedStudents')">Onboarded</th>
-            <th onclick="sortSchools('studentEngagement')">Engagement %</th>
-            <th onclick="sortSchools('activeTeachers')">Active Tch.</th>
-            <th onclick="sortSchools('nuggetsCompleted')">Nuggets</th>
-            <th onclick="sortSchools('questionsAnswered')">Questions</th>
-            <th onclick="sortSchools('avgNuggetsPerStudent')">Avg/Student</th>
-            <th>Engagement Bar</th>
+            <th onclick="sortSchools('name')">School ${sortIndicator('name', State.sort.schools)}</th>
+            <th onclick="sortSchools('region')">Region ${sortIndicator('region', State.sort.schools)}</th>
+            <th onclick="sortSchools('cluster')">Cluster ${sortIndicator('cluster', State.sort.schools)}</th>
+            <th onclick="sortSchools('nip')">NIP ${sortIndicator('nip', State.sort.schools)}</th>
+            <th onclick="sortSchools('activeStudents')">Active Stu. ${sortIndicator('activeStudents', State.sort.schools)}</th>
+            <th onclick="sortSchools('onboardedStudents')">Onboarded ${sortIndicator('onboardedStudents', State.sort.schools)}</th>
+            <th onclick="sortSchools('studentEngagement')">Engagement % ${sortIndicator('studentEngagement', State.sort.schools)}</th>
+            <th onclick="sortSchools('activeTeachers')">Active Tch. ${sortIndicator('activeTeachers', State.sort.schools)}</th>
+            <th onclick="sortSchools('nuggetsCompleted')">Nuggets ${sortIndicator('nuggetsCompleted', State.sort.schools)}</th>
+            <th onclick="sortSchools('questionsAnswered')">Questions ${sortIndicator('questionsAnswered', State.sort.schools)}</th>
+            <th onclick="sortSchools('avgNuggetsPerStudent')">Avg/Student ${sortIndicator('avgNuggetsPerStudent', State.sort.schools)}</th>
+            <th data-sortable="false">Engagement Bar</th>
           </tr></thead>
           <tbody id="tbodySchools"></tbody>
         </table>
@@ -856,18 +948,84 @@ function renderDashboard() {
     </div>
 
     <div class="section">
-      <div class="section-head"><h3>📊 Student Engagement — Complete Status</h3><span class="hint">Percentage labels in the center of each bar</span></div>
-      <div class="chart-container xtall"><canvas id="chartEngagementFull"></canvas></div>
+      <div class="section-head"><h3>🏫 Region Comparison — Engagement, Nuggets &amp; Students</h3></div>
+      <div class="charts-grid">
+        <div class="chart-box"><h4>Engagement % by Region</h4><div class="chart-container"><canvas id="chartRegionEngagement"></canvas></div></div>
+        <div class="chart-box"><h4>Nuggets &amp; Active Students by Region</h4><div class="chart-container"><canvas id="chartRegionNuggets"></canvas></div></div>
+        <div class="chart-box"><h4>Schools Reporting by Region</h4><div class="chart-container"><canvas id="chartRegionSchools"></canvas></div></div>
+        <div class="chart-box"><h4>Questions Answered by Region</h4><div class="chart-container"><canvas id="chartRegionQuestions"></canvas></div></div>
+      </div>
     </div>
 
     <div class="section">
-      <div class="section-head"><h3>📈 Performance Analytics</h3><span class="hint">All charts respect region & school filters</span></div>
+      <div class="section-head"><h3>📋 Region-wise Detailed Breakdown</h3><span class="hint">Aggregated %ages per region — click headers to sort</span></div>
+      <div class="table-wrap" style="max-height:none">
+        <table>
+          <thead><tr>
+            <th onclick="sortRegions('region')">Region ${sortIndicator('region', State.sort.regions)}</th>
+            <th onclick="sortRegions('schoolCount')">Schools ${sortIndicator('schoolCount', State.sort.regions)}</th>
+            <th onclick="sortRegions('totalActiveStudents')">Active Students ${sortIndicator('totalActiveStudents', State.sort.regions)}</th>
+            <th onclick="sortRegions('totalOnboardedStudents')">Onboarded Students ${sortIndicator('totalOnboardedStudents', State.sort.regions)}</th>
+            <th onclick="sortRegions('studentEngagementPct')">Student Engagement % ${sortIndicator('studentEngagementPct', State.sort.regions)}</th>
+            <th onclick="sortRegions('totalActiveTeachers')">Active Teachers ${sortIndicator('totalActiveTeachers', State.sort.regions)}</th>
+            <th onclick="sortRegions('teacherEngagementPct')">Teacher Engagement % ${sortIndicator('teacherEngagementPct', State.sort.regions)}</th>
+            <th onclick="sortRegions('totalNuggets')">Nuggets ${sortIndicator('totalNuggets', State.sort.regions)}</th>
+            <th onclick="sortRegions('totalQuestions')">Questions ${sortIndicator('totalQuestions', State.sort.regions)}</th>
+            <th onclick="sortRegions('avgNuggetsPerStudent')">Avg Nuggets/Student ${sortIndicator('avgNuggetsPerStudent', State.sort.regions)}</th>
+          </tr></thead>
+          <tbody id="tbodyRegions"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><h3>🎯 Cluster-wise Detailed Breakdown (NIP)</h3><span class="hint">Aggregated %ages per cluster — click headers to sort</span></div>
+      <div class="table-wrap" style="max-height:none">
+        <table>
+          <thead><tr>
+            <th onclick="sortClusters('cluster')">Cluster ${sortIndicator('cluster', State.sort.clusters)}</th>
+            <th onclick="sortClusters('nip')">NIP ${sortIndicator('nip', State.sort.clusters)}</th>
+            <th onclick="sortClusters('region')">Region ${sortIndicator('region', State.sort.clusters)}</th>
+            <th onclick="sortClusters('schoolCount')">Schools ${sortIndicator('schoolCount', State.sort.clusters)}</th>
+            <th onclick="sortClusters('totalActiveStudents')">Active Students ${sortIndicator('totalActiveStudents', State.sort.clusters)}</th>
+            <th onclick="sortClusters('totalOnboardedStudents')">Onboarded ${sortIndicator('totalOnboardedStudents', State.sort.clusters)}</th>
+            <th onclick="sortClusters('studentEngagementPct')">Student Engagement % ${sortIndicator('studentEngagementPct', State.sort.clusters)}</th>
+            <th onclick="sortClusters('totalActiveTeachers')">Active Teachers ${sortIndicator('totalActiveTeachers', State.sort.clusters)}</th>
+            <th onclick="sortClusters('totalNuggets')">Nuggets ${sortIndicator('totalNuggets', State.sort.clusters)}</th>
+            <th onclick="sortClusters('totalQuestions')">Questions ${sortIndicator('totalQuestions', State.sort.clusters)}</th>
+            <th onclick="sortClusters('avgNuggetsPerStudent')">Avg/Student ${sortIndicator('avgNuggetsPerStudent', State.sort.clusters)}</th>
+          </tr></thead>
+          <tbody id="tbodyClusters"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><h3>🎯 Cluster Comparison — Engagement &amp; Nuggets</h3></div>
       <div class="charts-grid">
-        <div class="chart-box"><h4>🎯 Top 15 Schools by Nuggets Completed</h4><div class="chart-container"><canvas id="chartSchools"></canvas></div></div>
+        <div class="chart-box"><h4>Engagement % by Cluster</h4><div class="chart-container"><canvas id="chartClusterEngagement"></canvas></div></div>
+        <div class="chart-box"><h4>Nuggets &amp; Students by Cluster</h4><div class="chart-container"><canvas id="chartClusterNuggets"></canvas></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><h3>📊 Student Engagement — Complete Status</h3><span class="hint">Percentage labels in the center of each bar</span></div>
+      <div class="chart-container xtall"><canvas id="chartEngagementFull"></canvas></div>
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px dashed var(--border)">
+        <div class="charts-grid">
+          <div class="chart-box"><h4>🏆 Top 10 Schools by Engagement %</h4><div class="chart-container tall"><canvas id="chartTopEngagement"></canvas></div></div>
+          <div class="chart-box"><h4>📉 Bottom 10 Schools by Engagement %</h4><div class="chart-container tall"><canvas id="chartBottomEngagement"></canvas></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><h3>📈 Performance Analytics</h3><span class="hint">All charts respect region, cluster &amp; school filters</span></div>
+      <div class="charts-grid">
+        <div class="chart-box"><h4>🎯 Top 10 Schools by Nuggets Completed</h4><div class="chart-container"><canvas id="chartSchools"></canvas></div></div>
         <div class="chart-box"><h4>📚 Subject-wise Nuggets per School</h4><div class="chart-container"><canvas id="chartSubjects"></canvas></div></div>
         <div class="chart-box"><h4>🚀 Top 10 Schools by Avg Nuggets/Student</h4><div class="chart-container"><canvas id="chartAvgNuggets"></canvas></div></div>
         <div class="chart-box"><h4>📊 Engagement % vs Nuggets (Scatter)</h4><div class="chart-container"><canvas id="chartScatter"></canvas></div></div>
-        <div class="chart-box"><h4>🥧 Subject-wise Nugget Distribution</h4><div class="chart-container"><canvas id="chartSubjectDoughnut"></canvas></div></div>
       </div>
     </div>
 
@@ -876,19 +1034,19 @@ function renderDashboard() {
         <h3>👩‍🏫 Teacher Login Activity <span class="badge">${(d.teachers||[]).length} teachers</span></h3>
         <input type="text" class="small-search" placeholder="🔍 Search teacher…" id="searchTeachers" oninput="renderTeachers()">
       </div>
-      <div class="charts-grid" style="margin-bottom:1rem">
-        <div class="chart-box"><h4>📊 All Teachers — Days Logged In vs Assignments</h4><div class="chart-container xtall"><canvas id="chartAllTeachers"></canvas></div></div>
-        <div class="chart-box"><h4>🏆 Top 10 Teachers by Days Logged In</h4><div class="chart-container xtall"><canvas id="chartTopTeachers"></canvas></div></div>
+      <div class="chart-box" style="margin-bottom:1rem">
+        <h4>📊 All Teachers — Assignments Assigned</h4>
+        <div class="chart-container xtall"><canvas id="chartAllTeachers"></canvas></div>
       </div>
       <div class="table-wrap" style="max-height:420px">
         <table>
           <thead><tr>
-            <th onclick="sortTeachers('name')">Teacher</th>
-            <th onclick="sortTeachers('school')">School</th>
-            <th onclick="sortTeachers('region')">Region</th>
-            <th onclick="sortTeachers('daysLoggedIn')">Days Logged In</th>
-            <th onclick="sortTeachers('assignmentsAssigned')">Assignments</th>
-            <th onclick="sortTeachers('rank')">Rank</th>
+            <th onclick="sortTeachers('name')">Teacher ${sortIndicator('name', State.sort.teachers)}</th>
+            <th onclick="sortTeachers('school')">School ${sortIndicator('school', State.sort.teachers)}</th>
+            <th onclick="sortTeachers('region')">Region ${sortIndicator('region', State.sort.teachers)}</th>
+            <th onclick="sortTeachers('cluster')">Cluster ${sortIndicator('cluster', State.sort.teachers)}</th>
+            <th onclick="sortTeachers('nip')">NIP ${sortIndicator('nip', State.sort.teachers)}</th>
+            <th onclick="sortTeachers('assignmentsAssigned')">Assignments ${sortIndicator('assignmentsAssigned', State.sort.teachers)}</th>
           </tr></thead>
           <tbody id="tbodyTeachers"></tbody>
         </table>
@@ -902,12 +1060,13 @@ function renderDashboard() {
       </div>
       <div class="table-wrap">
         <table><thead><tr>
-          <th onclick="sortTop5('rank')">Rank</th>
-          <th onclick="sortTop5('name')">Student</th>
-          <th onclick="sortTop5('org')">School</th>
-          <th onclick="sortTop5('nuggets')">Nuggets</th>
-          <th onclick="sortTop5('avgScore')">Avg Score</th>
-          <th>Progress</th>
+          <th onclick="sortTop5('rank')">Rank ${sortIndicator('rank', State.sort.top5)}</th>
+          <th onclick="sortTop5('name')">Student ${sortIndicator('name', State.sort.top5)}</th>
+          <th onclick="sortTop5('org')">School ${sortIndicator('org', State.sort.top5)}</th>
+          <th onclick="sortTop5('cluster')">Cluster ${sortIndicator('cluster', State.sort.top5)}</th>
+          <th onclick="sortTop5('nuggets')">Nuggets ${sortIndicator('nuggets', State.sort.top5)}</th>
+          <th onclick="sortTop5('avgScore')">Avg Score ${sortIndicator('avgScore', State.sort.top5)}</th>
+          <th data-sortable="false">Progress</th>
         </tr></thead><tbody id="tbodyTop5"></tbody></table>
       </div>
     </div>
@@ -923,13 +1082,13 @@ function renderDashboard() {
       </div>
       <div class="table-wrap">
         <table><thead><tr>
-          <th onclick="sortStudents('rank')">Rank</th>
-          <th onclick="sortStudents('name')">Student</th>
-          <th onclick="sortStudents('org')">School</th>
-          <th onclick="sortStudents('region')">Region</th>
-          <th onclick="sortStudents('nuggets')">Nuggets</th>
-          <th onclick="sortStudents('avgScore')">Avg Score</th>
-          <th>Progress</th>
+          <th onclick="sortStudents('name')">Student ${sortIndicator('name', State.sort.students)}</th>
+          <th onclick="sortStudents('org')">School ${sortIndicator('org', State.sort.students)}</th>
+          <th onclick="sortStudents('region')">Region ${sortIndicator('region', State.sort.students)}</th>
+          <th onclick="sortStudents('cluster')">Cluster ${sortIndicator('cluster', State.sort.students)}</th>
+          <th onclick="sortStudents('nuggets')">Nuggets ${sortIndicator('nuggets', State.sort.students)}</th>
+          <th onclick="sortStudents('avgScore')">Avg Score ${sortIndicator('avgScore', State.sort.students)}</th>
+          <th data-sortable="false">Progress</th>
         </tr></thead><tbody id="tbodyStudents"></tbody></table>
       </div>
     </div>
@@ -941,7 +1100,14 @@ function renderDashboard() {
       </div>
       <div class="table-wrap">
         <table><thead><tr>
-          <th>School</th><th>Region</th><th>Department</th><th>Class</th><th>Active Students</th><th>Nuggets</th><th>Avg Score</th>
+          <th data-sortable="false">School</th>
+          <th data-sortable="false">Region</th>
+          <th data-sortable="false">Cluster</th>
+          <th data-sortable="false">Department</th>
+          <th data-sortable="false">Class</th>
+          <th data-sortable="false">Active Students</th>
+          <th data-sortable="false">Nuggets</th>
+          <th data-sortable="false">Avg Score</th>
         </tr></thead><tbody id="tbodySubjects"></tbody></table>
       </div>
     </div>
@@ -955,8 +1121,12 @@ function renderDashboard() {
     </div>
   `;
 
+  populateRegionFilter();
+  populateClusterFilter();
   renderRegionStrip();
+  renderClusterStrip();
   renderRegionTable();
+  renderClusterTable();
   populateSchoolFilter();
   populateTopSchoolPicker();
   renderKPIs();
@@ -970,14 +1140,13 @@ function renderDashboard() {
 }
 
 /* ============================================================
-   REGION STRIP + REGION TABLE
+   REGION STRIP + TABLE
    ============================================================ */
 function renderRegionStrip() {
   const container = document.getElementById('regionStrip');
   if (!container) return;
   const rs = State.currentData.regionSummary || {};
   const regions = Object.entries(rs).sort((a,b) => (b[1].schoolCount||0) - (a[1].schoolCount||0));
-
   const totalSummary = State.currentData.summary || buildSummary(State.currentData.schools || []);
   const totalSchools = (State.currentData.schools||[]).length;
 
@@ -992,13 +1161,12 @@ function renderRegionStrip() {
       <div class="r-bar"><div style="width:${totalSummary.studentEngagementPct || 0}%;background:#4338ca"></div></div>
     </div>
   `;
-
   regions.forEach(([region, data]) => {
     const rClass = regionClass(region);
     const eng = data.studentEngagementPct || 0;
     const color = eng >= 50 ? '#10b981' : eng >= 25 ? '#f59e0b' : '#ef4444';
     html += `
-      <div class="region-card ${State.filterRegion === region ? 'active' : ''}" onclick="onRegionFilter('${escapeHtml(region)}')">
+      <div class="region-card ${State.filterRegion === region ? 'active' : ''}" onclick="onRegionFilter('${escapeAttr(region)}')">
         <div class="r-name"><span class="badge ${rClass}">${escapeHtml(region)}</span><span class="r-count">${data.schoolCount||0} schools</span></div>
         <div class="r-main">${eng}<small>% engagement</small></div>
         <div class="r-sub">
@@ -1012,19 +1180,31 @@ function renderRegionStrip() {
   container.innerHTML = html;
 }
 
+function sortRegions(key) {
+  const s = State.sort.regions;
+  if (s.k === key) s.d *= -1;
+  else State.sort.regions = { k:key, d: (key === 'region') ? 1 : -1 };
+  renderRegionTable();
+}
 function renderRegionTable() {
   const tb = document.getElementById('tbodyRegions');
   if (!tb) return;
   const rs = State.currentData.regionSummary || {};
-  const entries = Object.entries(rs).sort((a,b) => b[1].totalActiveStudents - a[1].totalActiveStudents);
+  let entries = Object.entries(rs).map(([region, s]) => ({ region, ...s }));
+  const { k, d } = State.sort.regions;
+  entries.sort((a,b) => {
+    const av = a[k], bv = b[k];
+    if (typeof av === 'string') return av.localeCompare(bv) * d;
+    return ((av||0)-(bv||0)) * d;
+  });
   if (!entries.length) { tb.innerHTML = `<tr><td colspan="10" class="empty-state">No region data.</td></tr>`; return; }
-  tb.innerHTML = entries.map(([region, s]) => {
+  tb.innerHTML = entries.map(s => {
     const eng = s.studentEngagementPct || 0;
     const tEng = s.teacherEngagementPct || 0;
     const col = eng >= 50 ? '#10b981' : eng >= 25 ? '#f59e0b' : '#ef4444';
     const tCol = tEng >= 50 ? '#10b981' : tEng >= 25 ? '#f59e0b' : '#ef4444';
     return `<tr>
-      <td><span class="badge ${regionClass(region)}">${escapeHtml(region)}</span></td>
+      <td><span class="badge ${regionClass(s.region)}">${escapeHtml(s.region)}</span></td>
       <td><strong>${fmt(s.schoolCount)}</strong></td>
       <td>${fmt(s.totalActiveStudents)}</td>
       <td>${fmt(s.totalOnboardedStudents)}</td>
@@ -1038,10 +1218,116 @@ function renderRegionTable() {
   }).join('');
 }
 
+/* ============================================================
+   CLUSTER STRIP + TABLE
+   ============================================================ */
+function renderClusterStrip() {
+  const container = document.getElementById('clusterStrip');
+  if (!container) return;
+  const cs = State.currentData.clusterSummary || {};
+  let clusters = Object.entries(cs);
+  if (State.filterRegion !== 'ALL') {
+    clusters = clusters.filter(([c]) => cs[c].region === State.filterRegion);
+  }
+  clusters.sort((a,b) => (b[1].schoolCount||0) - (a[1].schoolCount||0));
+
+  const allSchools = State.currentData.schools || [];
+  const totalSummary = buildSummary(allSchools);
+
+  let html = `
+    <div class="region-card all-card ${State.filterCluster === '' ? 'active' : ''}" onclick="onClusterFilter('')">
+      <div class="r-name">All Clusters <span class="r-count">${allSchools.length} schools</span></div>
+      <div class="r-main">${totalSummary.studentEngagementPct || 0}<small>% engagement</small></div>
+      <div class="r-sub">
+        <span><b>${fmt(totalSummary.totalActiveStudents)}</b> active stu.</span>
+        <span><b>${fmt(totalSummary.totalNuggets)}</b> nuggets</span>
+      </div>
+      <div class="r-bar"><div style="width:${totalSummary.studentEngagementPct || 0}%;background:#4338ca"></div></div>
+    </div>
+  `;
+  clusters.forEach(([cluster, data]) => {
+    const eng = data.studentEngagementPct || 0;
+    const color = eng >= 50 ? '#10b981' : eng >= 25 ? '#f59e0b' : '#ef4444';
+    const nip = data.nip || '—';
+    html += `
+      <div class="region-card ${State.filterCluster === cluster ? 'active' : ''}" onclick="onClusterFilter('${escapeAttr(cluster)}')">
+        <div class="r-name">
+          <span class="badge cluster">${escapeHtml(cluster)}</span>
+          <span class="r-count">${data.schoolCount||0} schools</span>
+        </div>
+        <div class="r-main">${eng}<small>% engagement</small></div>
+        <div class="r-sub" style="font-size:.7rem">
+          <span><b>NIP:</b> ${escapeHtml(nip)}</span>
+        </div>
+        <div class="r-sub">
+          <span><b>${fmt(data.totalActiveStudents)}</b> active stu.</span>
+          <span><b>${fmt(data.totalNuggets)}</b> nuggets</span>
+        </div>
+        <div class="r-bar"><div style="width:${eng}%;background:${color}"></div></div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function sortClusters(key) {
+  const s = State.sort.clusters;
+  if (s.k === key) s.d *= -1;
+  else State.sort.clusters = { k:key, d: (key === 'cluster' || key === 'nip' || key === 'region') ? 1 : -1 };
+  renderClusterTable();
+}
+function renderClusterTable() {
+  const tb = document.getElementById('tbodyClusters');
+  if (!tb) return;
+  const cs = State.currentData.clusterSummary || {};
+  let entries = Object.entries(cs).map(([cluster, s]) => ({ cluster, ...s }));
+  if (State.filterRegion !== 'ALL') entries = entries.filter(e => e.region === State.filterRegion);
+  const { k, d } = State.sort.clusters;
+  entries.sort((a,b) => {
+    const av = a[k], bv = b[k];
+    if (typeof av === 'string') return av.localeCompare(bv) * d;
+    return ((av||0)-(bv||0)) * d;
+  });
+  if (!entries.length) { tb.innerHTML = `<tr><td colspan="11" class="empty-state">No cluster data.</td></tr>`; return; }
+  tb.innerHTML = entries.map(s => {
+    const eng = s.studentEngagementPct || 0;
+    const col = eng >= 50 ? '#10b981' : eng >= 25 ? '#f59e0b' : '#ef4444';
+    return `<tr>
+      <td><span class="badge cluster">${escapeHtml(s.cluster)}</span></td>
+      <td><span class="badge nip">${escapeHtml(s.nip || '—')}</span></td>
+      <td><span class="badge ${regionClass(s.region)}">${escapeHtml((s.region||'').split(' ')[0])}</span></td>
+      <td><strong>${fmt(s.schoolCount)}</strong></td>
+      <td>${fmt(s.totalActiveStudents)}</td>
+      <td>${fmt(s.totalOnboardedStudents)}</td>
+      <td style="color:${col};font-weight:700">${eng}%</td>
+      <td>${fmt(s.totalActiveTeachers)}</td>
+      <td><strong>${fmt(s.totalNuggets)}</strong></td>
+      <td>${fmt(s.totalQuestions)}</td>
+      <td>${(s.avgNuggetsPerStudent||0).toFixed(1)}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* ============================================================
+   FILTER HANDLERS
+   ============================================================ */
 function onRegionFilter(region) {
   State.filterRegion = region;
   State.filterSchool = '';
+  if (region !== 'ALL' && State.filterCluster) {
+    const cs = State.currentData.clusterSummary || {};
+    if (!cs[State.filterCluster] || cs[State.filterCluster].region !== region) {
+      State.filterCluster = '';
+    }
+  }
+  populateRegionFilter();
+  populateClusterFilter();
+  populateSchoolFilter();
+  populateTopSchoolPicker();
   renderRegionStrip();
+  renderClusterStrip();
+  renderRegionTable();
+  renderClusterTable();
   renderKPIs();
   renderSchools();
   renderTop5();
@@ -1049,26 +1335,51 @@ function onRegionFilter(region) {
   renderSubjects();
   renderTeachers();
   renderCharts();
-  populateSchoolFilter();
   renderWeekComparison();
-  const hint = document.querySelector('.section-head .hint strong');
-  if (hint) hint.textContent = region === 'ALL' ? 'All Regions' : region;
+}
+
+function onClusterFilter(cluster) {
+  State.filterCluster = cluster;
+  State.filterSchool = '';
+  if (cluster) {
+    const cs = State.currentData.clusterSummary || {};
+    if (cs[cluster] && cs[cluster].region) {
+      State.filterRegion = cs[cluster].region;
+    }
+  }
+  populateRegionFilter();
+  populateClusterFilter();
+  populateSchoolFilter();
+  populateTopSchoolPicker();
+  renderRegionStrip();
+  renderClusterStrip();
+  renderRegionTable();
+  renderClusterTable();
+  renderKPIs();
+  renderSchools();
+  renderTop5();
+  renderStudents();
+  renderSubjects();
+  renderTeachers();
+  renderCharts();
+  renderWeekComparison();
 }
 
 function getFilteredSchools() {
   let list = (State.currentData.schools || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
+  if (State.filterCluster) list = list.filter(s => s.cluster === State.filterCluster);
   if (State.filterSchool) list = list.filter(s => s.name === State.filterSchool);
   return list;
 }
 function getFilteredRegionSummary() {
   const schools = getFilteredSchools();
-  if (State.filterSchool || State.filterRegion !== 'ALL') return buildSummary(schools);
+  if (State.filterSchool || State.filterRegion !== 'ALL' || State.filterCluster) return buildSummary(schools);
   return State.currentData.summary || buildSummary(schools);
 }
 
 /* ============================================================
-   KPIs
+   %AGE METRICS
    ============================================================ */
 function renderKPIs() {
   const s = getFilteredRegionSummary();
@@ -1083,7 +1394,7 @@ function renderKPIs() {
     { icon:'👩‍🏫', label:'Active Teachers',   value: fmt(s.totalActiveTeachers), sub: `${fmt(s.totalOnboardedTeachers)} onboarded`, key:'totalActiveTeachers' },
     { icon:'🍪', label:'Nuggets Completed', value: fmt(s.totalNuggets), sub: `${s.avgNuggetsPerStudent} avg / student`, key:'totalNuggets' },
     { icon:'❓', label:'Questions Answered', value: fmt(s.totalQuestions), sub: `${s.avgQuestionsPerStudent} avg / student`, key:'totalQuestions' },
-    { icon:'🏫', label:'Schools Reporting', value: fmt(schools.length), sub: State.filterRegion === 'ALL' ? 'All regions' : State.filterRegion },
+    { icon:'🏫', label:'Schools Reporting', value: fmt(schools.length), sub: State.filterCluster ? State.filterCluster : (State.filterRegion === 'ALL' ? 'All regions' : State.filterRegion) },
     { icon:'📈', label:'Teacher Engagement', value: (s.teacherEngagementPct || 0) + '%', sub: `${fmt(s.totalActiveTeachers)} / ${fmt(s.totalOnboardedTeachers)}`, key:'teacherEngagementPct', pct:true }
   ];
   const grid = document.getElementById('kpiGrid');
@@ -1171,6 +1482,37 @@ function renderCharts() {
     });
   }
 
+  const cs = State.currentData.clusterSummary || {};
+  let clusterLabels = Object.keys(cs);
+  if (State.filterRegion !== 'ALL') clusterLabels = clusterLabels.filter(c => cs[c].region === State.filterRegion);
+  const clusterColors = clusterLabels.map((_,i) => palette[i % palette.length]);
+
+  const cCE = document.getElementById('chartClusterEngagement');
+  if (cCE) {
+    State.charts.clusterEng = new Chart(cCE, {
+      type:'bar',
+      data:{ labels: clusterLabels,
+        datasets:[{ label:'Engagement %', data: clusterLabels.map(c => cs[c].studentEngagementPct || 0), backgroundColor: clusterColors, borderRadius:8 }]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, datalabels:{ anchor:'end', align:'top', color:'#334155', font:{weight:'700', size:11}, formatter: v => (v||0).toFixed(1) + '%' } },
+        scales:{ y:{beginAtZero:true, max:100, ticks:{callback: v => v + '%'}, grid:{color:'#f1f5f9'}}, x:{ticks:{maxRotation:45, font:{size:10}}, grid:{display:false}} } }
+    });
+  }
+  const cCN = document.getElementById('chartClusterNuggets');
+  if (cCN) {
+    State.charts.clusterNug = new Chart(cCN, {
+      type:'bar',
+      data:{ labels: clusterLabels,
+        datasets:[
+          { label:'Nuggets', data: clusterLabels.map(c => cs[c].totalNuggets || 0), backgroundColor:'#4361ee', borderRadius:6 },
+          { label:'Active Students', data: clusterLabels.map(c => cs[c].totalActiveStudents || 0), backgroundColor:'#10b981', borderRadius:6 }
+        ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:10}}}, datalabels:{ anchor:'end', align:'top', color:'#334155', font:{weight:'700', size:10}, formatter: v => v > 0 ? v.toLocaleString() : '' } },
+        scales:{ y:{beginAtZero:true, grid:{color:'#f1f5f9'}}, x:{ticks:{maxRotation:45, font:{size:10}}, grid:{display:false}} } }
+    });
+  }
+
   const sorted = schools.slice().filter(s => s.onboardedStudents > 0).sort((a,b) => (b.studentEngagement||0) - (a.studentEngagement||0)).slice(0, 40);
   const cE = document.getElementById('chartEngagementFull');
   if (cE) {
@@ -1185,7 +1527,43 @@ function renderCharts() {
     });
   }
 
-  const topN = schools.slice().sort((a,b) => b.nuggetsCompleted - a.nuggetsCompleted).slice(0,15);
+  /* Top 10 Schools by Engagement % */
+  const topEng = schools.slice().filter(s => s.onboardedStudents > 0).sort((a,b) => (b.studentEngagement||0) - (a.studentEngagement||0)).slice(0, 10);
+  const cTE = document.getElementById('chartTopEngagement');
+  if (cTE) {
+    State.charts.topEngagement = new Chart(cTE, {
+      type:'bar',
+      data:{ labels: topEng.map(s => shortLabel(s.name)),
+        datasets:[{ label:'Engagement %', data: topEng.map(s => s.studentEngagement),
+          backgroundColor: topEng.map(s => s.studentEngagement >= 50 ? '#10b981' : s.studentEngagement >= 25 ? '#f59e0b' : '#ef4444'),
+          borderRadius:8, barPercentage:.75, categoryPercentage:.85 }]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false},
+          tooltip:{ callbacks:{ label: ctx => { const s = topEng[ctx.dataIndex]; return `${s.studentEngagement}% • ${s.activeStudents}/${s.onboardedStudents} students`; } } },
+          datalabels:{ anchor:'center', align:'center', color:'#fff', font:{weight:'700', size:11}, formatter: v => v > 0 ? v.toFixed(1) + '%' : '' } },
+        scales:{ y:{beginAtZero:true, max:100, ticks:{callback: v => v + '%', font:{size:10}}, grid:{color:'#f1f5f9'}}, x:{ticks:{maxRotation:65, minRotation:45, font:{size:9}}, grid:{display:false}} } }
+    });
+  }
+
+  /* Bottom 10 Schools by Engagement % */
+  const bottomSorted = schools.slice().filter(s => s.onboardedStudents > 0).sort((a,b) => (a.studentEngagement||0) - (b.studentEngagement||0)).slice(0, 10);
+  const cB = document.getElementById('chartBottomEngagement');
+  if (cB) {
+    State.charts.bottomEngagement = new Chart(cB, {
+      type:'bar',
+      data:{ labels: bottomSorted.map(s => shortLabel(s.name)),
+        datasets:[{ label:'Engagement %', data: bottomSorted.map(s => s.studentEngagement),
+          backgroundColor: bottomSorted.map(s => s.studentEngagement >= 50 ? '#10b981' : s.studentEngagement >= 25 ? '#f59e0b' : '#ef4444'),
+          borderRadius:8, barPercentage:.75, categoryPercentage:.85 }]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false},
+          tooltip:{ callbacks:{ label: ctx => { const s = bottomSorted[ctx.dataIndex]; return `${s.studentEngagement}% • ${s.activeStudents}/${s.onboardedStudents} students`; } } },
+          datalabels:{ anchor:'center', align:'center', color:'#fff', font:{weight:'700', size:11}, formatter: v => v > 0 ? v.toFixed(1) + '%' : '' } },
+        scales:{ y:{beginAtZero:true, max:100, ticks:{callback: v => v + '%', font:{size:10}}, grid:{color:'#f1f5f9'}}, x:{ticks:{maxRotation:65, minRotation:45, font:{size:9}}, grid:{display:false}} } }
+    });
+  }
+
+  const topN = schools.slice().sort((a,b) => b.nuggetsCompleted - a.nuggetsCompleted).slice(0,10);
   const cS = document.getElementById('chartSchools');
   if (cS) {
     State.charts.schools = new Chart(cS, {
@@ -1203,6 +1581,7 @@ function renderCharts() {
 
   const subjectRows = (State.currentData.subjects || []).filter(r => {
     if (State.filterSchool) return r.school === State.filterSchool;
+    if (State.filterCluster) return r.cluster === State.filterCluster;
     if (State.filterRegion !== 'ALL') return r.region === State.filterRegion;
     return true;
   });
@@ -1255,54 +1634,23 @@ function renderCharts() {
     });
   }
 
-  const totals = { English:0, Mathematics:0, Science:0, Other:0 };
-  let hasExplicit = false;
-  subjectRows.forEach(r => {
-    if (r.englishNuggets || r.mathNuggets || r.scienceNuggets) { hasExplicit = true; totals.English += r.englishNuggets || 0; totals.Mathematics += r.mathNuggets || 0; totals.Science += r.scienceNuggets || 0; }
-  });
-  if (!hasExplicit) {
-    subjectRows.forEach(r => { const dept = (r.dept || '').trim(); const key = ['English','Mathematics','Science'].includes(dept) ? dept : 'Other'; totals[key] = (totals[key] || 0) + (r.nuggetsCompleted || 0); });
-  }
-  const labels6 = ['English','Mathematics','Science','Other'].filter(k => totals[k] > 0);
-  const cD = document.getElementById('chartSubjectDoughnut');
-  if (cD) {
-    State.charts.subjectDoughnut = new Chart(cD, {
-      type:'doughnut',
-      data:{ labels: labels6, datasets:[{ data: labels6.map(k => totals[k]), backgroundColor: ['#4361ee','#10b981','#f59e0b','#94a3b8'].slice(0, labels6.length), borderWidth:2, borderColor:'#fff' }]},
-      options:{ responsive:true, maintainAspectRatio:false, cutout:'55%',
-        plugins:{ legend:{position:'bottom', labels:{boxWidth:12, font:{size:11}}}, datalabels:{ color:'#fff', font:{weight:'700', size:11}, formatter: (v, ctx) => { const total = ctx.dataset.data.reduce((a,b)=>a+b, 0); const pct = total ? ((v/total)*100).toFixed(0) : 0; return pct > 5 ? pct + '%' : ''; } } } }
-    });
-  }
-
   const teachers = (State.currentData.teachers || []).filter(t => {
     if (State.filterSchool) return t.school === State.filterSchool;
+    if (State.filterCluster) return t.cluster === State.filterCluster;
     if (State.filterRegion !== 'ALL') return t.region === State.filterRegion;
     return true;
-  }).sort((a,b) => b.daysLoggedIn - a.daysLoggedIn).slice(0, 40);
+  }).sort((a,b) => b.assignmentsAssigned - a.assignmentsAssigned).slice(0, 40);
   const cT = document.getElementById('chartAllTeachers');
   if (cT) {
     State.charts.allTeachers = new Chart(cT, {
       type:'bar',
       data:{ labels: teachers.map(t => t.name),
         datasets:[
-          { label:'Days Logged In', data: teachers.map(t => t.daysLoggedIn), backgroundColor:'#8b5cf6', borderRadius:5 },
-          { label:'Assignments', data: teachers.map(t => t.assignmentsAssigned), backgroundColor:'#06b6d4', borderRadius:5 }
+          { label:'Assignments Assigned', data: teachers.map(t => t.assignmentsAssigned), backgroundColor:'#06b6d4', borderRadius:5 }
         ]},
       options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
         plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:10}}}, datalabels:{ anchor:'end', align:'right', color:'#334155', font:{weight:'700', size:9}, formatter: v => v > 0 ? v : '' } },
         scales:{ x:{beginAtZero:true, grid:{color:'#f1f5f9'}}, y:{grid:{display:false}, ticks:{font:{size:9}}} } }
-    });
-  }
-
-  const topT = teachers.slice(0, 10);
-  const cTT = document.getElementById('chartTopTeachers');
-  if (cTT) {
-    State.charts.topTeachers = new Chart(cTT, {
-      type:'bar',
-      data:{ labels: topT.map(t => t.name), datasets:[{ label:'Days Logged In', data: topT.map(t => t.daysLoggedIn), backgroundColor: topT.map((_,i) => palette[i%palette.length]), borderRadius:6 }]},
-      options:{ responsive:true, maintainAspectRatio:false,
-        plugins:{ legend:{display:false}, datalabels:{ anchor:'end', align:'top', color:'#334155', font:{weight:'700', size:10}, formatter: v => v } },
-        scales:{ y:{beginAtZero:true, grid:{color:'#f1f5f9'}}, x:{ticks:{maxRotation:60, minRotation:45, font:{size:9}}, grid:{display:false}} } }
     });
   }
 }
@@ -1313,7 +1661,7 @@ function renderCharts() {
 function renderWeekComparison() {
   const cur = State.currentData.summary || {};
   let prev = State.previousData?.summary;
-  if (State.previousData && State.filterRegion !== 'ALL' && !State.filterSchool) prev = State.previousData.regionSummary?.[State.filterRegion] || null;
+  if (State.previousData && State.filterRegion !== 'ALL' && !State.filterSchool && !State.filterCluster) prev = State.previousData.regionSummary?.[State.filterRegion] || null;
 
   const metrics = [
     { key:'totalActiveStudents',    label:'Active Students',      fmt: v => fmt(v) },
@@ -1327,7 +1675,7 @@ function renderWeekComparison() {
   const grid = document.getElementById('compareGrid');
   if (grid) {
     let curMetrics = cur;
-    if (State.filterRegion !== 'ALL' || State.filterSchool) curMetrics = getFilteredRegionSummary();
+    if (State.filterRegion !== 'ALL' || State.filterSchool || State.filterCluster) curMetrics = getFilteredRegionSummary();
     grid.innerHTML = metrics.map(m => {
       const cVal = curMetrics[m.key] ?? 0;
       const pVal = prev ? (prev[m.key] ?? 0) : null;
@@ -1380,8 +1728,15 @@ function populateTopSchoolPicker() {
   if (!sel) return;
   let schools = (State.currentData.schools || []);
   if (State.filterRegion !== 'ALL') schools = schools.filter(s => s.region === State.filterRegion);
-  schools = schools.map(s => s.name).sort();
-  sel.innerHTML = '<option value="__all__">All Schools (Top 5 each)</option>' + schools.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
+  if (State.filterCluster) schools = schools.filter(s => s.cluster === State.filterCluster);
+  const schoolNames = schools.map(s => s.name).sort();
+
+  if (State.schoolBoardFilter && !schoolNames.includes(State.schoolBoardFilter)) {
+    State.schoolBoardFilter = '';
+  }
+
+  sel.innerHTML = '<option value="__all__">All Schools (Top 5 each)</option>' +
+    schoolNames.map(n => `<option value="${escapeAttr(n)}">${escapeHtml(n)}</option>`).join('');
   sel.value = State.schoolBoardFilter || '__all__';
 }
 function onTopSchoolPick(v) { State.schoolBoardFilter = (v === '__all__') ? '' : v; renderTop5(); }
@@ -1391,6 +1746,7 @@ function renderTop5() {
   if (!tb) return;
   let students = State.currentData.students || [];
   if (State.filterRegion !== 'ALL') students = students.filter(s => s.region === State.filterRegion);
+  if (State.filterCluster) students = students.filter(s => s.cluster === State.filterCluster);
   if (State.filterSchool) students = students.filter(s => s.org === State.filterSchool);
   const filter = State.schoolBoardFilter;
   let rows = [];
@@ -1403,7 +1759,7 @@ function renderTop5() {
   }
   const { k, d } = State.sort.top5;
   rows.sort((a,b) => { const av = a[k] ?? 0, bv = b[k] ?? 0; if (typeof av === 'string') return av.localeCompare(bv) * d; return (av - bv) * d; });
-  if (!rows.length) { tb.innerHTML = `<tr><td colspan="6" class="empty-state">No students.</td></tr>`; return; }
+  if (!rows.length) { tb.innerHTML = `<tr><td colspan="7" class="empty-state">No students.</td></tr>`; return; }
   const maxN = Math.max(...rows.map(s => s.nuggets || 0), 1);
   tb.innerHTML = rows.map(s => {
     const rankCls = s.rank <= 3 && s.rank >= 1 ? 'rank-' + s.rank : 'rank-other';
@@ -1414,6 +1770,7 @@ function renderTop5() {
       <td><span class="rank-badge ${rankCls}">${s.rank || '-'}</span></td>
       <td><strong>${escapeHtml(s.name)}</strong></td>
       <td><span class="badge">${escapeHtml(shortLabel(s.org))}</span></td>
+      <td><span class="badge cluster">${escapeHtml(s.cluster || '—')}</span></td>
       <td><strong>${s.nuggets}</strong></td>
       <td style="color:${col};font-weight:700">${scorePct}%</td>
       <td><div class="progress-bar"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div><span style="font-size:.68rem;color:#64748b">${pct}%</span></div></td>
@@ -1426,13 +1783,14 @@ function switchStudentTab(tab, btn) {
   if (btn) { btn.style.background='var(--primary)'; btn.style.color='#fff'; btn.style.borderColor='var(--primary)'; }
   renderStudents();
 }
-function sortStudents(key) { const s = State.sort.students; if (s.k === key) s.d *= -1; else State.sort.students = { k:key, d: (key === 'rank' || key === 'avgScore') ? 1 : -1 }; renderStudents(); }
+function sortStudents(key) { const s = State.sort.students; if (s.k === key) s.d *= -1; else State.sort.students = { k:key, d: (key === 'avgScore') ? 1 : -1 }; renderStudents(); }
 function renderStudents() {
   const tb = document.getElementById('tbodyStudents');
   if (!tb) return;
   const q = (document.getElementById('searchStudents')?.value || '').toLowerCase();
   let list = (State.currentData.students || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
+  if (State.filterCluster) list = list.filter(s => s.cluster === State.filterCluster);
   if (State.filterSchool) list = list.filter(s => s.org === State.filterSchool);
   if (q) list = list.filter(s => s.name.toLowerCase().includes(q) || s.org.toLowerCase().includes(q));
   const { k, d } = State.sort.students;
@@ -1441,22 +1799,21 @@ function renderStudents() {
   if (!list.length) { tb.innerHTML = `<tr><td colspan="7" class="empty-state">No students match.</td></tr>`; return; }
   const maxN = Math.max(...list.map(s => s.nuggets || 0), 1);
   tb.innerHTML = list.slice(0, 500).map(s => {
-    const rankCls = s.rank <= 3 && s.rank >= 1 ? 'rank-' + s.rank : 'rank-other';
     const pct = ((s.nuggets || 0) / maxN * 100).toFixed(0);
     const scorePct = ((s.avgScore || 0) * 100).toFixed(1);
     const col = s.avgScore >= 0.8 ? '#10b981' : s.avgScore >= 0.5 ? '#f59e0b' : '#ef4444';
     return `<tr>
-      <td><span class="rank-badge ${rankCls}">${s.rank || '-'}</span></td>
       <td><strong>${escapeHtml(s.name)}</strong></td>
       <td><span class="badge">${escapeHtml(shortLabel(s.org))}</span></td>
       <td style="font-size:.72rem">${escapeHtml(s.region || '')}</td>
+      <td><span class="badge cluster">${escapeHtml(s.cluster || '—')}</span></td>
       <td><strong>${s.nuggets}</strong></td>
       <td style="color:${col};font-weight:700">${scorePct}%</td>
       <td><div class="progress-bar"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div><span style="font-size:.68rem;color:#64748b">${pct}%</span></div></td>
     </tr>`;
   }).join('');
 }
-function sortSchools(key) { const s = State.sort.schools; if (s.k === key) s.d *= -1; else State.sort.schools = { k:key, d: (key === 'name' || key === 'region') ? 1 : -1 }; renderSchools(); }
+function sortSchools(key) { const s = State.sort.schools; if (s.k === key) s.d *= -1; else State.sort.schools = { k:key, d: (key === 'name' || key === 'region' || key === 'cluster' || key === 'nip') ? 1 : -1 }; renderSchools(); }
 function renderSchools() {
   const tb = document.getElementById('tbodySchools');
   if (!tb) return;
@@ -1465,7 +1822,7 @@ function renderSchools() {
   if (q) list = list.filter(s => s.name.toLowerCase().includes(q));
   const { k, d } = State.sort.schools;
   list.sort((a,b) => { const av = a[k], bv = b[k]; if (typeof av === 'string') return av.localeCompare(bv) * d; return ((av||0)-(bv||0)) * d; });
-  if (!list.length) { tb.innerHTML = `<tr><td colspan="10" class="empty-state">No schools match.</td></tr>`; return; }
+  if (!list.length) { tb.innerHTML = `<tr><td colspan="12" class="empty-state">No schools match.</td></tr>`; return; }
   const maxE = Math.max(...list.map(s => s.studentEngagement || 0), 1);
   tb.innerHTML = list.map(s => {
     const e = s.studentEngagement || 0;
@@ -1473,7 +1830,9 @@ function renderSchools() {
     const col = e >= 50 ? '#10b981' : e >= 25 ? '#f59e0b' : '#ef4444';
     return `<tr>
       <td><span class="badge">${escapeHtml(s.name)}</span></td>
-      <td><span class="badge ${regionClass(s.region)}">${escapeHtml(s.region || '')}</span></td>
+      <td><span class="badge ${regionClass(s.region)}">${escapeHtml((s.region||'').split(' ')[0])}</span></td>
+      <td><span class="badge cluster">${escapeHtml(s.cluster || '—')}</span></td>
+      <td><span class="badge nip">${escapeHtml(s.nip || '—')}</span></td>
       <td>${fmt(s.activeStudents)}</td>
       <td>${fmt(s.onboardedStudents)}</td>
       <td style="color:${col};font-weight:700">${e.toFixed(1)}%</td>
@@ -1485,27 +1844,27 @@ function renderSchools() {
     </tr>`;
   }).join('');
 }
-function sortTeachers(key) { const s = State.sort.teachers; if (s.k === key) s.d *= -1; else State.sort.teachers = { k:key, d: (key === 'name' || key === 'school' || key === 'region' || key === 'rank') ? 1 : -1 }; renderTeachers(); }
+function sortTeachers(key) { const s = State.sort.teachers; if (s.k === key) s.d *= -1; else State.sort.teachers = { k:key, d: (key === 'name' || key === 'school' || key === 'region' || key === 'cluster' || key === 'nip') ? 1 : -1 }; renderTeachers(); }
 function renderTeachers() {
   const tb = document.getElementById('tbodyTeachers');
   if (!tb) return;
   const q = (document.getElementById('searchTeachers')?.value || '').toLowerCase();
   let list = (State.currentData.teachers || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(t => t.region === State.filterRegion);
+  if (State.filterCluster) list = list.filter(t => t.cluster === State.filterCluster);
   if (State.filterSchool) list = list.filter(t => t.school === State.filterSchool);
   if (q) list = list.filter(t => t.name.toLowerCase().includes(q) || t.school.toLowerCase().includes(q));
   const { k, d } = State.sort.teachers;
   list.sort((a,b) => { const av = a[k], bv = b[k]; if (typeof av === 'string') return av.localeCompare(bv) * d; return ((av||0)-(bv||0)) * d; });
   if (!list.length) { tb.innerHTML = `<tr><td colspan="6" class="empty-state">No teachers match.</td></tr>`; return; }
   tb.innerHTML = list.slice(0, 800).map(t => {
-    const rankCls = t.rank <= 3 && t.rank >= 1 ? 'rank-' + t.rank : 'rank-other';
     return `<tr>
       <td><strong>${escapeHtml(t.name)}</strong></td>
       <td><span class="badge">${escapeHtml(shortLabel(t.school))}</span></td>
-      <td><span class="badge ${regionClass(t.region)}">${escapeHtml(t.region || '')}</span></td>
-      <td><strong>${t.daysLoggedIn}</strong></td>
-      <td>${t.assignmentsAssigned}</td>
-      <td><span class="rank-badge ${rankCls}">${t.rank || '-'}</span></td>
+      <td><span class="badge ${regionClass(t.region)}">${escapeHtml((t.region||'').split(' ')[0])}</span></td>
+      <td><span class="badge cluster">${escapeHtml(t.cluster || '—')}</span></td>
+      <td><span class="badge nip">${escapeHtml(t.nip || '—')}</span></td>
+      <td><strong>${t.assignmentsAssigned || 0}</strong></td>
     </tr>`;
   }).join('');
 }
@@ -1515,15 +1874,17 @@ function renderSubjects() {
   const q = (document.getElementById('searchSubjects')?.value || '').toLowerCase();
   let list = (State.currentData.subjects || []).slice();
   if (State.filterRegion !== 'ALL') list = list.filter(s => s.region === State.filterRegion);
+  if (State.filterCluster) list = list.filter(s => s.cluster === State.filterCluster);
   if (State.filterSchool) list = list.filter(s => s.school === State.filterSchool);
   if (q) list = list.filter(s => s.school.toLowerCase().includes(q));
-  if (!list.length) { tb.innerHTML = `<tr><td colspan="7" class="empty-state">No subject data.</td></tr>`; return; }
+  if (!list.length) { tb.innerHTML = `<tr><td colspan="8" class="empty-state">No subject data.</td></tr>`; return; }
   tb.innerHTML = list.slice(0, 600).map(s => {
     const scorePct = ((s.avgScore || 0) * 100).toFixed(1);
     const col = s.avgScore >= 0.8 ? '#10b981' : s.avgScore >= 0.5 ? '#f59e0b' : '#ef4444';
     return `<tr>
       <td><span class="badge">${escapeHtml(shortLabel(s.school))}</span></td>
-      <td><span class="badge ${regionClass(s.region)}">${escapeHtml(s.region || '')}</span></td>
+      <td><span class="badge ${regionClass(s.region)}">${escapeHtml((s.region||'').split(' ')[0])}</span></td>
+      <td><span class="badge cluster">${escapeHtml(s.cluster || '—')}</span></td>
       <td>${escapeHtml(s.dept || '—')}</td>
       <td>${escapeHtml(s.className || '—')}</td>
       <td>${fmt(s.activeStudents)}</td>
@@ -1532,26 +1893,62 @@ function renderSubjects() {
     </tr>`;
   }).join('');
 }
+
+/* ============================================================
+   FILTER POPULATORS
+   ============================================================ */
+function populateRegionFilter() {
+  const sel = document.getElementById('regionFilter');
+  if (!sel) return;
+  const regions = Object.keys(State.currentData.regionSummary || {});
+  sel.innerHTML = '<option value="ALL">All Regions</option>' + regions.map(r => `<option value="${escapeAttr(r)}">${escapeHtml(r)}</option>`).join('');
+  sel.value = State.filterRegion;
+}
+function populateClusterFilter() {
+  const sel = document.getElementById('clusterFilter');
+  if (!sel) return;
+  const cs = State.currentData.clusterSummary || {};
+  let clusters = Object.keys(cs);
+  if (State.filterRegion !== 'ALL') {
+    clusters = clusters.filter(c => cs[c].region === State.filterRegion);
+  }
+  clusters.sort();
+  sel.innerHTML = '<option value="">All Clusters</option>' + clusters.map(c => `<option value="${escapeAttr(c)}">${escapeHtml(c)}</option>`).join('');
+  sel.value = State.filterCluster;
+}
 function populateSchoolFilter() {
   const sel = document.getElementById('schoolFilter');
   if (!sel) return;
   let schools = (State.currentData.schools || []);
   if (State.filterRegion !== 'ALL') schools = schools.filter(s => s.region === State.filterRegion);
+  if (State.filterCluster) schools = schools.filter(s => s.cluster === State.filterCluster);
   schools = schools.map(s => s.name).sort();
-  sel.innerHTML = '<option value="">All Schools</option>' + schools.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
+  sel.innerHTML = '<option value="">All Schools</option>' + schools.map(n => `<option value="${escapeAttr(n)}">${escapeHtml(n)}</option>`).join('');
   sel.value = State.filterSchool;
 }
 function onSchoolFilter(v) {
   State.filterSchool = v;
   renderKPIs(); renderSchools(); renderTop5(); renderStudents(); renderSubjects(); renderTeachers(); renderCharts(); renderWeekComparison();
 }
+
 function showEmptyDashboard(msg) {
   const c = document.getElementById('dashboardContainer');
   if (!c) return;
   c.innerHTML = `<div class="section"><div class="empty-state"><div class="big">📭</div><p>${msg}</p></div></div>`;
   const sel = document.getElementById('schoolFilter');
   if (sel) sel.innerHTML = '<option value="">All Schools</option>';
+  const sel2 = document.getElementById('clusterFilter');
+  if (sel2) sel2.innerHTML = '<option value="">All Clusters</option>';
+  const sel3 = document.getElementById('regionFilter');
+  if (sel3) sel3.innerHTML = '<option value="ALL">All Regions</option>';
+  const sel4 = document.getElementById('topSchoolPicker');
+  if (sel4) sel4.innerHTML = '<option value="__all__">All Schools (Top 5 each)</option>';
+  updateExportButtons();
 }
+
+/* ============================================================
+   JSON EXPORT / IMPORT
+   ============================================================ */
 function exportAllWeeks() {
   const data = Store.read();
   const count = Object.keys(data.weeks).length;
@@ -1595,12 +1992,178 @@ function clearLocal() {
   showToast('🗑️ Local cleared. Reloading remote data…', 'info');
   setTimeout(() => loadRemoteData(true), 500);
 }
-function showToast(msg, kind) {
-  const t = document.getElementById('toast');
-  t.className = 'toast show ' + (kind || 'info');
-  t.innerHTML = msg;
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => t.classList.remove('show'), 6000);
+
+/* ============================================================
+   EXCEL EXPORT — available to ALL users
+   ============================================================ */
+function _schoolRowsForExcel(d, filterFn) {
+  return (d.schools || []).filter(filterFn || (() => true)).map(s => ({
+    'School': s.name, 'Region': s.region || '', 'Cluster': s.cluster || '', 'NIP': s.nip || '',
+    'Active Students': s.activeStudents || 0,
+    'Onboarded Students': s.onboardedStudents || 0,
+    'Student Engagement %': s.studentEngagement || (s.onboardedStudents ? +((s.activeStudents / s.onboardedStudents) * 100).toFixed(1) : 0),
+    'Active Teachers': s.activeTeachers || 0,
+    'Onboarded Teachers': s.onboardedTeachers || 0,
+    'Nuggets Completed': s.nuggetsCompleted || 0,
+    'Questions Answered': s.questionsAnswered || 0,
+    'Avg Nuggets / Student': s.avgNuggetsPerStudent || 0
+  }));
+}
+function _studentRowsForExcel(d) {
+  return (d.students || []).map(s => ({
+    'Rank': s.rank || '', 'Student': s.name, 'School': s.org,
+    'Region': s.region || '', 'Cluster': s.cluster || '', 'NIP': s.nip || '',
+    'Nuggets': s.nuggets || 0, 'Avg Score (%)': ((s.avgScore || 0) * 100).toFixed(1)
+  }));
+}
+function _teacherRowsForExcel(d) {
+  return (d.teachers || []).map(t => ({
+    'Teacher': t.name, 'School': t.school,
+    'Region': t.region || '', 'Cluster': t.cluster || '', 'NIP': t.nip || '',
+    'Assignments': t.assignmentsAssigned || 0
+  }));
+}
+function _subjectRowsForExcel(d) {
+  return (d.subjects || []).map(s => ({
+    'School': s.school, 'Region': s.region || '', 'Cluster': s.cluster || '',
+    'Department': s.dept || '', 'Class': s.className || '',
+    'Active Students': s.activeStudents || 0,
+    'Nuggets Completed': s.nuggetsCompleted || 0,
+    'Avg Score (%)': ((s.avgScore || 0) * 100).toFixed(1),
+    'English Nuggets': s.englishNuggets || 0,
+    'Math Nuggets': s.mathNuggets || 0,
+    'Science Nuggets': s.scienceNuggets || 0
+  }));
+}
+function _regionSummaryRows(d) {
+  const rs = d.regionSummary || {};
+  return Object.entries(rs).map(([region, s]) => ({
+    'Region': region, 'Schools': s.schoolCount || 0,
+    'Active Students': s.totalActiveStudents || 0,
+    'Onboarded Students': s.totalOnboardedStudents || 0,
+    'Student Engagement %': s.studentEngagementPct || 0,
+    'Active Teachers': s.totalActiveTeachers || 0,
+    'Onboarded Teachers': s.totalOnboardedTeachers || 0,
+    'Teacher Engagement %': s.teacherEngagementPct || 0,
+    'Nuggets': s.totalNuggets || 0, 'Questions': s.totalQuestions || 0,
+    'Avg Nuggets / Student': s.avgNuggetsPerStudent || 0
+  }));
+}
+function _clusterSummaryRows(d) {
+  const cs = d.clusterSummary || {};
+  return Object.entries(cs).map(([cluster, s]) => ({
+    'Cluster': cluster, 'NIP': s.nip || '—', 'Region': s.region || '',
+    'Schools': s.schoolCount || 0,
+    'Active Students': s.totalActiveStudents || 0,
+    'Onboarded Students': s.totalOnboardedStudents || 0,
+    'Student Engagement %': s.studentEngagementPct || 0,
+    'Active Teachers': s.totalActiveTeachers || 0,
+    'Onboarded Teachers': s.totalOnboardedTeachers || 0,
+    'Teacher Engagement %': s.teacherEngagementPct || 0,
+    'Nuggets': s.totalNuggets || 0, 'Questions': s.totalQuestions || 0,
+    'Avg Nuggets / Student': s.avgNuggetsPerStudent || 0
+  }));
+}
+function _appendSheet(wb, name, data) {
+  if (!data || !data.length) {
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([['No data']]), name.slice(0, 31));
+    return;
+  }
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(data), name.slice(0, 31));
+}
+function exportCurrentWeekToExcel() {
+  const d = State.currentData;
+  if (!d) { showGlobalToast('❌ No week loaded to export.', 'err'); return; }
+  try {
+    const wb = XLSX.utils.book_new();
+    const s = d.summary || {};
+    const summary = [
+      ['Week', d.label || d.id], ['Week ID', d.id || ''], ['Date', d.date || ''],
+      ['Schools Reporting', (d.schools||[]).length],
+      ['Active Students', s.totalActiveStudents || 0],
+      ['Onboarded Students', s.totalOnboardedStudents || 0],
+      ['Student Engagement %', s.studentEngagementPct || 0],
+      ['Active Teachers', s.totalActiveTeachers || 0],
+      ['Onboarded Teachers', s.totalOnboardedTeachers || 0],
+      ['Teacher Engagement %', s.teacherEngagementPct || 0],
+      ['Total Nuggets', s.totalNuggets || 0],
+      ['Total Questions', s.totalQuestions || 0],
+      ['Avg Nuggets / Student', s.avgNuggetsPerStudent || 0],
+      ['Avg Questions / Student', s.avgQuestionsPerStudent || 0]
+    ];
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summary), 'Summary');
+    _appendSheet(wb, 'Schools', _schoolRowsForExcel(d));
+    _appendSheet(wb, 'Students', _studentRowsForExcel(d));
+    _appendSheet(wb, 'Teachers', _teacherRowsForExcel(d));
+    _appendSheet(wb, 'Subjects', _subjectRowsForExcel(d));
+    _appendSheet(wb, 'Region Summary', _regionSummaryRows(d));
+    _appendSheet(wb, 'Cluster Summary', _clusterSummaryRows(d));
+    const fname = `dashboard_${(d.label || d.id || 'week').replace(/[^\w-]+/g,'_')}.xlsx`;
+    XLSX.writeFile(wb, fname);
+    showGlobalToast(`✅ Excel exported: <strong>${escapeHtml(fname)}</strong>`, 'ok');
+  } catch (err) {
+    console.error(err);
+    showGlobalToast('❌ Excel export failed: ' + escapeHtml(err.message), 'err');
+  }
+}
+function exportAllWeeksToExcel() {
+  const data = Store.read();
+  const ids = Object.keys(data.weeks || {});
+  if (!ids.length) { showGlobalToast('❌ No weeks to export.', 'err'); return; }
+  try {
+    const wb = XLSX.utils.book_new();
+    const weeksSummary = ids.sort((a,b) => (data.weeks[b].date||'').localeCompare(data.weeks[a].date||'')).map(id => {
+      const w = data.weeks[id]; const s = w.summary || {};
+      return {
+        'Week ID': id, 'Label': w.label || '', 'Date': w.date || '',
+        'Schools': (w.schools||[]).length,
+        'Active Students': s.totalActiveStudents || 0,
+        'Onboarded Students': s.totalOnboardedStudents || 0,
+        'Student Engagement %': s.studentEngagementPct || 0,
+        'Active Teachers': s.totalActiveTeachers || 0,
+        'Nuggets': s.totalNuggets || 0, 'Questions': s.totalQuestions || 0
+      };
+    });
+    _appendSheet(wb, 'All Weeks Summary', weeksSummary);
+
+    ids.slice().reverse().forEach(id => {
+      const w = data.weeks[id];
+      const tag = (w.label || id).replace(/[^\w-]+/g,'_').slice(0,20);
+      _appendSheet(wb, `Schools ${tag}`, _schoolRowsForExcel(w));
+      _appendSheet(wb, `Cluster ${tag}`, _clusterSummaryRows(w));
+    });
+
+    const allStudents = [];
+    ids.forEach(id => {
+      const w = data.weeks[id];
+      (w.students||[]).forEach(s => allStudents.push({
+        'Week': w.label || id, 'Date': w.date || '',
+        'Rank': s.rank || '', 'Student': s.name, 'School': s.org,
+        'Region': s.region || '', 'Cluster': s.cluster || '', 'NIP': s.nip || '',
+        'Nuggets': s.nuggets || 0, 'Avg Score (%)': ((s.avgScore || 0) * 100).toFixed(1)
+      }));
+    });
+    _appendSheet(wb, 'All Students', allStudents);
+
+    const allTeachers = [];
+    ids.forEach(id => {
+      const w = data.weeks[id];
+      (w.teachers||[]).forEach(t => allTeachers.push({
+        'Week': w.label || id, 'Date': w.date || '',
+        'Teacher': t.name, 'School': t.school,
+        'Region': t.region || '', 'Cluster': t.cluster || '', 'NIP': t.nip || '',
+        'Assignments': t.assignmentsAssigned || 0
+      }));
+    });
+    _appendSheet(wb, 'All Teachers', allTeachers);
+
+    const fname = `dashboard_all_weeks_${new Date().toISOString().slice(0,10)}.xlsx`;
+    XLSX.writeFile(wb, fname);
+    showGlobalToast(`✅ Excel exported: <strong>${escapeHtml(fname)}</strong>`, 'ok');
+  } catch (err) {
+    console.error(err);
+    showGlobalToast('❌ Excel export failed: ' + escapeHtml(err.message), 'err');
+  }
 }
 </script>
 </body>
