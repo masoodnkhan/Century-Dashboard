@@ -284,7 +284,8 @@ tbody tr:hover{background:#f8fafc}
    CONFIG
    ============================================================ */
 const REMOTE_DATA_URL = './data/weeks.json';
-const STORAGE_KEY = 'schoolDash.weeks.v14';
+// STORAGE_KEY bumped to v16 to force invalidate old cached clusters
+const STORAGE_KEY = 'schoolDash.weeks.v16'; 
 const ADMIN_PASSWORD = 'century2026';
 
 Chart.register(ChartDataLabels);
@@ -314,7 +315,7 @@ const State = {
 };
 
 /* ============================================================
-   NIP CLUSTER MAP
+   NIP CLUSTER MAP (Strictly follows Excel 20-10-2026)
    ============================================================ */
 const CLUSTER_MAP = (() => {
   const map = {};
@@ -323,31 +324,40 @@ const CLUSTER_MAP = (() => {
       map[c.toUpperCase()] = { cluster, nip, region };
     });
   };
+
+  /* CENTRAL (CR 13-10-26) */
   add('C002 C007 C011 C027 C028 C053', 'Indus', 'Rukhsana Tariq', 'Central (Punjab)');
-  add('C010 C020 C021 C041 C043 C052', 'Panjnad', 'Shaista Fareed', 'Central (Punjab)');
+  add('C010 C020 C021 C041 C043 C052', 'Panjnad', 'Shaista Farid', 'Central (Punjab)');
   add('C032 C033 C034 C035 C046 C047 C054', 'Sutlej', 'Faisal Yazdani', 'Central (Punjab)');
   add('C036 C037 C038 C039 C040', 'Beas', 'Ameer Umar', 'Central (Punjab)');
   add('C014 C030 C031 C044 C045 C055', 'Rohtas', 'Qanita Obaid', 'Central (Punjab)');
   add('C004 C017 C018 C019 C022 C023 C024', 'Lyallpur', 'Imran Shahid (RGM)', 'Central (Punjab)');
   add('C001 C003 C009 C012 C016', 'Aibak', 'Saima Haroon', 'Central (Punjab)');
-  add('C025', 'Jhelum', 'Hassan Raza Faisal', 'Central (Punjab)');
+
+  /* SOUTH (SR 21-10-26) */
   add('S031 S079 S020 S021 S022', 'Karachi I', 'Bushra Afaq', 'South (Sindh/Balochistan)');
-  add('S001 S002 S025 S038 S039 S037 S071', 'Karachi II', 'Sabrina Altaf', 'South (Sindh/Balochistan)');
-  add('S014 S016 S012 S023 S013 S008 S011 S007 S070 S082 S084 S010 S027 S032 S003 S024 S036 S004 S035',
-      'Karachi III', 'Khizra Yasin / Rehana Afzal', 'South (Sindh/Balochistan)');
-  add('S063 S064 S065 S066 S080 S067', 'Bolan', 'Tazeen Ahad (ARD)', 'South (Sindh/Balochistan)');
+  add('S001 S014 S016 S023 S036 S037 S039 S082', 'Karachi II', 'Sabrina Altaf', 'South (Sindh/Balochistan)');
+  add('S002 S003 S004 S007 S008 S010 S011 S012 S013 S024 S025 S027 S032 S035 S038 S070 S071 S084',
+      'Karachi III', 'Rehana Afzal (ADO)', 'South (Sindh/Balochistan)');
+  add('S063 S064 S065 S066 S067', 'Bolan', 'Tazeen Ahad (ARD)', 'South (Sindh/Balochistan)');
+  add('S080', 'Bolan', '—', 'South (Sindh/Balochistan)'); // Closed
   add('S046 S047 S048 S049 S050 S052 S053 S054 S055 S056 S073 S074 S083',
       'Lower Mehran', 'Nouman Akram', 'South (Sindh/Balochistan)');
   add('S060 S061 S062 S072 S078', 'Upper Mehran', 'Nuzhat Jabeen', 'South (Sindh/Balochistan)');
-  add('N004 N008 N010 N015 N016 N020 N035 N043 N054 N055 N060',
+
+  /* NORTH (NR 20-10-26) */
+  // UPDATED: Jhelum N065 and legacy C025 moved to Pothohar
+  add('N009 N013 N019 N030 N033 N054 N055 N056 N063 N065 C025',
+      'Pothohar', 'Nauman Jan', 'North (KPK/Islamabad)');
+  add('N064', 'Pothohar', 'Sumaira Tauseef', 'North (KPK/Islamabad)'); // Missing in latest sheet, keeping
+  add('N004 N008 N010 N015 N020 N035 N037 N038 N043',
       'Margalla', 'Azra Tahir', 'North (KPK/Islamabad)');
   add('N012 N017 N021 N022 N028 N029 N040 N045',
       'Khyber', 'Mehwish Shaukat', 'North (KPK/Islamabad)');
-  add('N002 N003 N007 N046 N056 N064', 'Pothohar', 'Sumaira Tauseef', 'North (KPK/Islamabad)');
-  add('N001 N014 N024 N026 N033 N034 N039 N044 N050 N052',
+  add('N002 N003 N007 N016 N036 N046 N060', 'Kohsar', 'Sumaira Tauseef', 'North (KPK/Islamabad)');
+  add('N001 N014 N024 N026 N034 N039 N044 N050 N052',
       'Abaseen', 'Murad Khattak', 'North (KPK/Islamabad)');
-  add('N009 N013 N019 N030 N036 N037 N038 N063',
-      'Kohsar', 'Nauman Jan', 'North (KPK/Islamabad)');
+
   return map;
 })();
 
@@ -584,8 +594,8 @@ function deriveRegion(schoolName) {
     if (m[1] === 'S') return 'South (Sindh/Balochistan)';
   }
   if (/KARACHI|HYDERABAD|QUETTA|SUKKUR|SINDH|BALOCHISTAN|THATTA|MIRPUR|LARKANA|JACOBABAD|KHAIRPUR|NAWABSHAH/.test(s)) return 'South (Sindh/Balochistan)';
-  if (/ISLAMABAD|PESHAWAR|NOWSHERA|MARDAN|SWABI|ABBOTTABAD|MIANWALI|ATTOCK|WAH|KOHAT|BANNU|KPK|ISD|RWP|SWAT/.test(s)) return 'North (KPK/Islamabad)';
-  if (/LAHORE|LHR|FSD|FAISALABAD|MULTAN|SIALKOT|GUJRAT|GUJRANWALA|SARGODHA|SAHIWAL|OKARA|JHANG|VEHARI|BUREWALA|BAHAWALPUR|KHANEWAL|RAHIM|PARCO|KAPCO|ARIFWALA|JHELUM|KASUR|CHAKWAL/.test(s)) return 'Central (Punjab)';
+  if (/ISLAMABAD|PESHAWAR|NOWSHERA|MARDAN|SWABI|ABBOTTABAD|MIANWALI|ATTOCK|WAH|KOHAT|BANNU|KPK|ISD|RWP|SWAT|JHELUM/.test(s)) return 'North (KPK/Islamabad)';
+  if (/LAHORE|LHR|FSD|FAISALABAD|MULTAN|SIALKOT|GUJRAT|GUJRANWALA|SARGODHA|SAHIWAL|OKARA|JHANG|VEHARI|BUREWALA|BAHAWALPUR|KHANEWAL|RAHIM|PARCO|KAPCO|ARIFWALA|KASUR|CHAKWAL/.test(s)) return 'Central (Punjab)';
   return 'Other';
 }
 function regionClass(r) {
@@ -849,12 +859,16 @@ function switchWeek(id) { if (id) loadWeek(id); }
 function loadWeek(id) {
   const week = State.store.weeks[id];
   if (!week) return showEmptyDashboard('Week not found: ' + id);
-  (week.schools||[]).forEach(s => { const ci = getClusterInfo(s.name); if (!s.region) s.region = ci.region; if (!s.cluster) s.cluster = ci.cluster; if (!s.nip) s.nip = ci.nip; });
-  (week.students||[]).forEach(s => { const ci = getClusterInfo(s.org); if (!s.region) s.region = ci.region; if (!s.cluster) s.cluster = ci.cluster; if (!s.nip) s.nip = ci.nip; });
-  (week.subjects||[]).forEach(s => { const ci = getClusterInfo(s.school); if (!s.region) s.region = ci.region; if (!s.cluster) s.cluster = ci.cluster; });
-  (week.teachers||[]).forEach(t => { const ci = getClusterInfo(t.school); if (!t.region) t.region = ci.region; if (!t.cluster) t.cluster = ci.cluster; if (!t.nip) t.nip = ci.nip; });
-  if (!week.regionSummary) week.regionSummary = buildRegionSummary(week.schools||[]);
-  if (!week.clusterSummary) week.clusterSummary = buildClusterSummary(week.schools||[]);
+  
+  // STRICTLY OVERWRITE region, cluster, nip on every load to reflect updated Excel map
+  (week.schools||[]).forEach(s => { const ci = getClusterInfo(s.name); s.region = ci.region; s.cluster = ci.cluster; s.nip = ci.nip; });
+  (week.students||[]).forEach(s => { const ci = getClusterInfo(s.org); s.region = ci.region; s.cluster = ci.cluster; s.nip = ci.nip; });
+  (week.subjects||[]).forEach(s => { const ci = getClusterInfo(s.school); s.region = ci.region; s.cluster = ci.cluster; });
+  (week.teachers||[]).forEach(t => { const ci = getClusterInfo(t.school); t.region = ci.region; t.cluster = ci.cluster; t.nip = ci.nip; });
+  
+  // Rebuild summaries to match forced updates
+  week.regionSummary = buildRegionSummary(week.schools||[]);
+  week.clusterSummary = buildClusterSummary(week.schools||[]);
 
   const allWeeks = Object.values(State.store.weeks)
     .filter(w => w.date && w.date < (week.date||''))
@@ -1994,7 +2008,7 @@ function clearLocal() {
 }
 
 /* ============================================================
-   EXCEL EXPORT — available to ALL users
+   EXCEL EXPORT
    ============================================================ */
 function _schoolRowsForExcel(d, filterFn) {
   return (d.schools || []).filter(filterFn || (() => true)).map(s => ({
