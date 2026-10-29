@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<!-- ADDED: localForage for unlimited IndexedDB storage -->
+<!-- localForage for unlimited IndexedDB storage -->
 <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
 <style>
 :root{
@@ -286,22 +286,16 @@ tbody tr:hover{background:#f8fafc}
    CONFIG
    ============================================================ */
 const REMOTE_DATA_URL = './data/weeks.json';
-// STORAGE_KEY bumped to v17 to force invalidate old cached clusters
 const STORAGE_KEY = 'schoolDash.weeks.v17'; 
 const ADMIN_PASSWORD = 'century2026';
 
-// Initialize localForage to use IndexedDB instead of limited localStorage
-localforage.config({
-  name: 'SchoolDashboard',
-  storeName: 'weeks_store'
-});
+localforage.config({ name: 'SchoolDashboard', storeName: 'weeks_store' });
 
 Chart.register(ChartDataLabels);
 Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
 Chart.defaults.font.size = 11;
 Chart.defaults.color = '#64748b';
 
-// Replaced localStorage with localForage (IndexedDB) to bypass 5MB quota
 const Store = {
   async read() { 
     try { 
@@ -312,16 +306,10 @@ const Store = {
     } 
   },
   async write(d) { 
-    try {
-      await localforage.setItem(STORAGE_KEY, d); 
-    } catch (err) {
-      console.error('Failed to write to IndexedDB', err);
-      showGlobalToast('❌ Storage failed. Browser may be full.', 'err');
-    }
+    try { await localforage.setItem(STORAGE_KEY, d); } 
+    catch (err) { console.error('Write failed', err); showGlobalToast('❌ Storage failed.', 'err'); }
   },
-  async removeAll() { 
-    await localforage.removeItem(STORAGE_KEY); 
-  }
+  async removeAll() { await localforage.removeItem(STORAGE_KEY); }
 };
 
 const State = {
@@ -339,7 +327,7 @@ const State = {
 };
 
 /* ============================================================
-   NIP CLUSTER MAP (Strictly follows Excel 20-10-2026)
+   NIP CLUSTER MAP
    ============================================================ */
 const CLUSTER_MAP = (() => {
   const map = {};
@@ -348,8 +336,6 @@ const CLUSTER_MAP = (() => {
       map[c.toUpperCase()] = { cluster, nip, region };
     });
   };
-
-  /* CENTRAL (CR 13-10-26) */
   add('C002 C007 C011 C027 C028 C053', 'Indus', 'Rukhsana Tariq', 'Central (Punjab)');
   add('C010 C020 C021 C041 C043 C052', 'Panjnad', 'Shaista Farid', 'Central (Punjab)');
   add('C032 C033 C034 C035 C046 C047 C054', 'Sutlej', 'Faisal Yazdani', 'Central (Punjab)');
@@ -358,28 +344,22 @@ const CLUSTER_MAP = (() => {
   add('C004 C017 C018 C019 C022 C023 C024', 'Lyallpur', 'Imran Shahid (RGM)', 'Central (Punjab)');
   add('C001 C003 C009 C012 C016', 'Aibak', 'Saima Haroon', 'Central (Punjab)');
 
-  /* SOUTH (SR 21-10-26) */
   add('S031 S079 S020 S021 S022', 'Karachi I', 'Bushra Afaq', 'South (Sindh/Balochistan)');
   add('S001 S014 S016 S023 S036 S037 S039 S082', 'Karachi II', 'Sabrina Altaf', 'South (Sindh/Balochistan)');
   add('S002 S003 S004 S007 S008 S010 S011 S012 S013 S024 S025 S027 S032 S035 S038 S070 S071 S084',
       'Karachi III', 'Rehana Afzal (ADO)', 'South (Sindh/Balochistan)');
   add('S063 S064 S065 S066 S067', 'Bolan', 'Tazeen Ahad (ARD)', 'South (Sindh/Balochistan)');
-  add('S080', 'Bolan', '—', 'South (Sindh/Balochistan)'); // Closed
+  add('S080', 'Bolan', '—', 'South (Sindh/Balochistan)');
   add('S046 S047 S048 S049 S050 S052 S053 S054 S055 S056 S073 S074 S083',
       'Lower Mehran', 'Nouman Akram', 'South (Sindh/Balochistan)');
   add('S060 S061 S062 S072 S078', 'Upper Mehran', 'Nuzhat Jabeen', 'South (Sindh/Balochistan)');
 
-  /* NORTH (NR 20-10-26) */
-  add('N009 N013 N019 N030 N033 N054 N055 N056 N063 N065 C025',
-      'Pothohar', 'Nauman Jan', 'North (KPK/Islamabad)');
+  add('N009 N013 N019 N030 N033 N054 N055 N056 N063 N065 C025', 'Pothohar', 'Nauman Jan', 'North (KPK/Islamabad)');
   add('N064', 'Pothohar', 'Sumaira Tauseef', 'North (KPK/Islamabad)');
-  add('N004 N008 N010 N015 N020 N035 N037 N038 N043',
-      'Margalla', 'Azra Tahir', 'North (KPK/Islamabad)');
-  add('N012 N017 N021 N022 N028 N029 N040 N045',
-      'Khyber', 'Mehwish Shaukat', 'North (KPK/Islamabad)');
+  add('N004 N008 N010 N015 N020 N035 N037 N038 N043', 'Margalla', 'Azra Tahir', 'North (KPK/Islamabad)');
+  add('N012 N017 N021 N022 N028 N029 N040 N045', 'Khyber', 'Mehwish Shaukat', 'North (KPK/Islamabad)');
   add('N002 N003 N007 N016 N036 N046 N060', 'Kohsar', 'Sumaira Tauseef', 'North (KPK/Islamabad)');
-  add('N001 N014 N024 N026 N034 N039 N044 N050 N052',
-      'Abaseen', 'Murad Khattak', 'North (KPK/Islamabad)');
+  add('N001 N014 N024 N026 N034 N039 N044 N050 N052', 'Abaseen', 'Murad Khattak', 'North (KPK/Islamabad)');
 
   return map;
 })();
@@ -391,7 +371,7 @@ function enableAdmin() {
   if (State.isAdmin) return;
   const pwd = prompt('🔐 Enter admin password:');
   if (pwd === null) return;
-  if (pwd !== ADMIN_PASSWORD) { alert('❌ Incorrect password. Admin mode not enabled.'); return; }
+  if (pwd !== ADMIN_PASSWORD) { alert('❌ Incorrect password.'); return; }
   State.isAdmin = true;
   document.getElementById('adminBanner').classList.add('show');
   document.getElementById('uploadPanel').classList.add('show');
@@ -419,8 +399,7 @@ document.addEventListener('keydown', e => {
    ============================================================ */
 async function toggleDiagnostics() {
   const panel = document.getElementById('diagPanel');
-  const shown = panel.classList.contains('show');
-  if (shown) { panel.classList.remove('show'); return; }
+  if (panel.classList.contains('show')) { panel.classList.remove('show'); return; }
   await renderDiagnostics();
   panel.classList.add('show');
   panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -511,10 +490,7 @@ async function renderDiagnostics() {
     </div>
   `;
 }
-async function refreshDiagnostics() { 
-  State.store = await Store.read(); 
-  await renderDiagnostics(); 
-}
+async function refreshDiagnostics() { State.store = await Store.read(); await renderDiagnostics(); }
 async function deleteWeek(id) {
   if (!confirm(`Delete "${id}" from the LOCAL cache? GitHub is untouched until you Publish.`)) return;
   const d = await Store.read();
@@ -525,9 +501,7 @@ async function deleteWeek(id) {
   }
   await Store.write(d); 
   State.store = d;
-  populateWeekSelect(); 
-  await renderDiagnostics(); 
-  updateExportButtons();
+  populateWeekSelect(); await renderDiagnostics(); updateExportButtons();
   showGlobalToast(`🗑️ Deleted "${id}". Click 🚀 Publish to GitHub to sync.`, 'info');
 }
 
@@ -890,13 +864,11 @@ function loadWeek(id) {
   const week = State.store.weeks[id];
   if (!week) return showEmptyDashboard('Week not found: ' + id);
   
-  // STRICTLY OVERWRITE region, cluster, nip on every load to reflect updated Excel map
   (week.schools||[]).forEach(s => { const ci = getClusterInfo(s.name); s.region = ci.region; s.cluster = ci.cluster; s.nip = ci.nip; });
   (week.students||[]).forEach(s => { const ci = getClusterInfo(s.org); s.region = ci.region; s.cluster = ci.cluster; s.nip = ci.nip; });
   (week.subjects||[]).forEach(s => { const ci = getClusterInfo(s.school); s.region = ci.region; s.cluster = ci.cluster; });
   (week.teachers||[]).forEach(t => { const ci = getClusterInfo(t.school); t.region = ci.region; t.cluster = ci.cluster; t.nip = ci.nip; });
   
-  // Rebuild summaries to match forced updates
   week.regionSummary = buildRegionSummary(week.schools||[]);
   week.clusterSummary = buildClusterSummary(week.schools||[]);
 
@@ -1757,7 +1729,15 @@ function renderWeekComparison() {
     options:{ responsive:true, maintainAspectRatio:false,
       interaction:{mode:'index', intersect:false},
       plugins:{ legend:{position:'top', labels:{boxWidth:12, font:{size:11}}},
-        datalabels:{ display: ctx => ctx.datasetIndex === 1, align:'top', anchor:'end', color:'#065f46', font:{weight:'700', size:9}, formatter: v => v ? v.toFixed(1) + '%' : '' },
+        // UPDATED DATALABELS: Shows values for both Student Engagement % and Teacher Engagement %
+        datalabels:{ 
+          display: ctx => ctx.dataset.label.includes('%'), 
+          align:'top', 
+          anchor:'end', 
+          color: ctx => ctx.datasetIndex === 1 ? '#065f46' : '#6d28d9', 
+          font:{weight:'700', size:9}, 
+          formatter: v => v != null ? v.toFixed(1) + '%' : '' 
+        },
         tooltip:{callbacks:{label: ctx => { const v = ctx.parsed.y; return ctx.dataset.label.includes('%') ? `${ctx.dataset.label}: ${v}%` : `${ctx.dataset.label}: ${fmt(v)}`; }}} },
       scales:{ y:{type:'linear', position:'left', beginAtZero:true, title:{display:true, text:'Count'}, grid:{color:'#f1f5f9'}},
         y1:{type:'linear', position:'right', beginAtZero:true, max:100, title:{display:true, text:'Engagement %'}, grid:{drawOnChartArea:false}, ticks:{callback: v => v + '%'}} } }
