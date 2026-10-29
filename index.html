@@ -7,6 +7,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<!-- ADDED: localForage for unlimited IndexedDB storage -->
+<script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
 <style>
 :root{
   --primary:#4361ee;--secondary:#3f37c9;--dark:#0f172a;--text:#1e293b;--muted:#64748b;
@@ -284,20 +286,42 @@ tbody tr:hover{background:#f8fafc}
    CONFIG
    ============================================================ */
 const REMOTE_DATA_URL = './data/weeks.json';
-// STORAGE_KEY bumped to v16 to force invalidate old cached clusters
-const STORAGE_KEY = 'schoolDash.weeks.v16'; 
+// STORAGE_KEY bumped to v17 to force invalidate old cached clusters
+const STORAGE_KEY = 'schoolDash.weeks.v17'; 
 const ADMIN_PASSWORD = 'century2026';
+
+// Initialize localForage to use IndexedDB instead of limited localStorage
+localforage.config({
+  name: 'SchoolDashboard',
+  storeName: 'weeks_store'
+});
 
 Chart.register(ChartDataLabels);
 Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
 Chart.defaults.font.size = 11;
 Chart.defaults.color = '#64748b';
 
+// Replaced localStorage with localForage (IndexedDB) to bypass 5MB quota
 const Store = {
-  read() { try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : { weeks:{}, latest:null }; } catch { return { weeks:{}, latest:null }; } },
-  write(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); },
-  addWeek(id, wk) { const d = this.read(); d.weeks[id] = wk; d.latest = id; this.write(d); },
-  removeAll() { localStorage.removeItem(STORAGE_KEY); }
+  async read() { 
+    try { 
+      const data = await localforage.getItem(STORAGE_KEY); 
+      return data || { weeks:{}, latest:null }; 
+    } catch { 
+      return { weeks:{}, latest:null }; 
+    } 
+  },
+  async write(d) { 
+    try {
+      await localforage.setItem(STORAGE_KEY, d); 
+    } catch (err) {
+      console.error('Failed to write to IndexedDB', err);
+      showGlobalToast('❌ Storage failed. Browser may be full.', 'err');
+    }
+  },
+  async removeAll() { 
+    await localforage.removeItem(STORAGE_KEY); 
+  }
 };
 
 const State = {
@@ -346,10 +370,9 @@ const CLUSTER_MAP = (() => {
   add('S060 S061 S062 S072 S078', 'Upper Mehran', 'Nuzhat Jabeen', 'South (Sindh/Balochistan)');
 
   /* NORTH (NR 20-10-26) */
-  // UPDATED: Jhelum N065 and legacy C025 moved to Pothohar
   add('N009 N013 N019 N030 N033 N054 N055 N056 N063 N065 C025',
       'Pothohar', 'Nauman Jan', 'North (KPK/Islamabad)');
-  add('N064', 'Pothohar', 'Sumaira Tauseef', 'North (KPK/Islamabad)'); // Missing in latest sheet, keeping
+  add('N064', 'Pothohar', 'Sumaira Tauseef', 'North (KPK/Islamabad)');
   add('N004 N008 N010 N015 N020 N035 N037 N038 N043',
       'Margalla', 'Azra Tahir', 'North (KPK/Islamabad)');
   add('N012 N017 N021 N022 N028 N029 N040 N045',
@@ -394,15 +417,16 @@ document.addEventListener('keydown', e => {
 /* ============================================================
    DIAGNOSTICS
    ============================================================ */
-function toggleDiagnostics() {
+async function toggleDiagnostics() {
   const panel = document.getElementById('diagPanel');
   const shown = panel.classList.contains('show');
   if (shown) { panel.classList.remove('show'); return; }
-  renderDiagnostics();
+  await renderDiagnostics();
   panel.classList.add('show');
   panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-function renderDiagnostics() {
+
+async function renderDiagnostics() {
   const el = document.getElementById('diagContent');
   if (!el) return;
   const weeks = State.store.weeks || {};
@@ -487,17 +511,23 @@ function renderDiagnostics() {
     </div>
   `;
 }
-function refreshDiagnostics() { State.store = Store.read(); renderDiagnostics(); }
-function deleteWeek(id) {
+async function refreshDiagnostics() { 
+  State.store = await Store.read(); 
+  await renderDiagnostics(); 
+}
+async function deleteWeek(id) {
   if (!confirm(`Delete "${id}" from the LOCAL cache? GitHub is untouched until you Publish.`)) return;
-  const d = Store.read();
+  const d = await Store.read();
   delete d.weeks[id];
   if (d.latest === id) {
     const remaining = Object.keys(d.weeks);
     d.latest = remaining.length ? remaining.sort((a,b) => (d.weeks[b].date||'').localeCompare(d.weeks[a].date||''))[0] : null;
   }
-  Store.write(d); State.store = d;
-  populateWeekSelect(); renderDiagnostics(); updateExportButtons();
+  await Store.write(d); 
+  State.store = d;
+  populateWeekSelect(); 
+  await renderDiagnostics(); 
+  updateExportButtons();
   showGlobalToast(`🗑️ Deleted "${id}". Click 🚀 Publish to GitHub to sync.`, 'info');
 }
 
@@ -525,7 +555,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadRemoteData(silent) {
-  const local = Store.read();
+  const local = await Store.read();
   let remote = null;
   try {
     const res = await fetch(REMOTE_DATA_URL + '?t=' + Date.now());
@@ -541,7 +571,7 @@ async function loadRemoteData(silent) {
   else merged = local;
 
   State.store = merged;
-  if (remote) Store.write(merged);
+  if (remote) await Store.write(merged);
   populateWeekSelect();
 
   const weeks = Object.keys(merged.weeks);
@@ -555,7 +585,7 @@ async function loadRemoteData(silent) {
     document.getElementById('lastUpdated').textContent = 'No data';
     document.getElementById('statusDot').className = 'dot warn';
   }
-  if (document.getElementById('diagPanel').classList.contains('show')) renderDiagnostics();
+  if (document.getElementById('diagPanel').classList.contains('show')) await renderDiagnostics();
   updateExportButtons();
 }
 
@@ -738,10 +768,10 @@ async function processUpload() {
     const clusterSummary = buildClusterSummary(stats);
     const weekObj = { id: weekId, label: weekLabel, date: weekDate, summary, regionSummary, clusterSummary, students: top, schools: stats, subjects, teachers, uploadedAt: new Date().toISOString() };
 
-    const local = Store.read();
+    const local = await Store.read();
     local.weeks[weekId] = weekObj;
     local.latest = weekId;
-    Store.write(local);
+    await Store.write(local);
     State.store = { weeks: { ...State.store.weeks, [weekId]: weekObj }, latest: weekId };
 
     toast.className = 'toast show ok';
@@ -757,7 +787,7 @@ async function processUpload() {
     populateWeekSelect();
     loadWeek(weekId);
 
-    if (document.getElementById('diagPanel').classList.contains('show')) renderDiagnostics();
+    if (document.getElementById('diagPanel').classList.contains('show')) await renderDiagnostics();
     updateExportButtons();
   } catch (err) {
     console.error(err);
@@ -769,9 +799,9 @@ async function processUpload() {
   }
 }
 
-function publishToGitHub() {
+async function publishToGitHub() {
   const toast = document.getElementById('toast');
-  const local = Store.read();
+  const local = await Store.read();
   const count = Object.keys(local.weeks).length;
   if (!count) { toast.className = 'toast show err'; toast.innerHTML = '❌ Nothing to publish.'; return; }
   const blob = new Blob([JSON.stringify(local, null, 2)], { type:'application/json' });
@@ -1963,8 +1993,8 @@ function showEmptyDashboard(msg) {
 /* ============================================================
    JSON EXPORT / IMPORT
    ============================================================ */
-function exportAllWeeks() {
-  const data = Store.read();
+async function exportAllWeeks() {
+  const data = await Store.read();
   const count = Object.keys(data.weeks).length;
   if (!count) { showToast('No weeks to export.', 'info'); return; }
   const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
@@ -1974,18 +2004,18 @@ function exportAllWeeks() {
   showToast(`✅ Exported ${count} week(s).`, 'ok');
 }
 function importWeeks() { document.getElementById('importFile').click(); }
-function handleImport(e) {
+async function handleImport(e) {
   const f = e.target.files[0];
   if (!f) return;
   const reader = new FileReader();
-  reader.onload = ev => {
+  reader.onload = async ev => {
     try {
       const imported = JSON.parse(ev.target.result);
       if (!imported.weeks || typeof imported.weeks !== 'object') throw new Error('Invalid format');
-      const current = Store.read();
+      const current = await Store.read();
       const merged = { ...current.weeks, ...imported.weeks };
       const latest = imported.latest || current.latest;
-      Store.write({ weeks: merged, latest });
+      await Store.write({ weeks: merged, latest });
       State.store = { weeks: merged, latest };
       populateWeekSelect();
       const id = latest || Object.keys(merged)[0];
@@ -1996,9 +2026,9 @@ function handleImport(e) {
   reader.readAsText(f);
   e.target.value = '';
 }
-function clearLocal() {
+async function clearLocal() {
   if (!confirm('Delete the LOCAL cache on this browser? Remote weeks.json is not affected.')) return;
-  Store.removeAll();
+  await Store.removeAll();
   State.store = { weeks:{}, latest:null };
   State.currentData = null;
   populateWeekSelect();
@@ -2120,8 +2150,8 @@ function exportCurrentWeekToExcel() {
     showGlobalToast('❌ Excel export failed: ' + escapeHtml(err.message), 'err');
   }
 }
-function exportAllWeeksToExcel() {
-  const data = Store.read();
+async function exportAllWeeksToExcel() {
+  const data = await Store.read();
   const ids = Object.keys(data.weeks || {});
   if (!ids.length) { showGlobalToast('❌ No weeks to export.', 'err'); return; }
   try {
