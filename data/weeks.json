@@ -461871,8 +461871,5009 @@
           "cluster": "Karachi III"
         }
       ],
-      "teachers": [],
-      "uploadedAt": "2026-11-16T04:09:01.173Z"
+      "teachers": [
+        {
+          "school": "S078 - Jacobabad",
+          "name": "Zarmeen Afsheen",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S078 - Jacobabad",
+          "name": "S078 Admin1",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S078 - Jacobabad",
+          "name": "Kainat Fatima",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S078 - Jacobabad",
+          "name": "Quratulain T",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S078 - Jacobabad",
+          "name": "Sugand Khurana",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "N013 - TCS DHA Campus ISD",
+          "name": "Admin1 N013",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N013 - TCS DHA Campus ISD",
+          "name": "Sadia Mudassir",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N013 - TCS DHA Campus ISD",
+          "name": "Samina Tabbasum",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N013 - TCS DHA Campus ISD",
+          "name": "Muhammad Umair Iqbal",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N013 - TCS DHA Campus ISD",
+          "name": "Mashal Rizvi",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "S063 - TCN Quetta Cantt",
+          "name": "Hajira Amin",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S063 - TCN Quetta Cantt",
+          "name": "Mahreen Ali",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S063 - TCN Quetta Cantt",
+          "name": "Fariha Fatima",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S063 - TCN Quetta Cantt",
+          "name": "Mohadisa Batool",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S063 - TCN Quetta Cantt",
+          "name": "Tehreem Anwar",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S082 - Gulistan-e-Johar Uni Rd Branch",
+          "name": "Maidah Baig",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S082 - Gulistan-e-Johar Uni Rd Branch",
+          "name": "Gul Rukh Khan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S061 - Larkana Campus",
+          "name": "Admin1 S061",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S061 - Larkana Campus",
+          "name": "Hassan Raza",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S061 - Larkana Campus",
+          "name": "Asia Perveen",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S061 - Larkana Campus",
+          "name": "Mehar Un Nisa",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S061 - Larkana Campus",
+          "name": "Erum Erum",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S066 - Quetta II",
+          "name": "Shazia Tareen",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S066 - Quetta II",
+          "name": "S066 Admin1",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S066 - Quetta II",
+          "name": "Bushra Shahzad",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S066 - Quetta II",
+          "name": "Tania Saeed",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S066 - Quetta II",
+          "name": "Sania Tariq",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S031 - NN Boys Campus Karachi",
+          "name": "Admin1 S031",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S031 - NN Boys Campus Karachi",
+          "name": "Fouzia Saleem",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S031 - NN Boys Campus Karachi",
+          "name": "Sehrish Fatima Rizvi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S031 - NN Boys Campus Karachi",
+          "name": "ZAKIA AMIR",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S031 - NN Boys Campus Karachi",
+          "name": "Wajeeha Jabeen Baig",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "C023 - TCS FSD Jr. Branch",
+          "name": "Admin1 C023",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C023 - TCS FSD Jr. Branch",
+          "name": "Mehwish Anthony",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C023 - TCS FSD Jr. Branch",
+          "name": "Anam Munir",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C023 - TCS FSD Jr. Branch",
+          "name": "Khalil Ahmed Shahzad",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C023 - TCS FSD Jr. Branch",
+          "name": "Shams-e-Bazigha Shireen",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C040 - TCS PARCO",
+          "name": "Admin1 C040",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C038 - D.G Khan Civil Lines",
+          "name": "Hifza Batool",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C038 - D.G Khan Civil Lines",
+          "name": "Arika Siddiqui",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C038 - D.G Khan Civil Lines",
+          "name": "C038 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C038 - D.G Khan Civil Lines",
+          "name": "SHAGUFTA ANJUM",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "S052 - Liaqat Campus Khosar",
+          "name": "Admin1 S052",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S052 - Liaqat Campus Khosar",
+          "name": "Lavinia Michell",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S052 - Liaqat Campus Khosar",
+          "name": "Faisal Karim",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S052 - Liaqat Campus Khosar",
+          "name": "Ruby Anis",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S052 - Liaqat Campus Khosar",
+          "name": "Kainat M Khan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S036 - TCS KAECHS Jr Karachi",
+          "name": "Mariam Mariam",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S036 - TCS KAECHS Jr Karachi",
+          "name": "HINA KEHKASHAN",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S036 - TCS KAECHS Jr Karachi",
+          "name": "Bushra Furqan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S036 - TCS KAECHS Jr Karachi",
+          "name": "Admin1 S036",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "C019 - FSD Chenab Campus",
+          "name": "Admin1 C019",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C019 - FSD Chenab Campus",
+          "name": "Azka Aftab",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C019 - FSD Chenab Campus",
+          "name": "Sana Ahsan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C019 - FSD Chenab Campus",
+          "name": "Uzma Tahmeen",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "N029 - TCS Peshawar Campus",
+          "name": "Admin1 N029",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "S064 - TCS Quetta Cantt",
+          "name": "Admin1 S064",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S064 - TCS Quetta Cantt",
+          "name": "Humaira Tauqeer",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S064 - TCS Quetta Cantt",
+          "name": "Iraj Batool",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S064 - TCS Quetta Cantt",
+          "name": "Qurat Ul Ain Qurat Ul Ain",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S064 - TCS Quetta Cantt",
+          "name": "Maryam Iftikhar",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S012 - Gulshan B Campus Karachi",
+          "name": "Admin1 S012",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S012 - Gulshan B Campus Karachi",
+          "name": "Hira Ali.",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S012 - Gulshan B Campus Karachi",
+          "name": "Sabika Iqbal",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S012 - Gulshan B Campus Karachi",
+          "name": "Sana Farooq",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S012 - Gulshan B Campus Karachi",
+          "name": "Fatimah Masood",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "N009 - TCS Chakwal Campus",
+          "name": "Admin1 N009",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N009 - TCS Chakwal Campus",
+          "name": "Aliya Batool",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N009 - TCS Chakwal Campus",
+          "name": "Huma Mustafa",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N009 - TCS Chakwal Campus",
+          "name": "Faiza Naheed",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N009 - TCS Chakwal Campus",
+          "name": "Hina Batool",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "S002 - Defence Karachi",
+          "name": "Iqra Haris",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S002 - Defence Karachi",
+          "name": "Fatima Ali",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S002 - Defence Karachi",
+          "name": "Ms. Sobia Sobia",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S002 - Defence Karachi",
+          "name": "Nazia Sayed",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S002 - Defence Karachi",
+          "name": "S002 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "N014 - TCS Bannu Campus",
+          "name": "khush bakht Arooj",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N014 - TCS Bannu Campus",
+          "name": "Admin1 N014",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N014 - TCS Bannu Campus",
+          "name": "AMNA JAN",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N014 - TCS Bannu Campus",
+          "name": "Sana Jamil",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N014 - TCS Bannu Campus",
+          "name": "Iman Pashtiana Ambreen",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N055 - TCS Bahria Campus",
+          "name": "Admin1 N055",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N055 - TCS Bahria Campus",
+          "name": "Ayesha Usman",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N055 - TCS Bahria Campus",
+          "name": "AYESHA UMER",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N055 - TCS Bahria Campus",
+          "name": "Ayesha Minhas",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N055 - TCS Bahria Campus",
+          "name": "Saman Ali",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "S025 - NN I Karachi",
+          "name": "S025 Admin1",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S025 - NN I Karachi",
+          "name": "Yusra Khurram",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S025 - NN I Karachi",
+          "name": "Fatima Aleem",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S025 - NN I Karachi",
+          "name": "Fatima Kamal",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S025 - NN I Karachi",
+          "name": "Samia Iftikhar",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "C031 - TCS Kharian",
+          "name": "Nasir Ahmed Bhatti",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C031 - TCS Kharian",
+          "name": "Rubaa Shahzadi",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C035 - TCN-Bahawalpur Nursery",
+          "name": "Admin1 C035",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C035 - TCN-Bahawalpur Nursery",
+          "name": "Qurat Ul Ain Kamran",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C035 - TCN-Bahawalpur Nursery",
+          "name": "Saira Sarwar",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "N004 - TCN Swat",
+          "name": "Admin1 N004",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "C030 - TCS Gujrat",
+          "name": "Bakhtawar Iqbal",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C030 - TCS Gujrat",
+          "name": "Rimsha Jahangeer",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C030 - TCS Gujrat",
+          "name": "Admin1 C030",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C030 - TCS Gujrat",
+          "name": "Adan Fatima",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C030 - TCS Gujrat",
+          "name": "Sehrish Tahir",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "S047 - Qasimabad II Hyderabad",
+          "name": "S047 Admin1",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S047 - Qasimabad II Hyderabad",
+          "name": "Maryam Mughal",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S047 - Qasimabad II Hyderabad",
+          "name": "Arfa Ahmed Soomro",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S047 - Qasimabad II Hyderabad",
+          "name": "Tania Khan",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S047 - Qasimabad II Hyderabad",
+          "name": "Nimra Saleem",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "C052 - TCS Bahria Town Campus",
+          "name": "TOOBA YOUSAF SHEIKH",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C052 - TCS Bahria Town Campus",
+          "name": "Ayesha Ghufran",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C052 - TCS Bahria Town Campus",
+          "name": "FAIZA NADEEM",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C052 - TCS Bahria Town Campus",
+          "name": "ZAINAB RIZVI",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C052 - TCS Bahria Town Campus",
+          "name": "Maryam Fargham Khawaja",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "N054 - Bahria IB Chapter ISD",
+          "name": "N054 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N016 - TCS Wah Jr",
+          "name": "Rameesa Afzal",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N016 - TCS Wah Jr",
+          "name": "Rameeza Rehman",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N016 - TCS Wah Jr",
+          "name": "Iqra Zafar",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N016 - TCS Wah Jr",
+          "name": "Amna Bashir",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N016 - TCS Wah Jr",
+          "name": "Kiran Irshad",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N001 - TCS Nowshera Campus",
+          "name": "Admin1 N001",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N001 - TCS Nowshera Campus",
+          "name": "Rofee Gul",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N001 - TCS Nowshera Campus",
+          "name": "Nazia Gul",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N001 - TCS Nowshera Campus",
+          "name": "Aleena Iqbal",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N001 - TCS Nowshera Campus",
+          "name": "Faryal Ali",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N010 - TCS Harley Campus Rwp",
+          "name": "Admin1 N010",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N010 - TCS Harley Campus Rwp",
+          "name": "UKASHAH ANWAR",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N010 - TCS Harley Campus Rwp",
+          "name": "Ayesha Abid",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N010 - TCS Harley Campus Rwp",
+          "name": "Saima Nasir",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N010 - TCS Harley Campus Rwp",
+          "name": "Ayesha Mustafa",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "C021 - Sargodha Campus",
+          "name": "Habiba Najeeb",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C021 - Sargodha Campus",
+          "name": "Syeda Nayyar Bukhari",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C021 - Sargodha Campus",
+          "name": "Zain Sikander",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C021 - Sargodha Campus",
+          "name": "Mawara Farooq",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C021 - Sargodha Campus",
+          "name": "Hira Aslam",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "N060 - B-17 RWP",
+          "name": "Rabia Khan",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N060 - B-17 RWP",
+          "name": "Huma Latif",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N060 - B-17 RWP",
+          "name": "Afshan Amjad",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N060 - B-17 RWP",
+          "name": "Fouzia Khan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N060 - B-17 RWP",
+          "name": "N060 Admin1",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "S048 - Jinnah Campus Qasimabad",
+          "name": "Admin1 S048",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S048 - Jinnah Campus Qasimabad",
+          "name": "Sara Usman",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S048 - Jinnah Campus Qasimabad",
+          "name": "Babar Ali",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S048 - Jinnah Campus Qasimabad",
+          "name": "Mrs. Nighat Kashif Nighat Kashif",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S048 - Jinnah Campus Qasimabad",
+          "name": "Hadia Hadia",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "C024 - TCS FSDJr Peoples Colony",
+          "name": "Syeda Fatima Mobeen",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C024 - TCS FSDJr Peoples Colony",
+          "name": "Imran Yousaf",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C024 - TCS FSDJr Peoples Colony",
+          "name": "Yumna Fatima Sandhila",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C024 - TCS FSDJr Peoples Colony",
+          "name": "Amna Islam",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C024 - TCS FSDJr Peoples Colony",
+          "name": "Anum Khalid",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "N015 - TCS Attock Campus",
+          "name": "Romana Ayub Minhas",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N015 - TCS Attock Campus",
+          "name": "Arfa Muteeh",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N015 - TCS Attock Campus",
+          "name": "Rabiya Hasan Khan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N015 - TCS Attock Campus",
+          "name": "Rabbia Bibi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N015 - TCS Attock Campus",
+          "name": "Admin1 N015",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "C055 - Gujrat Campus GT Road",
+          "name": "Iqra Jamil",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C055 - Gujrat Campus GT Road",
+          "name": "Nargis Ali",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C055 - Gujrat Campus GT Road",
+          "name": "C055 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C055 - Gujrat Campus GT Road",
+          "name": "Rahat Iqbal",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C055 - Gujrat Campus GT Road",
+          "name": "Laiba Muzammil",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "S021 - TCS Gulshan F Jr Karachi",
+          "name": "Wajiha Zahra",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S021 - TCS Gulshan F Jr Karachi",
+          "name": "Admin1 S021",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S021 - TCS Gulshan F Jr Karachi",
+          "name": "Mariam Rafiq",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S021 - TCS Gulshan F Jr Karachi",
+          "name": "Aisha Rehan",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S021 - TCS Gulshan F Jr Karachi",
+          "name": "Sadia Saleem",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S079 - Gulshan-e-Hadeed Campus",
+          "name": "Admin1 S079",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S079 - Gulshan-e-Hadeed Campus",
+          "name": "Sana Riaz.",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S079 - Gulshan-e-Hadeed Campus",
+          "name": "Nuzhat Fatima Kayani",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S079 - Gulshan-e-Hadeed Campus",
+          "name": "Hafsa Noor",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S079 - Gulshan-e-Hadeed Campus",
+          "name": "Syeda Ansa Batool",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S032 - NN Girls Campus Karachi",
+          "name": "Admin1 S032",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S032 - NN Girls Campus Karachi",
+          "name": "Anum Zehra",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S032 - NN Girls Campus Karachi",
+          "name": "Sehrish Shahnawaz",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S032 - NN Girls Campus Karachi",
+          "name": "Kashaf Zubair",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S032 - NN Girls Campus Karachi",
+          "name": "Gulnaz Zaidi",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S074 - III Jamshoro Hyderabad",
+          "name": "S074 Admin1",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S074 - III Jamshoro Hyderabad",
+          "name": "Fiza Dahri",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S074 - III Jamshoro Hyderabad",
+          "name": "Aqsa Bhutto",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "C007 - TCS Shalimar A-Levels",
+          "name": "Uzma Imran",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C007 - TCS Shalimar A-Levels",
+          "name": "c007 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C007 - TCS Shalimar A-Levels",
+          "name": "Farah Ali",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C014 - TCS Model Town Link Rd",
+          "name": "Rida Syed",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C014 - TCS Model Town Link Rd",
+          "name": "Syeda Farheen Fatima Bukhari",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C014 - TCS Model Town Link Rd",
+          "name": "Hina Haider",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C014 - TCS Model Town Link Rd",
+          "name": "Shazia Rebicca Qurban",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C014 - TCS Model Town Link Rd",
+          "name": "Nawal Noor",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "N024 - TCS Mardan Campus",
+          "name": "Rabia Rabia",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N024 - TCS Mardan Campus",
+          "name": "Admin1 N024",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N024 - TCS Mardan Campus",
+          "name": "Aiman Ihsan",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N024 - TCS Mardan Campus",
+          "name": "Sumaira Sattar Khan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N024 - TCS Mardan Campus",
+          "name": "Muhammad Waqas Khan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "C022 - Jhang",
+          "name": "C022 Admin1",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C022 - Jhang",
+          "name": "Faria Hasan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C022 - Jhang",
+          "name": "Ayman Fareed",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C022 - Jhang",
+          "name": "Marium Jalil",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C022 - Jhang",
+          "name": "Kashaf Zahra",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C047 - TCS Burewala",
+          "name": "Admin1 C047",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C047 - TCS Burewala",
+          "name": "Farah Ali",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C047 - TCS Burewala",
+          "name": "Anzalna Kousar",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C047 - TCS Burewala",
+          "name": "Mariam Shafiq",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C047 - TCS Burewala",
+          "name": "Sana Asghar",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "S013 - Gulshan A Boys Campus",
+          "name": "Sidra Wakeel",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S013 - Gulshan A Boys Campus",
+          "name": "Admin1 S013",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S013 - Gulshan A Boys Campus",
+          "name": "Faiza Arain",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S013 - Gulshan A Boys Campus",
+          "name": "Syed Mustafa Athar",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S013 - Gulshan A Boys Campus",
+          "name": "WAJIHA HUSSAINI",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "C053 - Alpha Campus",
+          "name": "Anesia Javed",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C053 - Alpha Campus",
+          "name": "Sadia Amjad",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C053 - Alpha Campus",
+          "name": "Uzma Asif",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C053 - Alpha Campus",
+          "name": "C053 Admin1",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C053 - Alpha Campus",
+          "name": "Maryam Mushtaq",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C003 - Paragon Campus LHR",
+          "name": "Admin1 C003",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C003 - Paragon Campus LHR",
+          "name": "Hafsa Zafar",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C003 - Paragon Campus LHR",
+          "name": "Mehreen Waqar",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C003 - Paragon Campus LHR",
+          "name": "Attiya Siddiqa",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C034 - TCS Khanewal",
+          "name": "Sadaf Noreen",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C034 - TCS Khanewal",
+          "name": "Muhammad Zubair",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C034 - TCS Khanewal",
+          "name": "AYESHA ABID",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C034 - TCS Khanewal",
+          "name": "SADIA BIBI",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C034 - TCS Khanewal",
+          "name": "IRSA SHAHBAZ",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "N037 - TCS Rawal Campus Cantt",
+          "name": "Admin1 N037",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N037 - TCS Rawal Campus Cantt",
+          "name": "Tehmina Naz",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N037 - TCS Rawal Campus Cantt",
+          "name": "Abdul Wakeel Khan",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N037 - TCS Rawal Campus Cantt",
+          "name": "Nayyar Jabeen",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N037 - TCS Rawal Campus Cantt",
+          "name": "kinza rasool",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "C012 - TCS Muslim Town Jr.",
+          "name": "Admin1 C012",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C012 - TCS Muslim Town Jr.",
+          "name": "Ayesha Arshad Khan",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C012 - TCS Muslim Town Jr.",
+          "name": "AYESHA JAMIL MALIK",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C012 - TCS Muslim Town Jr.",
+          "name": "Laiba Saeed",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C012 - TCS Muslim Town Jr.",
+          "name": "Saima Abubakar",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C043 - Sialkot Iqbal Campus",
+          "name": "Aleena Ehsan",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C043 - Sialkot Iqbal Campus",
+          "name": "Admin1 C043",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C043 - Sialkot Iqbal Campus",
+          "name": "Samreen Shahbaz",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C043 - Sialkot Iqbal Campus",
+          "name": "Farah Ahsan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C043 - Sialkot Iqbal Campus",
+          "name": "Emaan Afzal",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C018 - TCS Joharabad Jr.",
+          "name": "Hira Safdar",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C018 - TCS Joharabad Jr.",
+          "name": "Ishrat Fatima",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C018 - TCS Joharabad Jr.",
+          "name": "Aleena Asghar",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C018 - TCS Joharabad Jr.",
+          "name": "Nimra Masood",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "C018 - TCS Joharabad Jr.",
+          "name": "Laraib Zahra",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Lyallpur",
+          "nip": "Imran Shahid (RGM)"
+        },
+        {
+          "school": "N028 - TCS Cantt Sr Psw",
+          "name": "Raza Fouzia",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N028 - TCS Cantt Sr Psw",
+          "name": "Laiba Inayat",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "C009 - TCN Shadman LHR",
+          "name": "Malaika Atif",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C009 - TCN Shadman LHR",
+          "name": "Sumaira Haider",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C009 - TCN Shadman LHR",
+          "name": "Admin1 C009",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C009 - TCN Shadman LHR",
+          "name": "Mehwish Shaharyar",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C009 - TCN Shadman LHR",
+          "name": "Ayesha Aamir",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C039 - TCS Multan",
+          "name": "Muqadas Akhtar",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C039 - TCS Multan",
+          "name": "Tehmina Zaman",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C039 - TCS Multan",
+          "name": "Hurraim Kashif",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C039 - TCS Multan",
+          "name": "Asma Shahzadi",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C039 - TCS Multan",
+          "name": "Admin1 C039",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "S056 - Nawabshah Campus",
+          "name": "Preety Preety",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S056 - Nawabshah Campus",
+          "name": "Hina Hussain",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S056 - Nawabshah Campus",
+          "name": "Baria Qamar Abro",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S056 - Nawabshah Campus",
+          "name": "Khizra Not available",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S056 - Nawabshah Campus",
+          "name": "Sana Mirza",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S065 - Quetta I",
+          "name": "Iqra Aslam",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S065 - Quetta I",
+          "name": "Sahifa Khan",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S065 - Quetta I",
+          "name": "S065 Admin1",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S065 - Quetta I",
+          "name": "Mahwash Habib",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S065 - Quetta I",
+          "name": "Iqra Rabail",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "N020 - TCS Gulrez Jr Rwp",
+          "name": "Admin1 N020",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N020 - TCS Gulrez Jr Rwp",
+          "name": "Tehreem Khan Durrani",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N020 - TCS Gulrez Jr Rwp",
+          "name": "Noor Ul Saba",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N020 - TCS Gulrez Jr Rwp",
+          "name": "Sh Muhammad Sohaib Khalid",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N038 - TCS E - 11 Campus ISD",
+          "name": "Admin1 N038",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N038 - TCS E - 11 Campus ISD",
+          "name": "Muhammad Tayyab",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N038 - TCS E - 11 Campus ISD",
+          "name": "Ghalia Javaid",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N038 - TCS E - 11 Campus ISD",
+          "name": "Kanwal Fayyaz",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N038 - TCS E - 11 Campus ISD",
+          "name": "Sawaira Khalid",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "C044 - Sahiwal Campus",
+          "name": "Admin1 C044",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C044 - Sahiwal Campus",
+          "name": "Muhammad Raza",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C044 - Sahiwal Campus",
+          "name": "Abeeha Adan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C044 - Sahiwal Campus",
+          "name": "Mahvish Tanveer",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C044 - Sahiwal Campus",
+          "name": "Tahreem Iqbal",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C028 - TCS Gujranwala Jr. Cantt",
+          "name": "Admin1 C028",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C028 - TCS Gujranwala Jr. Cantt",
+          "name": "Atiqa Akbar",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C028 - TCS Gujranwala Jr. Cantt",
+          "name": "ZUHAA TARIQ",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C028 - TCS Gujranwala Jr. Cantt",
+          "name": "UMAIMA AWAN",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C028 - TCS Gujranwala Jr. Cantt",
+          "name": "Javaid Bobby",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "S007 - Johar Campus Karachi",
+          "name": "Marium Ghaffar",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S007 - Johar Campus Karachi",
+          "name": "Admin1 S007",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S007 - Johar Campus Karachi",
+          "name": "Sanniya Saud Sharif",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S007 - Johar Campus Karachi",
+          "name": "Mahwish Saleem Cheema",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S007 - Johar Campus Karachi",
+          "name": "Anum Waheed",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "C037 - TCS KAPCO",
+          "name": "Robina Shaheen",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C037 - TCS KAPCO",
+          "name": "Admin1 C037",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C037 - TCS KAPCO",
+          "name": "JAVERIA NAIMAT ULLAH",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C037 - TCS KAPCO",
+          "name": "ALISHA TARIQ",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C037 - TCS KAPCO",
+          "name": "AMINA BINT ABBAS",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "N043 - TCN G 15 Jr ISD",
+          "name": "Faizia Aftab",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N043 - TCN G 15 Jr ISD",
+          "name": "Syeda Kainat Zehra Naqvi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N043 - TCN G 15 Jr ISD",
+          "name": "Fehmida Abdul Rehman",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N043 - TCN G 15 Jr ISD",
+          "name": "Fareha Iram",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N007 - TCS Civil Line Jr RWP",
+          "name": "Admin1 N007",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N007 - TCS Civil Line Jr RWP",
+          "name": "Marina Khan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N007 - TCS Civil Line Jr RWP",
+          "name": "Asia Ayyaz",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N007 - TCS Civil Line Jr RWP",
+          "name": "Syeda Zahra Kazmi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N007 - TCS Civil Line Jr RWP",
+          "name": "Laila Syed",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N056 - PWD Campus Islamabad",
+          "name": "Admin1 N056",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N056 - PWD Campus Islamabad",
+          "name": "Sundus Sohail",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N056 - PWD Campus Islamabad",
+          "name": "Nilofer Amir",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N056 - PWD Campus Islamabad",
+          "name": "Madeeha Zafar Malik",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N056 - PWD Campus Islamabad",
+          "name": "Shakira Hunaid",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N033 - TCS Swabi Campus",
+          "name": "Admin1 N033",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N033 - TCS Swabi Campus",
+          "name": "MUHAMMAD YASIR",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "C046 - TCS Vehari",
+          "name": "Admin1 C046",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C046 - TCS Vehari",
+          "name": "Mashal Zia",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C046 - TCS Vehari",
+          "name": "Aneela Ejaz",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C046 - TCS Vehari",
+          "name": "Aysha Saeed",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C046 - TCS Vehari",
+          "name": "Safia Naz",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "S072 - Khairpur Campus",
+          "name": "Aafia Kaleem",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S072 - Khairpur Campus",
+          "name": "S072 Admin1",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S072 - Khairpur Campus",
+          "name": "Hadeeqa Memon",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S072 - Khairpur Campus",
+          "name": "Mehak Soomro",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "S072 - Khairpur Campus",
+          "name": "Simran Davi",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Upper Mehran",
+          "nip": "Nuzhat Jabeen"
+        },
+        {
+          "school": "C011 - TCS Kasur",
+          "name": "Admin1 C011",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C011 - TCS Kasur",
+          "name": "Zobaria Ibrahim",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C011 - TCS Kasur",
+          "name": "Raiha Asghar",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C011 - TCS Kasur",
+          "name": "Ayesha Sandhu",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C011 - TCS Kasur",
+          "name": "MARRIAM SHABBIR",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "N065 - TCS Jhelum Branch",
+          "name": "Admin1 N065",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N065 - TCS Jhelum Branch",
+          "name": "AISHA BILAL",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N065 - TCS Jhelum Branch",
+          "name": "Anum Nadeem",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N065 - TCS Jhelum Branch",
+          "name": "Asma Qadeer",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N065 - TCS Jhelum Branch",
+          "name": "Amina Khalid",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "C010 - TCS Model Town Campus",
+          "name": "Admin1 C010",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C010 - TCS Model Town Campus",
+          "name": "Mayda Atif",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C010 - TCS Model Town Campus",
+          "name": "Komal Khalid",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C010 - TCS Model Town Campus",
+          "name": "Irsah Zainab",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "C010 - TCS Model Town Campus",
+          "name": "Nausheen Omer",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Panjnad",
+          "nip": "Shaista Farid"
+        },
+        {
+          "school": "S011 - Johar Uni. Road Campus",
+          "name": "Yumna Irshad Ali",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S011 - Johar Uni. Road Campus",
+          "name": "Admin1 S011",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S011 - Johar Uni. Road Campus",
+          "name": "Syeda Munazza Qadri",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S011 - Johar Uni. Road Campus",
+          "name": "Darakhsan Kaukab",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S011 - Johar Uni. Road Campus",
+          "name": "Shaheera Nadeem Siddiqui",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S016 - Gulshan A Jr Karachi",
+          "name": "Sana Ikram",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S016 - Gulshan A Jr Karachi",
+          "name": "S016 Admin1",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S016 - Gulshan A Jr Karachi",
+          "name": "Samira Moonis",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S016 - Gulshan A Jr Karachi",
+          "name": "Hina Naqvi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "N030 - TCS Muzaffarabad Campus",
+          "name": "Aqsa Naeem",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N030 - TCS Muzaffarabad Campus",
+          "name": "Admin1 N030",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N030 - TCS Muzaffarabad Campus",
+          "name": "Hareem Fatima",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N030 - TCS Muzaffarabad Campus",
+          "name": "Eman Fatima",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N030 - TCS Muzaffarabad Campus",
+          "name": "Anila Qamar",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "S023 - TCS Baitul Mukaram",
+          "name": "Admin1 S023",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S023 - TCS Baitul Mukaram",
+          "name": "Sadia Atif Khan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S023 - TCS Baitul Mukaram",
+          "name": "Sadaf Basheer",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S023 - TCS Baitul Mukaram",
+          "name": "HIBA JAHANZED",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S023 - TCS Baitul Mukaram",
+          "name": "YUSRA ZAIN",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S053 - Mirpur Khas",
+          "name": "S053 Admin1",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S053 - Mirpur Khas",
+          "name": "Farheen Farheen",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S053 - Mirpur Khas",
+          "name": "Rubab Fatima",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S053 - Mirpur Khas",
+          "name": "Rabia Butt",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S055 - TCS Thatta Campus",
+          "name": "Admin1 S055",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S055 - TCS Thatta Campus",
+          "name": "EZAT AHSAN",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S055 - TCS Thatta Campus",
+          "name": "SHOAIB AHMED",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S055 - TCS Thatta Campus",
+          "name": "Nisa Nisa",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S055 - TCS Thatta Campus",
+          "name": "MARYAM QADIR",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S080 - Chiltan Quetta",
+          "name": "S080 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "—"
+        },
+        {
+          "school": "N002 - Satellite Town Nursery Campus",
+          "name": "N002 Admin1",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N002 - Satellite Town Nursery Campus",
+          "name": "Qandil Yousaf",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N002 - Satellite Town Nursery Campus",
+          "name": "Kiran Shahzadi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N002 - Satellite Town Nursery Campus",
+          "name": "Hina Ashiq",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N002 - Satellite Town Nursery Campus",
+          "name": "Anum Zehra",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N036 - TCS Capital Campus ISD",
+          "name": "Admin1 N036",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N036 - TCS Capital Campus ISD",
+          "name": "Shireen Nadeem",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N036 - TCS Capital Campus ISD",
+          "name": "Malaika Kanwal",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N036 - TCS Capital Campus ISD",
+          "name": "Fatima Gul",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N036 - TCS Capital Campus ISD",
+          "name": "Mehtab Moghees",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N039 - TCS Kohat Campus",
+          "name": "Ayesha Daud",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N039 - TCS Kohat Campus",
+          "name": "Admin1 N039",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N039 - TCS Kohat Campus",
+          "name": "Noor Waheed",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N039 - TCS Kohat Campus",
+          "name": "Uzma Rani",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N039 - TCS Kohat Campus",
+          "name": "Haseena Bibi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "S027 - TCS NN B Jr Karachi",
+          "name": "Admin1 S027",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S027 - TCS NN B Jr Karachi",
+          "name": "Afshan Mujtaba",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S027 - TCS NN B Jr Karachi",
+          "name": "Uzma Batool",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S027 - TCS NN B Jr Karachi",
+          "name": "Sahar Raheel Khan",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S027 - TCS NN B Jr Karachi",
+          "name": "Sana Abdul Razzak",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "N019 - TCS Mirpur Campus",
+          "name": "GHANVA GHOUS",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N019 - TCS Mirpur Campus",
+          "name": "Admin1 N019",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N019 - TCS Mirpur Campus",
+          "name": "Tooba Adnan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N019 - TCS Mirpur Campus",
+          "name": "Fatima Ummul Khair",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "N019 - TCS Mirpur Campus",
+          "name": "Sidra Javed",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Pothohar",
+          "nip": "Nauman Jan"
+        },
+        {
+          "school": "S037 - TCN Bahadurabad Karachi",
+          "name": "Samar Azan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S037 - TCN Bahadurabad Karachi",
+          "name": "Hafsa Muneeb",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S037 - TCN Bahadurabad Karachi",
+          "name": "Neha Moiz",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "N045 - TCS Abbottabad Campus",
+          "name": "Admin1 N045",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N045 - TCS Abbottabad Campus",
+          "name": "Romaisa Malik",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N045 - TCS Abbottabad Campus",
+          "name": "Anam Shahzadi",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N045 - TCS Abbottabad Campus",
+          "name": "Humaira Hassan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N045 - TCS Abbottabad Campus",
+          "name": "Saba Aman",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "S084 - Maymar Q. Ave. Campus",
+          "name": "Syeda Tooba Munawer",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S084 - Maymar Q. Ave. Campus",
+          "name": "Turfa Dhuka",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S084 - Maymar Q. Ave. Campus",
+          "name": "S084 Admin1",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S084 - Maymar Q. Ave. Campus",
+          "name": "Aleen Fatima",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S084 - Maymar Q. Ave. Campus",
+          "name": "Ghazala Asad",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S039 - TCN PECHS III Karachi",
+          "name": "Admin1 S039",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S039 - TCN PECHS III Karachi",
+          "name": "Munira Amir Ali",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "C036 - TCS D.G Khan Campus",
+          "name": "Admin1 C036",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C036 - TCS D.G Khan Campus",
+          "name": "SAMIA SOHAIL",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C036 - TCS D.G Khan Campus",
+          "name": "syed Mubashir Hassan",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C036 - TCS D.G Khan Campus",
+          "name": "Sadia Farid",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "C036 - TCS D.G Khan Campus",
+          "name": "Hafsa Malik",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Beas",
+          "nip": "Ameer Umar"
+        },
+        {
+          "school": "S067 - Quetta Campus",
+          "name": "Sana Asad",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S067 - Quetta Campus",
+          "name": "Nouman Najeeb",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S067 - Quetta Campus",
+          "name": "Admin1 S067",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S067 - Quetta Campus",
+          "name": "Ayesha Durrani",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "S067 - Quetta Campus",
+          "name": "Muhammad Adeel Ghuari",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Bolan",
+          "nip": "Tazeen Ahad (ARD)"
+        },
+        {
+          "school": "N012 - TCS Sr Uni Town Psw",
+          "name": "Admin1 N012",
+          "daysLoggedIn": 7,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N012 - TCS Sr Uni Town Psw",
+          "name": "Sana Ullah",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N012 - TCS Sr Uni Town Psw",
+          "name": "Tayyeba Bader",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N012 - TCS Sr Uni Town Psw",
+          "name": "Huma Nawab",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N012 - TCS Sr Uni Town Psw",
+          "name": "Muhammad Aamir",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "C054 - Arifwala Campus",
+          "name": "Khadija Rafiq",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C054 - Arifwala Campus",
+          "name": "Areeha Eman",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C054 - Arifwala Campus",
+          "name": "Maham Tariq",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C054 - Arifwala Campus",
+          "name": "Maryam Maryam",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "C054 - Arifwala Campus",
+          "name": "C054 Admin1",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Sutlej",
+          "nip": "Faisal Yazdani"
+        },
+        {
+          "school": "N034 - TCS Chashma Jr",
+          "name": "Khuzaima Hanif",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N034 - TCS Chashma Jr",
+          "name": "Admin1 N034",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N034 - TCS Chashma Jr",
+          "name": "Alina Imam",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N003 - TCS Satellite Town Camp.",
+          "name": "Admin1 N003",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N003 - TCS Satellite Town Camp.",
+          "name": "Aemen Zehra",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N003 - TCS Satellite Town Camp.",
+          "name": "Shameen Khan",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N003 - TCS Satellite Town Camp.",
+          "name": "Ghania Fatima",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "N003 - TCS Satellite Town Camp.",
+          "name": "Qasim Mehmood",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Kohsar",
+          "nip": "Sumaira Tauseef"
+        },
+        {
+          "school": "C016 - TCN Allama Iqbal Town",
+          "name": "Admin1 C016",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C016 - TCN Allama Iqbal Town",
+          "name": "Nabeela ahmad",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C016 - TCN Allama Iqbal Town",
+          "name": "Gul e Zahra",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C016 - TCN Allama Iqbal Town",
+          "name": "Hina Zia",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "C016 - TCN Allama Iqbal Town",
+          "name": "MAHNOOR ASAD",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Aibak",
+          "nip": "Saima Haroon"
+        },
+        {
+          "school": "N044 - TCS D.I.Khan Campus",
+          "name": "Admin1 N044",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N044 - TCS D.I.Khan Campus",
+          "name": "Hareem Fatima",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N044 - TCS D.I.Khan Campus",
+          "name": "Safina Zaib",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N044 - TCS D.I.Khan Campus",
+          "name": "Iqra Javed",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N044 - TCS D.I.Khan Campus",
+          "name": "Sadaf Saeed",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "S038 - TCN Tipu Sultan Karachi",
+          "name": "Admin1 S038",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S038 - TCN Tipu Sultan Karachi",
+          "name": "Nadia Azhar",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S038 - TCN Tipu Sultan Karachi",
+          "name": "Shamaila Naz Butt",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S038 - TCN Tipu Sultan Karachi",
+          "name": "Riffat Faysal",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S038 - TCN Tipu Sultan Karachi",
+          "name": "Maryam Mohsin",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S035 - PAF Chapter Karachi",
+          "name": "Admin1 S035",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S035 - PAF Chapter Karachi",
+          "name": "Immara Islam",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S035 - PAF Chapter Karachi",
+          "name": "Hina Saleha Javed",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S035 - PAF Chapter Karachi",
+          "name": "Fouzia Yousuf",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S035 - PAF Chapter Karachi",
+          "name": "Zainab Yasir",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S001 - TCN Clifton Karachi",
+          "name": "Ammara Zeeshan",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S001 - TCN Clifton Karachi",
+          "name": "Admin1 S001",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S001 - TCN Clifton Karachi",
+          "name": "Mehwish Nadeem",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi II",
+          "nip": "Sabrina Altaf"
+        },
+        {
+          "school": "S083 - Ink City Campus Hyderabad",
+          "name": "Nitasha Akbar",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S083 - Ink City Campus Hyderabad",
+          "name": "Laiba Laiba",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S083 - Ink City Campus Hyderabad",
+          "name": "Noor Ul Ain",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "N026 - TCS Mianwali Campus",
+          "name": "Zunaira Safeer",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N026 - TCS Mianwali Campus",
+          "name": "Kanwal Niazi",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "N026 - TCS Mianwali Campus",
+          "name": "Farah Naz",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Abaseen",
+          "nip": "Murad Khattak"
+        },
+        {
+          "school": "S071 - TCS PECHS Campus",
+          "name": "Kissa Fatima Hammad",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S071 - TCS PECHS Campus",
+          "name": "Hira Niazi",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S071 - TCS PECHS Campus",
+          "name": "Admin1 S071",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S071 - TCS PECHS Campus",
+          "name": "Iqra Rasheed Awan",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S071 - TCS PECHS Campus",
+          "name": "Zoobia Khalid",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "N035 - Cantt Rwp",
+          "name": "Afeefa Maqsood",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N035 - Cantt Rwp",
+          "name": "Hira Shahid",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N035 - Cantt Rwp",
+          "name": "Tania Samuel",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N035 - Cantt Rwp",
+          "name": "Wajiha Naeem",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N035 - Cantt Rwp",
+          "name": "Maleeha Asim",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Margalla",
+          "nip": "Azra Tahir"
+        },
+        {
+          "school": "N021 - Abbottabad",
+          "name": "Hira Mushtaq",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N021 - Abbottabad",
+          "name": "Umme Hani",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N021 - Abbottabad",
+          "name": "Sadaf Iqbal",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N021 - Abbottabad",
+          "name": "Anza Saadat",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "N021 - Abbottabad",
+          "name": "Haniyya Sardar",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "North (KPK/Islamabad)",
+          "cluster": "Khyber",
+          "nip": "Mehwish Shaukat"
+        },
+        {
+          "school": "C045 - TCS Okara",
+          "name": "Hafiza Nayab Asif",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C045 - TCS Okara",
+          "name": "Admin1 C045",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C045 - TCS Okara",
+          "name": "Arooj Irshad",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C045 - TCS Okara",
+          "name": "Nimra Adnan",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "C045 - TCS Okara",
+          "name": "Sajida Shahbaz",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "Central (Punjab)",
+          "cluster": "Rohtas",
+          "nip": "Qanita Obaid"
+        },
+        {
+          "school": "S008 - Gulistan-e-Johar I Karachi",
+          "name": "Maleeha Sabir",
+          "daysLoggedIn": 6,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S008 - Gulistan-e-Johar I Karachi",
+          "name": "S008 Admin1",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S008 - Gulistan-e-Johar I Karachi",
+          "name": "Sadaf Naz",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S008 - Gulistan-e-Johar I Karachi",
+          "name": "Syeda Anum Anjum",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S008 - Gulistan-e-Johar I Karachi",
+          "name": "Shafaq Zirfam",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S022 - Gulshan C Girls Campus",
+          "name": "SYEDA SAHAR VAKIL",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S022 - Gulshan C Girls Campus",
+          "name": "Durr E Shahwar",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S022 - Gulshan C Girls Campus",
+          "name": "Admin1 S022",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S022 - Gulshan C Girls Campus",
+          "name": "Farhana Shamim",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S022 - Gulshan C Girls Campus",
+          "name": "Urooj Binte Saeed",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "C002 - TCS Shalimar Campus LHR",
+          "name": "Admin1 C002",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "C002 - TCS Shalimar Campus LHR",
+          "name": "Saima Iqbal",
+          "daysLoggedIn": 1,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "Central (Punjab)",
+          "cluster": "Indus",
+          "nip": "Rukhsana Tariq"
+        },
+        {
+          "school": "S054 - Mirpur Khas Campus",
+          "name": "Hiba Fatima Syed",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S054 - Mirpur Khas Campus",
+          "name": "Admin1 S054",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S054 - Mirpur Khas Campus",
+          "name": "Summaya Sajed",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S054 - Mirpur Khas Campus",
+          "name": "Aqsa Laghari",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S054 - Mirpur Khas Campus",
+          "name": "Sarah Tahir",
+          "daysLoggedIn": 2,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Lower Mehran",
+          "nip": "Nouman Akram"
+        },
+        {
+          "school": "S010 - Gulshan-e-Maymar Campus",
+          "name": "Admin1 S010",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S010 - Gulshan-e-Maymar Campus",
+          "name": "Shumaila Tayabani",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S010 - Gulshan-e-Maymar Campus",
+          "name": "Sara Fatima",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 3,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S010 - Gulshan-e-Maymar Campus",
+          "name": "Dania Zahid",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 4,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S010 - Gulshan-e-Maymar Campus",
+          "name": "Nasreen Jamil",
+          "daysLoggedIn": 3,
+          "assignmentsAssigned": 0,
+          "rank": 5,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi III",
+          "nip": "Rehana Afzal (ADO)"
+        },
+        {
+          "school": "S020 - TCS Gulshan Jr Karachi",
+          "name": "Rubina Amir",
+          "daysLoggedIn": 5,
+          "assignmentsAssigned": 0,
+          "rank": 1,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        },
+        {
+          "school": "S020 - TCS Gulshan Jr Karachi",
+          "name": "Sadia Raza",
+          "daysLoggedIn": 4,
+          "assignmentsAssigned": 0,
+          "rank": 2,
+          "region": "South (Sindh/Balochistan)",
+          "cluster": "Karachi I",
+          "nip": "Bushra Afaq"
+        }
+      ],
+      "uploadedAt": "2026-11-16T12:22:17.447Z"
     }
   },
   "latest": "Week 10"
